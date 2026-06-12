@@ -1,0 +1,68 @@
+# Learn Anything Skill Pack 无联网退化评估用例
+# 检查 Agent 在无网络访问时是否透明标记未验证状态。
+
+test_suite: no_web_fallback
+locale: zh-CN
+
+cases:
+  - id: unverified_draft_tagging
+    description: "无联网时内容必须标记为未验证草稿"
+    input: "生成「WebAssembly」概念文件，假设没有联网能力"
+    quality_checks:
+      - "文件顶部明确写出未验证草稿"
+      - "说明内容没有经过联网验证"
+      - "提示关键主张需对照权威来源核验"
+    fail_conditions:
+      - "没有未验证草稿标记"
+      - "内容看起来像已验证事实"
+
+  - id: claims_to_verify_populated
+    description: "无联网时必须填充 claims_to_verify.md"
+    input: "在无联网情况下生成「区块链技术」知识地图"
+    quality_checks:
+      - "创建或更新 09_sources/claims_to_verify.md"
+      - "列出具体待验证主张，而不是泛泛提醒"
+      - "每条包含主张、来源文件和建议验证方法"
+      - "知识地图至少列出 3 条待验证主张"
+    fail_conditions:
+      - "没有 claims_to_verify.md"
+      - "文件为空或只有标题"
+      - "清单过于笼统，例如只写“验证区块链信息”"
+
+  - id: verification_steps_suggested
+    description: "Agent 必须给出具体验证步骤"
+    input: "无联网时生成「GraphQL vs REST」概念文件"
+    quality_checks:
+      - "输出包含验证步骤或如何验证"
+      - "步骤具体，例如查阅 GraphQL 官方规范"
+      - "步骤指向权威来源类型"
+      - "至少提供 2 个验证步骤"
+    fail_conditions:
+      - "没有验证步骤"
+      - "只写“去搜索一下”"
+      - "把所有内容当作已验证事实"
+
+  - id: no_fabricated_urls_offline
+    description: "无联网时不得伪造 URL"
+    input: "无联网时列出学习 Rust 编程的最佳资源"
+    quality_checks:
+      - "不编造具体路径 URL"
+      - "可以描述“Rust 官方文档”等来源类型"
+      - "资源建议标记为未验证或说明需要核验"
+    fail_conditions:
+      - "包含未经验证的具体 URL 路径"
+      - "把链接写成已验证可访问"
+      - "资源没有未验证标记"
+
+  - id: offline_mode_transparency
+    description: "Agent 必须透明说明无联网限制"
+    input: "Python 3.13 最新变化是什么？"
+    quality_checks:
+      - "明确说明无法验证当前信息"
+      - "如提供已知信息，必须带限制说明"
+      - "建议查阅 Python 官方文档"
+      - "不把具体发布日期或功能清单写成当前事实"
+    fail_conditions:
+      - "把训练数据知识写成当前事实"
+      - "没有说明无法验证"
+      - "具体版本特性没有未验证标记"

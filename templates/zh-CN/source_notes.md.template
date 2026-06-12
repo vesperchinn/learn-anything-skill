@@ -1,0 +1,48 @@
+# 来源注释模板
+
+此模板定义了每个学习模块（概念文件、每日学习等）末尾应附加的脚注格式。
+
+## 脚注格式
+
+```markdown
+---
+
+### 来源注释 (Source Notes)
+- [来源 1 描述] - [已验证] 或 [未验证]
+- [来源 2 描述] - [已验证] 或 [未验证]
+
+### 资料来源 (Material Sources)
+- Material ID：{M001}；位置：{页码 / 幻灯片 / 章节 / location unresolved}；覆盖：Grounded / Partially grounded
+
+### 补充来源 (Supplemental Sources)
+- {补充来源或“无”} - 原因：{为什么需要补充内容}
+
+### 未解决提取问题 (Unresolved Extraction Issues)
+- {问题 ID 或“无”} - 影响：{哪些内容可能不完整}
+
+### 时效性风险 (Freshness Risk)：🟢 稳定 / 🟡 演变中 / 🔴 易变
+
+### 待验证主张 (Claims to Verify)
+- [ ] {主张 1} - 建议验证方式：{method}
+- [ ] {主张 2} - 建议验证方式：{method}
+
+**最后验证日期 (Last Verified)**：{date 或 "尚未验证"}
+**建议复查间隔 (Recommended Review Interval)**：{interval}
+```
+
+## 使用说明
+
+AI 代理将此脚注附加到其生成的每个学习模块末尾。
+学习者可以使用"待验证主张"清单来独立确认关键事实。
+
+在 Material-Grounded Learning Mode 中，来源注释必须区分用户资料和
+`Supplemental` 来源。不得把外部知识写进资料来源。
+
+如果 Agent 没有联网能力，必须在模块顶部加入：
+
+```markdown
+> [!WARNING]
+> **未验证草稿**
+>
+> 本内容在没有联网验证的情况下生成。关键主张必须先对照权威来源核验后再使用。
+```

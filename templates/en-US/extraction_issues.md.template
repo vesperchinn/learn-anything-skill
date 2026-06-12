@@ -1,0 +1,15 @@
+# Extraction Issues — {{domain}}
+
+Record unresolved extraction issues here. Do not guess missing content.
+
+## Issues
+
+| ID | Material ID | Location | Issue Type | Impact | Next Action | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| E001 | M001 | p. / slide | unreadable / scanned / missing image / table parse failure / chart parse failure | pending | request OCR / manual notes / converted Markdown | open |
+
+## Rules
+
+- Do not invent text from unreadable pages, slides, screenshots, charts, or tables.
+- Mark affected learning modules as partially grounded until resolved.
+- Ask the user for OCR, screenshots, exported text, or converted Markdown when needed.

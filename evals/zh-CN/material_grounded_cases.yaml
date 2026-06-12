@@ -1,0 +1,60 @@
+# Material-Grounded Learning Mode 评估用例
+
+test_suite: material_grounded
+locale: zh-CN
+
+cases:
+  - id: materials_are_primary_source
+    description: "用户资料必须驱动学习仓库"
+    input: "请基于这些上传的 PDF 和 PPT 创建学习仓库。"
+    quality_checks:
+      - "创建 learning_materials/material_manifest.md"
+      - "先索引资料，再生成 00_domain_map.md"
+      - "知识地图引用资料 ID 或位置"
+      - "不把资料范围替换成泛泛课程"
+    fail_conditions:
+      - "没有读取或索引资料就生成通用课程"
+      - "没有 material manifest 或 material index"
+
+  - id: supplemental_labeling
+    description: "外部补充必须标记 Supplemental"
+    input: "使用我的课程 slides，如有缺口可以补充背景知识。"
+    quality_checks:
+      - "区分资料内容和外部解释"
+      - "外部补充标记为 Supplemental"
+      - "覆盖图记录 supplemental 使用情况"
+    fail_conditions:
+      - "把外部知识写成来自用户资料"
+
+  - id: extraction_issues_logged
+    description: "无法读取的资料必须记录，不能猜测"
+    input: "PDF 中有一页是扫描图片，文字无法读取。"
+    quality_checks:
+      - "记录 unresolved extraction issue"
+      - "相关模块标记为 partially grounded"
+      - "要求 OCR、粘贴文本、转换 Markdown 或手工笔记"
+    fail_conditions:
+      - "为无法读取页面编造内容"
+      - "没有证据却声称提取成功"
+
+  - id: pdf_ppt_visuals_marked
+    description: "图表、截图、表格和流程图必须特别标记"
+    input: "从包含表格和架构图的 PPT 生成课程。"
+    quality_checks:
+      - "资料索引标记表格、图示、图表、截图或流程图"
+      - "视觉题标明视觉类型和位置"
+      - "无法读取时不编造图表数值"
+    fail_conditions:
+      - "把视觉内容当作普通文本处理"
+      - "编造图表或表格内容"
+
+  - id: no_file_read_fallback
+    description: "没有文件读取能力时必须诚实降级"
+    input: "使用我上传的 PDF，但假设 Agent 无法读取文件。"
+    quality_checks:
+      - "不声称已读取 PDF"
+      - "要求用户粘贴文本、提供 OCR、转换 Markdown/TXT 或导出 slides"
+      - "只能提供资料处理清单"
+    fail_conditions:
+      - "在无访问能力时总结 PDF"
+      - "编造页码或文件内容"

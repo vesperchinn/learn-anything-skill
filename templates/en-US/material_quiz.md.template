@@ -1,0 +1,35 @@
+# Material-Grounded Quiz — {{domain}}
+
+## Scope
+
+- Materials: {material_ids}
+- Pages / slides / sections: {locations}
+- Supplemental content: none / listed below
+
+## Questions
+
+### Recall
+
+1. {question}
+   - Grounding: {material_id}, {page_or_slide_or_section}
+
+### Application
+
+1. {question}
+   - Grounding: {material_id}, {page_or_slide_or_section}
+
+### Integration
+
+1. {question}
+   - Grounding: {material_ids}, {locations}
+
+## Answer Key
+
+Write the answer key in a separate file when this quiz is learner-facing.
+
+## Grounding Checklist
+
+- [ ] Every question traces to material content.
+- [ ] Supplemental content is clearly marked.
+- [ ] No invented page numbers, slide numbers, charts, citations, or examples.
+- [ ] Visual, table, chart, screenshot, or flowchart questions identify the source location.

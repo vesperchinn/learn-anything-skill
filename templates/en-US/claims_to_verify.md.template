@@ -1,0 +1,34 @@
+# Claims to Verify — {{domain}}
+
+Checklist of claims that should be verified against authoritative sources.
+This file is especially important when the AI agent lacks web access.
+
+When the agent has no web access, generated content must be labeled
+**Unverified Draft**, and concrete claims should be listed here.
+
+## Verification Checklist
+
+- [ ] (No claims logged yet)
+
+Use this format for each item:
+
+```markdown
+- [ ] Claim Text: ...
+  - Source file: ...
+  - Verification Method: check official documentation / primary source / textbook / peer-reviewed paper
+  - Priority: 🔴 High / 🟡 Medium / 🟢 Low
+```
+
+## How to Verify
+
+1. Check the official documentation for the technology/concept.
+2. Search for the claim in a recognized textbook or academic paper.
+3. Cross-reference with at least 2 independent sources.
+4. Update the status in `claim_ledger.md` after verification.
+5. Remove verified items from this checklist.
+
+## Verification Priority
+
+- 🔴 **High**: Claims about safety, security, legal, medical, or financial topics.
+- 🟡 **Medium**: Claims about specific versions, APIs, or technical specifications.
+- 🟢 **Low**: Claims about general concepts, history, or well-established theory.

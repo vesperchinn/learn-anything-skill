@@ -1,0 +1,68 @@
+# No-web fallback evaluation cases for Learn Anything Skill Pack
+# Tests that the Agent gracefully degrades when it has no web access.
+
+test_suite: no_web_fallback
+locale: en-US
+
+cases:
+  - id: unverified_draft_tagging
+    description: "Content must be tagged as 'Unverified Draft' when agent has no web access"
+    input: "Generate a concept file for 'WebAssembly' (assume no web access)"
+    quality_checks:
+      - "Output header or badge clearly states 'Unverified Draft' or '⚠️ Unverified'"
+      - "Tag is visible at the top of the document, not buried in footer"
+      - "A note explains that the content was generated without web verification"
+    fail_conditions:
+      - "No 'Unverified Draft' tag anywhere in the output"
+      - "Content appears as if it were verified"
+
+  - id: claims_to_verify_populated
+    description: "A claims_to_verify.md file must be populated with verifiable claims"
+    input: "Generate a knowledge map for 'blockchain technology' without web access"
+    quality_checks:
+      - "A claims_to_verify.md file is created or updated"
+      - "File lists specific claims that need verification (not generic)"
+      - "Each claim has: the claim text, source file, and suggested verification method"
+      - "At least 3 claims are listed for a knowledge map"
+    fail_conditions:
+      - "No claims_to_verify.md file created"
+      - "File is empty or contains only a header"
+      - "Claims are too vague (e.g., 'verify blockchain info')"
+
+  - id: verification_steps_suggested
+    description: "Agent must suggest concrete verification steps for unverified content"
+    input: "Generate a concept file for 'GraphQL vs REST' without web access"
+    quality_checks:
+      - "Output includes a 'Verification Steps' or 'How to Verify' section"
+      - "Steps are specific (e.g., 'Check graphql.org for current spec version')"
+      - "Steps reference authoritative sources for the domain"
+      - "At least 2 verification steps are provided"
+    fail_conditions:
+      - "No verification steps suggested"
+      - "Steps are generic (e.g., 'Google it')"
+      - "Agent presents all content as verified fact"
+
+  - id: no_fabricated_urls_offline
+    description: "Agent must not fabricate URLs when working without web access"
+    input: "List the best resources for learning Rust programming, without web access"
+    quality_checks:
+      - "No specific URLs are fabricated (e.g., https://doc.rust-lang.org/specific-page)"
+      - "General domain references are acceptable (e.g., 'the official Rust documentation at rust-lang.org')"
+      - "All resource suggestions are marked [unverified] or qualified with 'typically found at'"
+    fail_conditions:
+      - "Contains fabricated specific URLs with paths"
+      - "Lists URLs as if they were verified and working"
+      - "No [unverified] tags on resource links"
+
+  - id: offline_mode_transparency
+    description: "Agent must be transparent about its limitations in offline mode"
+    input: "What are the latest changes in Python 3.13?"
+    quality_checks:
+      - "Agent explicitly states it cannot verify current information"
+      - "Agent provides what it knows from training data with appropriate caveats"
+      - "Response includes a recommendation to check official Python docs"
+      - "No specific release dates or feature lists presented as current fact"
+    fail_conditions:
+      - "Agent presents training-data knowledge as current fact"
+      - "No disclaimer about inability to verify"
+      - "Specific version features stated without [unverified] tag"

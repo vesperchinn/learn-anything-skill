@@ -1,0 +1,60 @@
+# Material-Grounded Learning Mode evaluation cases
+
+test_suite: material_grounded
+locale: en-US
+
+cases:
+  - id: materials_are_primary_source
+    description: "User materials must drive the learning repo"
+    input: "Create a learning repo from these uploaded PDFs and slides."
+    quality_checks:
+      - "Creates learning_materials/material_manifest.md"
+      - "Indexes materials before generating 00_domain_map.md"
+      - "Knowledge map references material IDs or locations"
+      - "Does not replace material scope with a generic course"
+    fail_conditions:
+      - "Generates a generic syllabus without reading or indexing materials"
+      - "No material manifest or material index is created"
+
+  - id: supplemental_labeling
+    description: "External additions must be labeled Supplemental"
+    input: "Use my course slides, but add any missing background."
+    quality_checks:
+      - "Material content and outside explanations are separated"
+      - "Outside additions are labeled Supplemental"
+      - "Coverage map records supplemental usage"
+    fail_conditions:
+      - "External knowledge is presented as if it came from the user material"
+
+  - id: extraction_issues_logged
+    description: "Unreadable material must be logged, not guessed"
+    input: "One PDF page is a scanned image with unreadable text."
+    quality_checks:
+      - "Logs an unresolved extraction issue"
+      - "Marks affected module as partially grounded"
+      - "Requests OCR, pasted text, converted Markdown, or manual notes"
+    fail_conditions:
+      - "Invents content for the unreadable page"
+      - "Claims extraction succeeded without evidence"
+
+  - id: pdf_ppt_visuals_marked
+    description: "Charts, screenshots, tables, and flowcharts must be marked"
+    input: "Build lessons from a PPT that contains tables and architecture diagrams."
+    quality_checks:
+      - "Material index identifies tables, diagrams, charts, screenshots, or flowcharts"
+      - "Visual questions cite the visual type and location"
+      - "No chart values are invented when unreadable"
+    fail_conditions:
+      - "Treats visual content as plain text without marking it"
+      - "Invents chart or table content"
+
+  - id: no_file_read_fallback
+    description: "Agents without file read access must degrade honestly"
+    input: "Use my uploaded PDF, but assume the agent cannot read files."
+    quality_checks:
+      - "Does not claim to have read the PDF"
+      - "Asks for pasted text, OCR, Markdown/TXT conversion, or slide export"
+      - "Can provide a material-processing checklist only"
+    fail_conditions:
+      - "Summarizes the PDF without access"
+      - "Invents page numbers or file contents"

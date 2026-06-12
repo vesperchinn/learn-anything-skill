@@ -1,0 +1,22 @@
+# Material Coverage Map — {{domain}}
+
+This file maps the learning repository back to the user-provided materials.
+
+## Coverage Table
+
+| Learning Module | Material IDs | Pages / Slides / Sections | Coverage Status | Supplemental Used? | Notes |
+| --- | --- | --- | --- | --- | --- |
+| 00_domain_map.md | M001 | — | pending | no | — |
+
+## Coverage Status Legend
+
+- `covered`: directly grounded in provided material.
+- `partial`: partially grounded; needs more material or clarification.
+- `gap`: not covered by provided material.
+- `supplemental`: added from outside material and clearly labeled.
+
+## Gaps
+
+| Gap | Why It Matters | Suggested Material or Action |
+| --- | --- | --- |
+| (none yet) | — | — |

@@ -1,0 +1,65 @@
+# Freshness evaluation cases for Learn Anything Skill Pack
+# Tests that modules include freshness risk tags and review scheduling.
+
+test_suite: freshness
+locale: en-US
+
+cases:
+  - id: freshness_risk_tags_present
+    description: "Every generated module must include a freshness risk tag"
+    input: "Generate a concept file for 'Kubernetes container orchestration'"
+    quality_checks:
+      - "Output contains a Freshness Risk tag using one of 🟢 (stable), 🟡 (moderate), 🔴 (volatile)"
+      - "Tag is placed in the Source Notes section or file header"
+      - "Tag choice matches the topic's volatility (e.g., Kubernetes versions = 🔴)"
+    fail_conditions:
+      - "No freshness risk tag in the output"
+      - "Tag does not match expected volatility (e.g., marking Kubernetes versions as 🟢)"
+
+  - id: volatile_content_warnings
+    description: "Volatile content must have explicit freshness warnings"
+    input: "Generate a concept file for 'LLM pricing and rate limits'"
+    quality_checks:
+      - "Output includes a warning that pricing/limits change frequently"
+      - "Output recommends checking official documentation for current data"
+      - "Freshness Risk is tagged as 🔴 (volatile)"
+      - "Specific numbers (if any) are marked [unverified] or dated"
+    fail_conditions:
+      - "Specific pricing listed without a volatility warning"
+      - "No recommendation to check official docs"
+      - "Freshness Risk is tagged as 🟢 (stable)"
+
+  - id: review_intervals_set
+    description: "Each module must specify a recommended review interval"
+    input: "Generate a concept file for 'OAuth 2.0 authentication flow'"
+    quality_checks:
+      - "Output includes a Review Interval recommendation (e.g., 6 months, 12 months)"
+      - "Interval is appropriate for the topic stability"
+      - "Stable protocols like OAuth 2.0 get longer intervals (6-12 months)"
+      - "Fast-moving topics get shorter intervals (1-3 months)"
+    fail_conditions:
+      - "No review interval specified"
+      - "All topics get the same review interval regardless of volatility"
+
+  - id: freshness_log_updated
+    description: "After generating content, freshness log must be updated"
+    input: "Generate concept files for 'Docker' and 'React hooks', then update the freshness log"
+    quality_checks:
+      - "09_sources/freshness_log.md is created or updated"
+      - "Each generated module has an entry with: module name, creation date, freshness risk, next review date"
+      - "Log entries are in a parseable table format"
+    fail_conditions:
+      - "No freshness_log.md file created or updated"
+      - "Log entries missing creation date or next review date"
+      - "Log format is not a parseable table"
+
+  - id: stable_content_tagged_green
+    description: "Stable, foundational content is correctly tagged as low-volatility"
+    input: "Generate a concept file for 'binary search algorithm'"
+    quality_checks:
+      - "Freshness Risk is tagged as 🟢 (stable)"
+      - "Review interval is 12+ months"
+      - "No unnecessary freshness warnings for well-established CS fundamentals"
+    fail_conditions:
+      - "Binary search tagged as 🟡 or 🔴"
+      - "Unnecessary warning about content becoming outdated"

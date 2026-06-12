@@ -1,0 +1,18 @@
+# Material Manifest — {{domain}}
+
+This file records every user-provided learning material. User materials are
+the primary source for Material-Grounded Learning Mode.
+
+## Material Set
+
+| ID | File / URL | Format | Location | Status | Extraction Method | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| M001 | (to be added) | PDF / PPT / MD / TXT / DOCX / HTML | `learning_materials/raw/` | pending | pending | — |
+
+## Grounding Rules
+
+- Treat user materials as the primary source for the learning repo.
+- Do not replace the material with generic domain knowledge.
+- Mark any outside knowledge as `Supplemental`.
+- Do not invent page numbers, slide numbers, chart contents, citations, or topics not present in the materials.
+- Log unreadable or partially extracted material in `extraction_issues.md`.

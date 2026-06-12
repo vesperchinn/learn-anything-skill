@@ -1,0 +1,64 @@
+# Learn Anything Skill Pack 时效性评估用例
+# 检查模块是否包含时效性风险和复查安排。
+
+test_suite: freshness
+locale: zh-CN
+
+cases:
+  - id: freshness_risk_tags_present
+    description: "每个生成模块必须包含时效性风险标记"
+    input: "为「Kubernetes 容器编排」生成一个概念文件"
+    quality_checks:
+      - "输出包含 🟢 稳定、🟡 演变中或 🔴 易变之一"
+      - "标记位于来源注释或文件头部"
+      - "标记符合主题变化速度，例如 Kubernetes 版本信息不应标为稳定"
+    fail_conditions:
+      - "没有时效性风险标记"
+      - "明显易变主题被标为稳定"
+
+  - id: volatile_content_warnings
+    description: "易变内容必须有明确时效性提醒"
+    input: "为「LLM 价格和速率限制」生成一个概念文件"
+    quality_checks:
+      - "输出提醒价格和限制会频繁变化"
+      - "建议查阅官方文档获取当前信息"
+      - "时效性风险标记为 🔴 易变"
+      - "具体数字必须标记为未验证或附带日期和来源"
+    fail_conditions:
+      - "列出具体价格却没有时效性提醒"
+      - "没有建议查看官方文档"
+      - "时效性风险被标为稳定"
+
+  - id: review_intervals_set
+    description: "每个模块必须给出建议复查间隔"
+    input: "为「OAuth 2.0 认证流程」生成一个概念文件"
+    quality_checks:
+      - "输出包含建议复查间隔"
+      - "复查间隔与主题稳定程度匹配"
+      - "稳定协议给较长间隔，快速变化主题给较短间隔"
+    fail_conditions:
+      - "没有建议复查间隔"
+      - "所有主题使用同一复查间隔"
+
+  - id: freshness_log_updated
+    description: "生成内容后必须更新 freshness_log"
+    input: "生成 Docker 和 React hooks 的概念文件，并更新时效性日志"
+    quality_checks:
+      - "创建或更新 09_sources/freshness_log.md"
+      - "每个生成模块都有模块名、内容日期、时效性风险、下次复查日期"
+      - "日志使用可解析的 Markdown 表格"
+    fail_conditions:
+      - "没有 freshness_log.md"
+      - "日志缺少内容日期或下次复查日期"
+      - "日志不是可解析表格"
+
+  - id: stable_content_tagged_green
+    description: "稳定基础知识应正确标为低时效风险"
+    input: "为「二分查找算法」生成一个概念文件"
+    quality_checks:
+      - "时效性风险标记为 🟢 稳定"
+      - "复查间隔为 12 个月以上"
+      - "不对经典基础知识添加不必要的过时警告"
+    fail_conditions:
+      - "二分查找被标为演变中或易变"
+      - "对稳定知识添加夸张过时提醒"

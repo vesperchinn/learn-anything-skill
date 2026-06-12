@@ -1,0 +1,227 @@
+cases:
+- id: TC01
+  name: Intake — collect learner profile
+  description: User expresses desire to learn a new domain. Agent must collect all required variables before proceeding.
+  input: I want to learn nutrition. Help me get started.
+  expected_capabilities:
+  - intake
+  expected_files: []
+  quality_checks:
+  - Agent asks at least 5 of the 7 intake questions (domain, background, daily_time, goal, final_artifact, interface_language, learning_language)
+  - Agent does NOT start generating learning content before intake is complete
+  - If the user gives vague answers, Agent recommends 2-3 options for each unclear variable
+  fail_conditions:
+  - Agent immediately starts generating a knowledge map without asking questions
+  - Agent assumes defaults without confirming with the user
+- id: TC02
+  name: Scaffold — create learning repository
+  description: After intake, Agent creates the standard directory structure with all required files.
+  input: 'Domain: AI Agent. Background: beginner. Daily time: 2 hours. Goal: build a project. Language: English. Code: yes.'
+  expected_capabilities:
+  - scaffold
+  expected_files:
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - 00_domain_map.md
+  - 01_core_concepts/
+  - 02_case_studies/
+  - 03_exercises/
+  - 04_projects/
+  - 05_flashcards/
+  - 06_quizzes/
+  - 07_daily_review/
+  - 08_glossary.md
+  - 09_resources.md
+  - progress.md
+  - progress-log.md
+  quality_checks:
+  - All required files/directories exist
+  - progress.md contains all 7 required sections
+  - progress.md is <= 60 lines in initial state
+  - README.md explains how to use the repository
+  - AGENTS.md and CLAUDE.md contain equivalent teaching rules
+  - progress-log.md has only the header
+  fail_conditions:
+  - Missing any required file or directory
+  - progress.md missing any of the 7 sections
+  - AGENTS.md or CLAUDE.md is empty or missing the teaching rules
+  - Agent outputs only a directory listing without creating files
+- id: TC03
+  name: Knowledge map — generate domain landscape
+  description: Agent generates a complete knowledge map covering all 10 required sections.
+  input: Please read core/prompts/en-US/knowledge-map.md and generate a knowledge map for AI Agent, write it to 00_domain_map.md.
+  expected_capabilities:
+  - map
+  expected_files:
+  - 00_domain_map.md
+  quality_checks:
+  - File contains all 10 required sections (problem, Feynman, 20 concepts, relationship map, 10 confusion pairs, 5 stages,
+    20-60-20 split, minimum viable knowledge, what NOT to learn, learning order)
+  - Feynman explanation uses an everyday analogy (not technical jargon)
+  - At least 15 of the 20 core concepts are correct and well-defined
+  - 20-60-20 split is present with specific concepts in each tier
+  - What NOT to learn section has at least 5 items
+  - Each learning stage has a concrete deliverable
+  fail_conditions:
+  - Missing any of the 10 required sections
+  - Feynman explanation is just a simpler technical definition
+  - Concepts listed without definitions or difficulty levels
+  - 20-60-20 split lists only 1-2 items per tier
+  - What NOT to learn section is empty
+- id: TC04
+  name: Concept breakdown — structured concept files
+  description: Agent generates concept files with all 5 required parts per concept.
+  input: 'Please read core/prompts/en-US/concept-breakdown.md and generate a concept file for "What is an AI Agent?", write it to 01_core_concepts/01-what-is-agent.md.'
+  expected_capabilities:
+  - map
+  expected_files:
+  - 01_core_concepts/01-what-is-agent.md
+  quality_checks:
+  - File contains all 6 required sections (one-line explanation, life analogy, technical explanation, real-world case, common
+    pitfall, exercise)
+  - Life analogy uses an everyday object/experience (not a tech analogy)
+  - Real-world case names a specific product, paper, or event (not hypothetical)
+  - Exercise has a clear right/wrong answer (not open-ended reflection)
+  - Common pitfall is specific and actionable
+  fail_conditions:
+  - Missing any of the 6 required sections
+  - Life analogy is another technical metaphor
+  - Exercise is 'think about X' or 'reflect on Y' without a concrete task
+  - File is pure prose with no exercise block
+  - Common pitfall is too vague to act on
+- id: TC05
+  name: Daily session — complete 4-part structure
+  description: Agent runs a full daily session with review, learn, practice, and output phases.
+  input: Today is Day 3. Please read progress.md and core/prompts/en-US/daily-session.md and arrange today's study session.
+  expected_capabilities:
+  - daily
+  expected_files: []
+  quality_checks:
+  - 'Session has 4 identifiable parts: review, learn, practice, output'
+  - Review covers 5 key points from yesterday
+  - Learn teaches exactly 3 concepts (not 1, not 7)
+  - Each concept has all 5 parts (one-liner, analogy, technical, case, pitfall)
+  - 'Practice has exactly 5 questions: 2 recall + 2 application + 1 integration'
+  - Agent does NOT reveal quiz answers until user submits
+  - Output task has time budget (<= 60 min), deliverable description, and checkbox acceptance criteria
+  - Agent read progress.md before generating content
+  fail_conditions:
+  - Session is prose-only (no quiz, no deliverable task)
+  - Agent reveals quiz answers together with the questions
+  - Output task has no acceptance criteria
+  - Concepts are missing the life analogy or exercise
+  - Agent teaches more than 3 concepts
+  - Agent skipped reading progress.md
+- id: TC06
+  name: Error diagnosis — classify before correcting
+  description: When the user gives a wrong answer, Agent diagnoses the error type before providing the correct answer.
+  input: (After a quiz question about Tool Use) A tool schema is just a JSON object with name and description.
+  expected_capabilities:
+  - daily
+  - assess
+  expected_files: []
+  quality_checks:
+  - 'Agent classifies the error using one of the 4 types: [concept-gap], [application-failure], [expression-unclear], or [knowledge-confusion]'
+  - Agent explains WHY this error type applies (not just labels it)
+  - Agent gives the correct answer AFTER diagnosis
+  - Agent provides a targeted remedial action matching the error type
+  - Agent does NOT say only 'Wrong. The answer is X.'
+  fail_conditions:
+  - Agent gives the correct answer without diagnosing the error type first
+  - Agent uses an error type not in the 4-category taxonomy
+  - Agent says 'Wrong' without explaining why the wrong answer seemed plausible
+  - Agent provides the same generic remediation regardless of error type
+- id: TC07
+  name: Stage test — examiner mode
+  description: 'Agent conducts a stage test in strict examiner mode: present test, wait, grade, diagnose, remediate.'
+  input: Please read core/prompts/en-US/stage-test.md and conduct a test for Stage 1 (Day 1-6).
+  expected_capabilities:
+  - assess
+  expected_files:
+  - 06_quizzes/stage-test-1.md
+  quality_checks:
+  - 'Test has 4 sections: MCQ (10x2), Concept (5x6), Scenario (3x10), Integration (1x20)'
+  - Total is 100 points
+  - Agent presents the FULL test without answers or hints
+  - Agent explicitly says it will wait for user to submit before grading
+  - Test file is written to 06_quizzes/
+  - Questions cover concepts actually taught in days 1-6
+  - At least 2 questions target known weak points from progress.md
+  fail_conditions:
+  - Agent gives answers together with questions
+  - Test is missing any of the 4 required sections
+  - Agent grades before user submits
+  - Agent skips error type diagnosis in grading
+  - Score does not add up to 100
+  - Pass threshold is not defined
+- id: TC08
+  name: Daily review — update progress and log
+  description: After a session, Agent updates progress.md (snapshot) and appends to progress-log.md.
+  input: Please read core/prompts/en-US/daily-review.md and help me do today's review. (User provides today's answers and deliverables)
+  expected_capabilities:
+  - review
+  expected_files:
+  - progress.md
+  - progress-log.md
+  - 07_daily_review/YYYY-MM-DD.md
+  quality_checks:
+  - progress.md day counter is incremented
+  - progress.md completed modules list is updated
+  - Weak points are re-ranked based on today's performance
+  - New errors are added to the error summary table with date, question, error type, and status
+  - progress-log.md has a new date-stamped entry appended (not overwritten)
+  - Daily review file is written to 07_daily_review/ with correct date format
+  - Review identifies at least one concrete insight (not just 'good job')
+  - Tomorrow's plan is updated
+  fail_conditions:
+  - progress.md is not updated at all
+  - progress-log.md is overwritten instead of appended
+  - Day counter is not incremented
+  - Error type tags are missing from weak points
+  - Review says only 'Well done' without specific feedback
+- id: TC09
+  name: Project design — capstone with no-code alternative
+  description: Agent designs a capstone project with daily breakdown, acceptance criteria, and a no-code alternative.
+  input: Please read core/prompts/en-US/project-design.md and design a capstone project for my AI Agent learning. My background: beginner at coding. Final output: a personal research assistant.
+  expected_capabilities:
+  - project
+  expected_files:
+  - 04_projects/capstone-project.md
+  quality_checks:
+  - 'Project has: name, one-line pitch, core features (3-5), tech stack'
+  - 7-day plan exists with daily tasks, deliverables, and time estimates
+  - Knowledge checklist marks strong/weak areas based on progress.md
+  - Each day has acceptance criteria
+  - 'Final acceptance criteria cover: runs, demonstrates, explains, iterates'
+  - No-code/low-code alternative is provided
+  - Project scope fits 7 days at user's daily time budget
+  - At least 2 weak points from progress.md are explicitly targeted
+  fail_conditions:
+  - No 7-day task breakdown
+  - No acceptance criteria
+  - Project is too large to complete in 7 days
+  - No no-code alternative for a non-coder user
+  - Knowledge checklist does not reference progress.md weak points
+  - Project does not use core concepts from the domain
+- id: TC10
+  name: Resume — recover from interruption
+  description: User returns after a gap. Agent reconstructs state from files and proposes a recovery path.
+  input: I took two weeks off. Please help me continue learning AI Agent.
+  expected_capabilities:
+  - all
+  expected_files: []
+  quality_checks:
+  - Agent reads progress.md + progress-log.md + last daily review
+  - Agent tells user what day they are on and what stage
+  - Agent quizzes user on the last session's 5 key points (warm-up)
+  - 'Agent proposes a recovery level based on warm-up results: >=4/5 continue, 2-3/5 do 15-min review then continue, <=1/5
+    re-do last session'
+  - Agent updates progress.md last-studied date
+  - Agent is encouraging (does not shame the user for the gap)
+  fail_conditions:
+  - Agent starts a new session without checking progress.md
+  - Agent assumes the user remembers everything
+  - Agent skips the warm-up quiz
+  - Agent re-teaches everything from day 1
+  - Agent's tone is discouraging or judgmental about the gap

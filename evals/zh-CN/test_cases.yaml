@@ -1,0 +1,224 @@
+cases:
+- id: TC01
+  name: 信息采集 — 收集学习者档案
+  description: 用户表达想学习新领域的意愿。Agent 必须在开始前收集所有必要变量。
+  input: 我想学习营养学。帮我开始。
+  expected_capabilities:
+  - intake
+  expected_files: []
+  quality_checks:
+  - Agent 至少询问 7 个采集问题中的 5 个（domain、background、daily_time、goal、final_artifact、interface_language、learning_language）
+  - Agent 在采集完成前不会开始生成学习内容
+  - 如果用户回答模糊，Agent 为每个不明确的变量推荐 2-3 个选项
+  fail_conditions:
+  - Agent 未经提问直接开始生成知识地图
+  - Agent 未经确认就使用默认值
+- id: TC02
+  name: 搭建仓库 — 创建学习仓库
+  description: 采集完成后，Agent 创建标准目录结构和所有必需文件。
+  input: '领域：AI Agent。基础：初学者。每天时间：2 小时。目标：做一个项目。语言：中文。能写代码：是。'
+  expected_capabilities:
+  - scaffold
+  expected_files:
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - 00_domain_map.md
+  - 01_core_concepts/
+  - 02_case_studies/
+  - 03_exercises/
+  - 04_projects/
+  - 05_flashcards/
+  - 06_quizzes/
+  - 07_daily_review/
+  - 08_glossary.md
+  - 09_resources.md
+  - progress.md
+  - progress-log.md
+  quality_checks:
+  - 全部必需文件/目录都存在
+  - progress.md 包含全部 7 个必需小节
+  - progress.md 初始状态 ≤ 60 行
+  - README.md 解释如何使用本仓库
+  - AGENTS.md 和 CLAUDE.md 包含等价教学规则
+  - progress-log.md 只有标题
+  fail_conditions:
+  - 缺少任何必需的文件或目录
+  - progress.md 缺少 7 个小节中的任何一个
+  - AGENTS.md 或 CLAUDE.md 为空或缺少教学规则
+  - Agent 只输出目录列表而未创建文件
+- id: TC03
+  name: 知识地图 — 生成领域全景
+  description: Agent 生成一份完整的知识地图，涵盖全部 10 个必需小节。
+  input: 请读取 core/prompts/zh-CN/knowledge-map.md，为 AI Agent 生成知识地图，写入 00_domain_map.md。
+  expected_capabilities:
+  - map
+  expected_files:
+  - 00_domain_map.md
+  quality_checks:
+  - 文件包含全部 10 个必需小节（问题定义、费曼解释、20 核心概念、关系图谱、10 易混淆对、5 学习阶段、20-60-20 分类、最小必要知识、不要学什么、学习顺序）
+  - 费曼解释使用日常生活类比（而非技术术语）
+  - 20 个核心概念中至少 15 个正确且定义清晰
+  - 20-60-20 分类存在且每层有具体概念
+  - "不要学什么"部分至少有 5 项
+  - 每个学习阶段有具体的交付物
+  fail_conditions:
+  - 缺少 10 个必需小节中的任何一个
+  - 费曼解释只是更简单的技术定义
+  - 概念罗列但没有定义或难度等级
+  - 20-60-20 分类每层只有 1-2 项
+  - "不要学什么"部分为空
+- id: TC04
+  name: 概念拆解 — 结构化概念文件
+  description: Agent 为每个概念生成包含全部 5 个必需部分的概念文件。
+  input: 请读取 core/prompts/zh-CN/concept-breakdown.md，为「什么是 AI Agent」生成概念文件，写入 01_core_concepts/01-what-is-agent.md。
+  expected_capabilities:
+  - map
+  expected_files:
+  - 01_core_concepts/01-what-is-agent.md
+  quality_checks:
+  - 文件包含全部 6 个必需小节（一句话解释、生活类比、技术解释、真实案例、常见误区、练习）
+  - 生活类比使用日常物品或经历（而非技术类比）
+  - 真实案例指明具体产品、论文或事件（非假设场景）
+  - 练习有明确的对错答案（非开放式反思）
+  - 常见误区具体且可执行
+  fail_conditions:
+  - 缺少 6 个必需小节中的任何一个
+  - 生活类比用了另一个技术隐喻
+  - 练习是"思考 X"或"反思 Y"而没有具体任务
+  - 文件是纯文字叙述，没有练习模块
+  - 常见误区太模糊，无法据此行动
+- id: TC05
+  name: 每日学习 — 完整四部分结构
+  description: Agent 运行一个完整的每日学习会话，包含复习、学习、练习、输出四个环节。
+  input: 今天是第 3 天。请读取 progress.md 和 core/prompts/zh-CN/daily-session.md，为我安排今天的学习。
+  expected_capabilities:
+  - daily
+  expected_files: []
+  quality_checks:
+  - 会话有 4 个可识别部分：复习、学习、练习、输出
+  - 复习环节涵盖昨天的 5 个要点
+  - 学习环节恰好教 3 个概念（不是 1 个，也不是 7 个）
+  - 每个概念包含全部 5 部分（一句话、类比、技术、案例、误区）
+  - 练习恰好 5 道题：2 道记忆题 + 2 道应用题 + 1 道综合题
+  - Agent 不在用户提交前透露答案
+  - 输出任务有时间预算（≤ 60 分钟）、交付物描述和验收标准
+  - Agent 在生成内容前读取了 progress.md
+  fail_conditions:
+  - 会话只有文字叙述（没有测验、没有交付任务）
+  - Agent 在出题的同时给出了答案
+  - 输出任务没有验收标准
+  - 概念缺少生活类比或练习
+  - Agent 教了超过 3 个概念
+  - Agent 跳过了 progress.md 的读取
+- id: TC06
+  name: 错误诊断 — 先分类再纠正
+  description: 当用户答错时，Agent 在给出正确答案前先诊断错误类型。
+  input: (在一道关于 Tool Use 的测验后) Tool schema 就是一个 JSON 对象，包含名称和描述。
+  expected_capabilities:
+  - daily
+  - assess
+  expected_files: []
+  quality_checks:
+  - Agent 使用四类错误之一进行分类：[concept-gap]（不懂概念）、[application-failure]（不会应用）、[expression-unclear]（表达不清）、[knowledge-confusion]（知识混淆）
+  - Agent 解释了为什么适用此错误类型（不只是贴标签）
+  - Agent 在诊断之后才给出正确答案
+  - Agent 提供与错误类型匹配的定向补救措施
+  - Agent 不只是说"错了，答案是 X"
+  fail_conditions:
+  - Agent 未诊断错误类型就直接给出正确答案
+  - Agent 使用了四类错误分类以外的错误类型
+  - Agent 只说"错了"而没有解释为什么错误答案看起来合理
+  - Agent 无论什么错误类型都给出相同的通用补救建议
+- id: TC07
+  name: 阶段测试 — 考官模式
+  description: Agent 以严格考官模式进行阶段测试：出题 → 等待 → 评分 → 诊断 → 补救。
+  input: 请读取 core/prompts/zh-CN/stage-test.md，对第 1 阶段（Day 1-6）进行测试。
+  expected_capabilities:
+  - assess
+  expected_files:
+  - 06_quizzes/stage-test-1.md
+  quality_checks:
+  - 测试包含 4 个部分：选择题（10×2）、概念题（5×6）、场景题（3×10）、综合题（1×20）
+  - 总分为 100 分
+  - Agent 出完整试卷，不附带答案或提示
+  - Agent 明确表示等待用户提交后再评分
+  - 试卷文件写入 06_quizzes/
+  - 题目覆盖第 1-6 天实际教授的概念
+  - 至少 2 道题针对 progress.md 中记录的薄弱点
+  fail_conditions:
+  - Agent 在出题的同时给出答案
+  - 测试缺少 4 个必需部分中的任何一个
+  - Agent 在用户提交前就开始评分
+  - Agent 在评分时跳过错误类型诊断
+  - 分数加起来不等于 100
+  - 未定义及格线
+- id: TC08
+  name: 每日复盘 — 更新进度和日志
+  description: 学习会话结束后，Agent 更新 progress.md（快照）并追加写入 progress-log.md。
+  input: 请读取 core/prompts/zh-CN/daily-review.md，帮我做今天的复盘。（用户提供今天的答案和交付物）
+  expected_capabilities:
+  - review
+  expected_files:
+  - progress.md
+  - progress-log.md
+  - 07_daily_review/YYYY-MM-DD.md
+  quality_checks:
+  - progress.md 天数计数器已递增
+  - progress.md 已完成模块列表已更新
+  - 薄弱点根据今天的表现重新排序
+  - 新错误已添加到错题摘要表，包含日期、题目、错误类型和状态
+  - progress-log.md 有新的带日期戳的条目（追加写入，非覆盖）
+  - 每日复盘文件写入 07_daily_review/，日期格式正确
+  - 复盘至少包含一个具体洞察（不只是"做得好"）
+  - 明天的计划已更新
+  fail_conditions:
+  - progress.md 完全没有更新
+  - progress-log.md 被覆盖而非追加
+  - 天数计数器未递增
+  - 薄弱点缺少错误类型标签
+  - 复盘只说"做得好"而没有具体反馈
+- id: TC09
+  name: 项目设计 — 结业项目（含无代码方案）
+  description: Agent 设计结业项目，包含每日分解、验收标准和无代码替代方案。
+  input: 请读取 core/prompts/zh-CN/project-design.md，为我的 AI Agent 学习设计最终项目。我的背景：编程初级。最终作品：个人研究助手。
+  expected_capabilities:
+  - project
+  expected_files:
+  - 04_projects/capstone-project.md
+  quality_checks:
+  - 项目包含：名称、一句话概述、核心功能（3-5 个）、技术栈
+  - 存在 7 天计划，含每日任务、交付物和时间估算
+  - 知识清单根据 progress.md 标记强项/弱项
+  - 每天都有验收标准
+  - 最终验收标准涵盖：能运行、能展示、能解释、能迭代
+  - 提供无代码/低代码替代方案
+  - 项目规模适合在 7 天内按用户每日时间完成
+  - 至少 2 个来自 progress.md 的薄弱点被明确针对
+  fail_conditions:
+  - 没有 7 天任务分解
+  - 没有验收标准
+  - 项目规模过大，7 天内无法完成
+  - 对于不会编程的用户没有无代码替代方案
+  - 知识清单未引用 progress.md 中的薄弱点
+  - 项目没有使用该领域的核心概念
+- id: TC10
+  name: 恢复学习 — 中断后恢复
+  description: 用户中断后回来。Agent 从文件重建状态并提出恢复路径。
+  input: 我停了两周。请帮我继续 AI Agent 的学习。
+  expected_capabilities:
+  - all
+  expected_files: []
+  quality_checks:
+  - Agent 读取 progress.md + progress-log.md + 最近的每日复盘
+  - Agent 告诉用户当前在第几天、哪个阶段
+  - Agent 用上次学习的 5 个要点做热身测验
+  - Agent 根据热身结果提出恢复级别：≥4/5 继续、2-3/5 做 15 分钟复习再继续、≤1/5 重做上次课
+  - Agent 更新 progress.md 的最后学习日期
+  - Agent 语气鼓励（不批评用户的中断）
+  fail_conditions:
+  - Agent 不检查 progress.md 就开始新课
+  - Agent 假设用户记得所有内容
+  - Agent 跳过热身测验
+  - Agent 从第 1 天重新开始教
+  - Agent 语气消极或对用户的中断表达批评

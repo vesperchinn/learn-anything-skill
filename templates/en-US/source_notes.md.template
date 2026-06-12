@@ -1,0 +1,52 @@
+# Source Notes Template
+
+This template defines the footer that should appear at the end of every
+learning module (concept files, daily sessions, etc.).
+
+## Footer Format
+
+```markdown
+---
+
+### Source Notes
+- [source 1 description] - [verified] or [unverified]
+- [source 2 description] - [verified] or [unverified]
+
+### Material Sources
+- Material ID: {M001}; Location: {page / slide / section / location unresolved}; Coverage: Grounded / Partially grounded
+
+### Supplemental Sources
+- {supplemental source or "None"} - reason: {why supplemental content was needed}
+
+### Unresolved Extraction Issues
+- {issue ID or "None"} - impact: {what content may be incomplete}
+
+### Freshness Risk: 🟢 Stable / 🟡 Evolving / 🔴 Volatile
+
+### Claims to Verify
+- [ ] {claim 1} - suggested verification: {method}
+- [ ] {claim 2} - suggested verification: {method}
+
+**Last Verified**: {date or "not yet verified"}
+**Recommended Review Interval**: {interval}
+```
+
+## Usage
+
+The AI agent appends this footer to every learning module it generates.
+The learner can use the "Claims to Verify" checklist to independently
+confirm key facts.
+
+In Material-Grounded Learning Mode, Source Notes must separate user material
+from `Supplemental` sources. Do not hide outside knowledge under Material
+Sources.
+
+If the agent has no web access, add this notice at the top of the module:
+
+```markdown
+> [!WARNING]
+> **Unverified Draft**
+>
+> This content was generated without web access. Key claims must be verified
+> against authoritative sources before use.
+```

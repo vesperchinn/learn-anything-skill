@@ -1,0 +1,24 @@
+# Source Registry — {{domain}}
+
+All sources consulted during the learning journey for {{domain}}.
+
+## How to Use This File
+
+- The AI agent logs every source it references here.
+- Each source is categorized by tier (Primary/Secondary/Tertiary).
+- `[verified]` means the source was confirmed via web search or direct access.
+- `[unverified]` means the source name or claim still needs verification.
+- Do not add a URL, DOI, publication date, official document, paper, or benchmark result unless it was verified or clearly marked `[unverified]`.
+
+## Sources
+
+| # | Source | Source Type | Tier | Status | Last Verified | Notes |
+|---|--------|-------------|------|--------|---------------|-------|
+| 1 | (to be populated) | — | — | — | — | — |
+
+## Source Statistics
+
+- Total sources: 0
+- Verified: 0
+- Unverified: 0
+- Primary: 0 | Secondary: 0 | Tertiary: 0

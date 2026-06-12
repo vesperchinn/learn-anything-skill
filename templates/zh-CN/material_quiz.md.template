@@ -1,0 +1,35 @@
+# 基于资料的测验 — {{domain}}
+
+## 范围
+
+- 资料：{material_ids}
+- 页码 / 幻灯片 / 章节：{locations}
+- Supplemental 内容：无 / 见下方
+
+## 题目
+
+### 记忆题
+
+1. {question}
+   - Grounding：{material_id}，{page_or_slide_or_section}
+
+### 应用题
+
+1. {question}
+   - Grounding：{material_id}，{page_or_slide_or_section}
+
+### 综合题
+
+1. {question}
+   - Grounding：{material_ids}，{locations}
+
+## 答案
+
+如果本测验面向学习者，答案必须写入单独文件。
+
+## Grounding 检查
+
+- [ ] 每道题都能追溯到资料内容。
+- [ ] 外部补充已明确标记为 Supplemental。
+- [ ] 没有伪造页码、幻灯片编号、图表、引用或例子。
+- [ ] 涉及图像、表格、图表、截图或流程图的问题已标出来源位置。

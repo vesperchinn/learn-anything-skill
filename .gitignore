@@ -1,0 +1,6 @@
+.DS_Store
+.claude/settings.local.json
+/learn-*/
+*.tmp
+__pycache__/
+*.pyc

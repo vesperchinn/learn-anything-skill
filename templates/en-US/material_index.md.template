@@ -1,0 +1,15 @@
+# Material Index — {{domain}}
+
+This file indexes the extracted content from user-provided learning materials.
+
+## Index
+
+| Material ID | Section / Page / Slide | Topic | Key Points | Visual / Table / Diagram | Extracted File |
+| --- | --- | --- | --- | --- | --- |
+| M001 | p. / slide | (to be indexed) | — | none / chart / table / screenshot / flowchart | `learning_materials/extracted/` |
+
+## Visual Elements Requiring Review
+
+| Material ID | Location | Type | Description | Extraction Status | Follow-up |
+| --- | --- | --- | --- | --- | --- |
+| M001 | p. / slide | chart / table / screenshot / flowchart | (describe only what is visible or extracted) | pending | verify manually |

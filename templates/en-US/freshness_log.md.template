@@ -1,0 +1,24 @@
+# Freshness Log — {{domain}}
+
+Tracks the freshness status of each learning module.
+
+## Freshness Risk Legend
+
+- 🟢 **Stable**: Foundational knowledge, unlikely to change (review every 12+ months)
+- 🟡 **Evolving**: Changes every 1–3 years (review every 3–6 months)
+- 🔴 **Volatile**: Changes frequently (review every 1–4 weeks)
+
+## Module Freshness Tracker
+
+| Module | Freshness Risk | Content Date | Next Review | Notes |
+|--------|---------------|--------------|-------------|-------|
+| 00_domain_map.md | — | — | — | — |
+| (to be populated as modules are created) | — | — | — | — |
+
+## Stale Content Actions
+
+When a module is past its review date:
+1. Re-read the module and check key claims against current sources.
+2. Update outdated information.
+3. Update this log with the new review date.
+4. If major changes occurred, add a note to `progress-log.md`.

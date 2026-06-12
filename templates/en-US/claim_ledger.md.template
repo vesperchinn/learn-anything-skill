@@ -1,0 +1,25 @@
+# Claim Ledger — {{domain}}
+
+Running log of factual claims made across all learning modules.
+
+## How to Use This File
+
+- Every specific factual claim (dates, numbers, names, technical specs) is logged here.
+- Claims are marked as `[verified]`, `[unverified]`, or `[disputed]`.
+- When you verify a claim, update the status and add the verification source.
+- If no source exists, keep the claim marked `[unverified]` or remove it from learning materials.
+- Material-grounded claims must include Material ID / Location.
+- Confidence, source type, and freshness risk are required for auditability.
+
+## Claims
+
+| # | Claim | Module | Source | Source Type | Material ID / Location | Status | Confidence | Freshness Risk | Verified Date | Verified By |
+|---|-------|--------|--------|-------------|------------------------|--------|------------|----------------|---------------|-------------|
+| 1 | (to be populated) | — | — | Primary / Secondary / Tertiary / Material / Supplemental | — | — | High / Medium / Low | 🟢 / 🟡 / 🔴 | — | — |
+
+## Summary
+
+- Total claims: 0
+- Verified: 0
+- Unverified: 0
+- Disputed: 0

@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh evals/**/*.sh
+
+      - name: Run en-US prompt tests
+        run: bash evals/en-US/test-prompts.sh
+
+      - name: Run en-US template tests
+        run: bash evals/en-US/test-templates.sh
+
+      - name: Run en-US progress format tests
+        run: bash evals/en-US/test-progress-format.sh
+
+      - name: Run zh-CN prompt tests
+        run: bash evals/zh-CN/test-prompts.sh
+
+      - name: Run zh-CN template tests
+        run: bash evals/zh-CN/test-templates.sh
+
+      - name: Run zh-CN progress format tests
+        run: bash evals/zh-CN/test-progress-format.sh
+
+      - name: Check for untranslated strings
+        run: python3 scripts/check_untranslated_strings.py
+
+      - name: Run en-US behavior evals
+        run: python3 evals/run_behavior_evals.py --locale en-US
+
+      - name: Run zh-CN behavior evals
+        run: python3 evals/run_behavior_evals.py --locale zh-CN
+
+      - name: Scaffold en-US learning repo
+        run: bash scripts/new-domain.sh "Test Domain" en-US
+
+      - name: Validate en-US scaffolded repo
+        run: bash scripts/validate-repo.sh learn-test-domain en-US
+
+      - name: Scaffold en-US learning repo (Special chars)
+        run: |
+          bash scripts/new-domain.sh "AI/ML" en-US
+          bash scripts/validate-repo.sh learn-ai-ml en-US
+          bash scripts/new-domain.sh "R&D" en-US
+          grep -q "R&D" learn-r-d/README.md
+
+      - name: Scaffold zh-CN learning repo
+        run: bash scripts/new-domain.sh "测试领域" zh-CN
+
+      - name: Validate zh-CN scaffolded repo
+        run: |
+          # Find the generated zh-CN repo (uses timestamp-based name for non-Latin)
+          ZH_REPO=$(ls -d learn-my-domain-* 2>/dev/null | head -1)
+          if [ -n "$ZH_REPO" ]; then
+            bash scripts/validate-repo.sh "$ZH_REPO" zh-CN
+          else
+            echo "Warning: zh-CN repo not found, skipping validation"
+          fi
+
+      - name: Run en-US Mock End-to-End Evals
+        run: python3 evals/run_e2e_evals.py --mode mock --locale en-US
+
+      - name: Run zh-CN Mock End-to-End Evals
+        run: python3 evals/run_e2e_evals.py --mode mock --locale zh-CN
+
+      - name: Check gitignore doesn't ignore examples
+        run: |
+          echo "=== Checking gitignore ==="
+          git check-ignore -q examples/en-US/learn-ai-agent/README.md && exit 1 || true
+          git check-ignore -q examples/zh-CN/learn-ai-agent/README.md && exit 1 || true
+          echo "gitignore check passed"
+
+      - name: Check for deprecated references
+        run: |
+          echo "=== Checking for deprecated references ==="
+          FAIL=0
+          # Check for placeholder org
+          if grep -r "your-org" --include="*.md" --include="*.yaml" . | grep -v ".github/" | grep -v "CHANGELOG.md" | grep -v "adapters/legacy/" | grep -v "node_modules"; then
+            echo "FAIL: Found 'your-org' placeholder"
+            FAIL=1
+          fi
+          # Check for old variables and field names
+          if grep -r "{background}\|{goal}\|{final_output}\|{language}" --include="*.md" --include="*.yaml" . | grep -v ".github/" | grep -v "CHANGELOG.md" | grep -v "adapters/legacy/" | grep -v "node_modules"; then
+            echo "FAIL: Found old variables in repository"
+            FAIL=1
+          fi
+          if [ "$FAIL" -eq 0 ]; then
+            echo "All deprecated reference checks passed"
+          else
+            exit 1
+          fi

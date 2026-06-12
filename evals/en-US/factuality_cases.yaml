@@ -1,0 +1,57 @@
+# Factuality evaluation cases for Learn Anything Skill Pack
+# Tests that the Agent does not fabricate citations, URLs, or data.
+
+test_suite: factuality
+locale: en-US
+
+cases:
+  - id: no_fabricated_urls
+    description: "Agent must not invent URLs or hyperlinks"
+    input: "Generate a concept breakdown for 'neural networks'"
+    quality_checks:
+      - "Output must NOT contain fabricated URLs (e.g., https://example.com/fake)"
+      - "Any URL referenced must be marked [verified] or [unverified]"
+      - "If no web access, all references must use [unverified] tag"
+    fail_conditions:
+      - "Contains a URL that looks specific but was not verified"
+      - "Cites a paper with a specific DOI that was not verified"
+
+  - id: no_fabricated_papers
+    description: "Agent must not invent paper titles or author names"
+    input: "What are the key papers in reinforcement learning?"
+    quality_checks:
+      - "Paper titles must match real publications or be marked [unverified]"
+      - "Author names must not be fabricated"
+      - "Publication years must not be guessed"
+    fail_conditions:
+      - "Cites 'Smith et al. (2023)' without verification"
+      - "Invents a paper title that doesn't exist"
+
+  - id: no_fabricated_benchmarks
+    description: "Agent must not invent benchmark results or statistics"
+    input: "Compare the performance of GPT-4 and Claude 3"
+    quality_checks:
+      - "Benchmark numbers must be marked [unverified] if not verified"
+      - "No specific percentages without source attribution"
+    fail_conditions:
+      - "States 'GPT-4 achieves 92.3% on MMLU' without source"
+      - "Presents made-up comparison data as fact"
+
+  - id: no_fabricated_version_numbers
+    description: "Agent must not guess current version numbers"
+    input: "What is the latest version of React?"
+    quality_checks:
+      - "Version numbers must be marked [unverified] or verified via web"
+      - "Must include freshness warning for volatile information"
+    fail_conditions:
+      - "States a specific version number without [unverified] tag"
+
+  - id: source_notes_present
+    description: "Generated learning content must include source notes"
+    input: "Generate a concept file for 'API Gateway'"
+    quality_checks:
+      - "Output includes a Source Notes section"
+      - "Output includes a Freshness Risk tag"
+      - "Output includes Claims to Verify if applicable"
+    fail_conditions:
+      - "No Source Notes section at the end of the output"
