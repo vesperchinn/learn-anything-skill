@@ -1,15 +1,37 @@
 # Quick Start Guide
 
-Start your first learning project from one chat message.
+Install the Skill first, then start your first learning project from one chat
+message.
 
 ## Prerequisites
 
 - An AI agent with file read/write capability (Claude Code or Codex recommended)
 - A domain you want to learn
 
-## If the Skill is already installed
+## Step 1: Install it where your agent can read it
 
-Type this in your agent chat:
+The simplest path is to place this repository in a directory your agent can
+read:
+
+```bash
+git clone https://github.com/vesperchinn/learn-anything-skill.git
+cd learn-anything-skill
+```
+
+Then connect it based on your agent:
+
+- **Codex / Claude Code / Trae-style file agents**: open this directory or add
+  it to the agent-readable workspace.
+- **Agents with Skill support**: import this repository as a Skill or place it
+  in the Skills directory.
+- **Coze, WorkBuddy, CodeBuddy, and other Chinese agent platforms**: follow the
+  adapter notes under `platforms/cn/`.
+- **Chat-only agents**: copy the prompts from this repository when direct
+  installation is not available.
+
+## Step 2: Call it from the chat box
+
+After installation, type:
 
 ```
 Use learn-anything to create a learning project for "AI Agents".
@@ -25,29 +47,14 @@ Use learn-anything to create a learning project from my materials.
 Prioritize the provided materials and mark anything that still needs verification.
 ```
 
-## If the Skill is not installed yet
-
-Put this repository somewhere your agent can read:
-
-```bash
-git clone https://github.com/vesperchinn/learn-anything-skill.git
-cd learn-anything-skill
-```
-
-Then type:
+If your agent cannot call the Skill by name but can read files, type:
 
 ```
 Read learn-anything-skill/core/prompts/en-US/init-repo.md.
 Create a learning repository for "AI Agents".
 ```
 
-## If you prefer a command
-
-```bash
-./scripts/new-domain.sh "AI Agent" en-US
-```
-
-## Daily learning
+## Step 3: Daily learning
 
 ```
 Continue with learn-anything. Read my progress and run today's learning session.
@@ -63,6 +70,13 @@ For a stage test:
 
 ```
 Continue with learn-anything. Give me a stage test. Ask questions first, then grade after I answer.
+```
+
+## Optional: use the command line
+
+```bash
+./scripts/new-domain.sh "AI Agent" en-US
+cd learn-ai-agent
 ```
 
 ## Learn from your own materials

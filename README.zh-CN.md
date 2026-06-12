@@ -36,9 +36,25 @@
 
 ## 快速开始
 
-### 已经把 Skill 装到 Agent 里
+### 1. 安装到你的 Agent
 
-直接在对话框里输入：
+最简单的方式是先把这个仓库放到 Agent 能读取的位置：
+
+```bash
+git clone https://github.com/vesperchinn/learn-anything-skill.git
+cd learn-anything-skill
+```
+
+然后按你的 Agent 类型接入：
+
+- **Codex / Claude Code / Trae 这类文件型 Agent**：打开这个目录，或把这个目录加入 Agent 可读取的工作区。
+- **支持 Skill 的 Agent**：把整个仓库作为一个 Skill 导入或放到 Skills 目录。
+- **Coze、WorkBuddy、CodeBuddy 等国产 Agent 平台**：参考 `platforms/cn/` 里的平台说明，把提示词、知识库和 Workflow 按平台方式配置。
+- **普通聊天 Agent**：不能真正安装时，就复制本仓库里的提示词使用。
+
+### 2. 在对话框里调用
+
+安装好以后，直接输入：
 
 ```
 使用 learn-anything，帮我为「AI Agent」创建一个中文学习项目。
@@ -49,38 +65,23 @@
 
 Agent 会按 Skill 里的流程创建学习仓库、知识地图、学习计划、每日学习任务、复盘、测验和项目练习。
 
-如果你已经有 PDF、PPT、笔记或课程资料，可以直接说：
+如果你已经有 PDF、PPT、笔记或课程资料，也可以直接说：
 
 ```
 使用 learn-anything，基于我提供的资料创建一个学习项目。
 请优先引用资料内容，并标记哪些内容还需要核实。
 ```
 
-### 还没有安装 Skill
-
-把仓库放到你的 Agent 能读取的位置：
-
-```bash
-git clone https://github.com/vesperchinn/learn-anything-skill.git
-cd learn-anything-skill
-```
-
-然后在 Agent 对话框里输入：
+如果你的 Agent 不能识别 Skill 名称，但能读取文件，就输入：
 
 ```
 请读取 learn-anything-skill/core/prompts/zh-CN/init-repo.md，
 为「AI Agent」领域创建一个学习仓库。
 ```
 
-### 想用命令快速生成
+### 3. 后续学习怎么叫 Agent
 
-如果你会用终端，可以直接运行：
-
-```bash
-./scripts/new-domain.sh "AI Agent" zh-CN
-```
-
-### 后续学习怎么叫 Agent
+每天继续输入：
 
 ```
 继续使用 learn-anything，读取我的学习进度，安排今天的学习。
@@ -92,6 +93,18 @@ cd learn-anything-skill
 
 ```
 继续使用 learn-anything，给我做一次阶段测试。先出题，等我回答后再评分。
+```
+
+### 可选：用命令快速生成
+
+如果你会用终端，可以直接运行：
+
+```bash
+./scripts/new-domain.sh "AI Agent" zh-CN
+```
+
+```
+cd learn-ai-agent
 ```
 
 详细指南见 [docs/quick-start.zh-CN.md](./docs/quick-start.zh-CN.md)。
