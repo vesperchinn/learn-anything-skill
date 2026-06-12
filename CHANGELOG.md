@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.2-beta] — 2026-06-12
+
+Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
+
+### Fixed
+- Interactive Beginner Lesson UX Fix for Guided Learning Mode.
+- Day 1 for beginner, non-technical, student, and content-creator learners no longer starts with 3 abstract concepts.
+- Interactive beginner sessions now follow: one plain-language core idea -> real user scenario -> worked example -> bad/good example -> tiny task -> reply template.
+- First tasks now ask for one small workflow step instead of a full multi-step workflow when the learner is a beginner.
+- English beginner experience is aligned with the Chinese beginner experience.
+
+### Changed
+- `README.md` and `README.zh-CN.md` now document Interactive Beginner Lesson Mode.
+- English guided learning example and eval coverage now include a complete beginner content-creation workflow scenario.
+- Release validation status: harness is `READY_WITH_WARNINGS`; warnings were manually reviewed and confirmed not to be failures.
+
 ## [0.2.1-beta] — 2026-06-12
 
 Release notes: [docs/release-notes-v0.2.1-beta.md](./docs/release-notes-v0.2.1-beta.md)

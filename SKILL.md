@@ -142,24 +142,69 @@ include:
 3. The sentence: "You do not need to open the files first." or the localized
    equivalent.
 4. Today's learning goal.
-5. A beginner-friendly explanation of the first 2-3 concepts.
+5. A beginner-friendly explanation of the first concepts, or exactly one
+   primary concept when Interactive Beginner Lesson Mode is active.
 6. One small task that can be completed directly in the chat.
 7. A copyable answer template.
-8. Clear completion criteria.
+8. Clear completion criteria for regular learners; for Interactive Beginner
+   Lesson Mode, a plain-language "how to tell this worked" prompt after the
+   worked example.
 9. A prompt telling the user to reply with their answer.
 10. A note that `progress.md` will be updated after the user completes the task.
 
-If `{user_background}` indicates technical beginner, beginner, student, no code,
-non-developer, content creator, operations, teacher, self-media creator, or
-小白, enable Beginner-Friendly Guided Mode:
+### Interactive Beginner Lesson Mode
+
+If `{user_background}` indicates technical beginner, beginner, complete
+beginner, student, no code, no coding background, non-developer, content
+creator, writer, marketer, operations, teacher, self-media creator, or 小白,
+enable Interactive Beginner Lesson Mode.
+
+Trigger this mode when the user background includes:
+
+- beginner
+- complete beginner
+- non-technical
+- student
+- no coding background
+- writer
+- marketer
+- 技术小白
+- 小白
+- 初学者
+- 学生
+- 非技术用户
+- 内容创作者
+- 自媒体
+- 运营
+- 老师
+
+Rules:
 
 - Say less about file paths and more about what to do now.
 - Use familiar scenarios instead of abstract theory.
 - Give one main task at a time.
 - Do not require the user to open multiple Markdown files.
 - Do not require code unless the user explicitly wants to learn coding.
+- The first guided session must be self-contained in the chat.
+- Do not rely on the user opening Markdown files first.
+- Teach one primary concept at a time.
+- Do not introduce more than 2 supporting terms in the first session.
+- Every abstract term must be translated into plain language.
+- Every abstract term must include one concrete example from the user's goal or
+  background.
+- Before asking the user to do a task, provide a fully worked example.
+- Include one bad example and one improved example.
+- Use "I do → We do → You do" structure.
+- The first task must be small enough to complete in 10-15 minutes.
+- The first task must ask for only one workflow step unless the user is
+  advanced.
+- For content creators, examples must use content creation workflows.
+- Avoid jargon-heavy terms unless immediately explained.
+- Avoid asking for "criteria", "rubrics", "test cases", "checkpoints", or
+  "standards" before showing what they look like.
 - Every daily task must include a copyable answer template.
-- End with a direct action instruction, such as: "请直接把上面模板填好发给我。"
+- End with exactly one clear action instruction in the user's language. For
+  Chinese, use: "请直接把模板填好发给我。"
 
 ### 1. intake — collect learner profile
 

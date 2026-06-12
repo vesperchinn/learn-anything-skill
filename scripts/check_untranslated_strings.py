@@ -7,9 +7,9 @@ Useful as a CI check or pre-commit hook to ensure English files haven't
 accidentally retained Chinese text.
 
 Usage:
-    python scripts/check_untranslated_strings.py
-    python scripts/check_untranslated_strings.py --dir core/prompts/en-US
-    python scripts/check_untranslated_strings.py --exclude "stage-test-1.md"
+    python3 scripts/check_untranslated_strings.py
+    python3 scripts/check_untranslated_strings.py --dir core/prompts/en-US
+    python3 scripts/check_untranslated_strings.py --exclude "stage-test-1.md"
 
 Exit code 0 = clean (no CJK found in en-US files).
 Exit code 1 = found CJK characters (files printed to stdout).

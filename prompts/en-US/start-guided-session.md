@@ -15,80 +15,86 @@ step. The repository is the long-term asset; the chat is today's classroom.
 
 ## Required Response Format
 
-```markdown
+For regular learners, start Day 1 in chat with a short goal, the first concepts,
+one task, a copyable answer template, completion criteria, and a note that
+`progress.md` will be updated after review.
+
+When Interactive Beginner Lesson Mode is active, use the fixed structure below.
+
+## Beginner Day 1 Output Structure
+
+````markdown
 Created learning project: {project_path}
 
-You do not need to open the files first. We will start Day 1 now.
+You do not need to open the files first. We will understand Day 1 here.
 
-## Day 1 Goal
+## Today, learn just one sentence first
 
-{State in one sentence what the learner should understand or produce today.}
+{Explain the primary concept in one plain sentence.}
 
-## First understand 3 concepts
+## Put it into your real situation
 
-### 1. {Concept A}
-{Beginner-friendly explanation}
-{Life analogy}
-{Example connected to the user's goal}
+{Tell one concrete scenario using the learner's background and goal. For content creators, use a content creation workflow.}
 
-### 2. {Concept B}
-{Beginner-friendly explanation}
-{Life analogy}
-{Example connected to the user's goal}
+## I do
 
-### 3. {Concept C}
-{Beginner-friendly explanation}
-{Life analogy}
-{Example connected to the user's goal}
+{Give a fully worked example. Show the exact thinking and final answer.}
 
-## Today's 1-hour plan
+## Look at a bad example
 
-| Time | What to do |
-|---|---|
-| 10 min | Understand the goal and the 3 concepts |
-| 20 min | Read the explanations and examples in this chat |
-| 20 min | Complete the small task below |
-| 10 min | Check your answer against the completion criteria |
+{Give one bad example. Keep it short and explain plainly why it is hard to use.}
 
-## What you must submit today
+## Now look at a better example
 
-{One small deliverable that can be completed directly in the chat.}
+{Give one improved example. Explain what makes it easier to use.}
+
+## Your turn: do one very small task
+
+{Ask for only one workflow step unless the learner is advanced. The task must be doable in 10-15 minutes and answerable directly in chat.}
 
 ## Copy this template and reply
 
 ```markdown
 ## My Day 1 Answer
 
-1. The idea I understood best:
+1. My workflow step:
 
-2. The idea I am still unsure about:
+2. What I want this step to produce:
 
-3. My small deliverable:
+3. One simple way I can tell whether this step worked:
 
-4. One example from my own goal or work:
-
-5. My question:
+4. What I am still unsure about:
 ```
 
-## Completion Criteria
+After you reply, I will check your answer and update `progress.md`.
 
-- {Criterion 1}
-- {Criterion 2}
-- {Criterion 3}
+Please fill in the template above and send it to me directly.
+````
 
-After you finish, reply directly with the filled template. I will check it using
-the learning project rules and update `progress.md`.
-```
+## Interactive Beginner Lesson Mode
 
-## Beginner-Friendly Guided Mode
+Enable this when the learner is a beginner, complete beginner, non-technical
+user, student, non-developer, no-code learner, learner with no coding
+background, content creator, writer, marketer, operator, teacher, self-media
+creator, or explicitly says they are new.
 
-Enable this when the learner is a beginner, student, non-developer, no-code
-learner, content creator, operator, teacher, self-media creator, or explicitly
-says they are new.
-
-- Use one main task only.
-- Avoid asking the learner to open several Markdown files.
-- Avoid code unless the learner explicitly wants coding.
-- Prefer everyday analogies and examples from the learner's goal, such as a
-  content workflow when the learner is a content creator.
-- End with a clear action instruction: "Please fill in the template above and send it to me directly."
+- The first guided session must be self-contained in chat.
+- Do not rely on the learner opening Markdown files first.
+- Teach one primary concept at a time.
+- Do not introduce more than 2 supporting terms in the first session.
+- Translate every abstract term into plain language.
+- Pair every abstract term with one concrete example from the learner's goal or
+  background.
+- Provide a fully worked example before asking the learner to do a task.
+- Include one bad example and one improved example.
+- Use "I do → We do → You do": show, compare together, then ask the learner
+  to answer.
+- The first task must be small enough to complete in 10-15 minutes.
+- The first task must ask for only one workflow step unless the learner is
+  advanced.
+- For content creators, examples must use content creation workflows.
+- Avoid jargon-heavy terms unless immediately explained.
+- Do not ask for "criteria", "rubrics", "test cases", "checkpoints", or
+  "standards" before showing what they look like.
+- End with a copyable answer template.
+- End with one clear action instruction: "Please fill in the template above and send it to me directly."

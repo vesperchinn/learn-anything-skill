@@ -1,7 +1,7 @@
 # Learn Anything Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.1--beta-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.2--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.zh-CN.md)
 
 A multilingual Agent Skill Pack that turns AI agents into guided learning coaches.
@@ -28,7 +28,7 @@ It can create:
 - final projects
 - guided Day 1 learning sessions
 
-Current release: **v0.2.1-beta**. See [release notes](./docs/release-notes-v0.2.1-beta.md)
+Current release: **v0.2.2-beta**. See [release notes](./RELEASE_NOTES.md)
 and [roadmap](./ROADMAP.md).
 
 ## Why it exists
@@ -52,12 +52,22 @@ By default, after creating a learning repository, the agent does not stop at a f
 It immediately starts Day 1 in the chat:
 
 - explains today's goal
-- introduces 2-3 beginner-friendly concepts
+- introduces the first concept in beginner-friendly language
 - gives one small task
 - provides a copyable answer template
-- defines completion criteria
+- shows how the learner can tell whether the answer works
 - asks the user to reply directly in the conversation
 - updates progress after the user completes the task
+
+For beginners, complete beginners, non-technical users, students, content
+creators, writers, marketers, teachers, and people with no coding background,
+Guided Learning Mode switches to an interactive beginner lesson:
+
+- one plain-language idea for the day
+- a scenario based on the learner's real goal
+- I do: a fully worked example
+- We do: one bad example and one better example
+- You do: one tiny task, usually one workflow step
 
 If the user only wants files, they can say:
 
@@ -87,26 +97,43 @@ Agent:
 ```text
 Learning project created.
 
-You do not need to open the files first. Let's start Day 1 now.
+You do not need to open the files first. We will understand Day 1 here.
 
-Today's goal:
-Understand the difference between a workflow, a harness, and a test case.
+Today, learn just one sentence first:
+A harness is a simple way to run the same workflow step again and check whether the result is good enough.
+
+Put it into your real situation:
+In a content workflow, you might use a harness to test one repeatable step, such as turning a topic idea into three article titles.
+
+I do:
+Workflow step: turn one topic idea into three article titles.
+Expected output: three titles with a clear reader benefit.
+Simple check: at least one title makes the reader immediately understand why they should click.
+
+Bad example:
+"Make my article better."
+This is too broad. It does not say which step is being tested.
+
+Better example:
+"Take one topic idea and produce three article titles for middle-aged readers."
+This is easier to test because the input, output, and audience are clear.
 
 Your task:
-Write a 5-step content creation workflow.
+Pick one small step from your own content creation workflow.
 
 Copy and fill this template:
 
-# My Content Workflow
+# My Day 1 Answer
 
-1.
-2.
-3.
-4.
-5.
+1. My workflow step:
 
-Most fragile step:
-Why:
+2. What I want this step to produce:
+
+3. One simple way I can tell whether this step worked:
+
+4. What I am still unsure about:
+
+Please fill in the template above and send it to me directly.
 ```
 
 ## Core Features
@@ -114,6 +141,10 @@ Why:
 ### Guided Learning Mode
 
 Create a learning repository and immediately start the first learning session.
+
+Beginner-friendly sessions use an interactive lesson format: I do, We do, You
+do. The agent gives a worked example, compares a bad example with a better
+example, then asks for one small answer in chat.
 
 ### Domain Learning Repository
 
@@ -252,12 +283,12 @@ See [docs/quick-start.md](./docs/quick-start.md) for the full guide.
 
 ## Multi-Platform Support
 
-Learn Anything now includes a **Platform Adapter Layer** for platforms that cannot consume the native Codex `SKILL.md` directly.
+Learn Anything now includes a **Platform Adapter Layer** for platforms that cannot consume the native file-based Skill workflow directly.
 Low-code platform support is experimental in this beta; validate each adapter in your own workspace before relying on it.
 
 | Form | Target platforms | How it works |
 | --- | --- | --- |
-| Native Codex Skill | Codex and file-based agents that can read this repo | Reads `SKILL.md`, `core/`, `templates/`, `prompts/`, and `references/`; writes the learning repo directly |
+| File-based Agent / native Skill | Codex, Claude Code, Cursor, Trae, and other file-based agents that can read this repo | Reads `SKILL.md`, `core/`, `templates/`, `prompts/`, and `references/`; Codex uses `AGENTS.md`, Claude Code uses `CLAUDE.md`; writes the learning repo and starts guided learning directly |
 | Platform package | Coze, WorkBuddy, Trae, CodeBuddy, generic low-code agents | Uses platform-specific prompts, knowledge-base packages, workflows, variables, memory, and test checklists under `platforms/` |
 | Chat-only package | Ordinary chat agents | Copies the core protocols and outputs path-labeled Markdown blocks |
 

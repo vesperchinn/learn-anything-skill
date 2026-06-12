@@ -41,7 +41,7 @@
 | 7 | Polish + Demo prep | README, demo script, sample output | 2h |
 
 ## Acceptance Criteria (Final)
-- [ ] **Runs**: `python research_pal.py "AI Agent trends 2026"` produces a report
+- [ ] **Runs**: `python3 research_pal.py "AI Agent trends 2026"` produces a report
 - [ ] **Demonstrates**: Someone can watch it work in real-time
 - [ ] **Explains**: You can describe the architecture and why you made each design choice
 - [ ] **Iterates**: README includes 3 upgrade ideas

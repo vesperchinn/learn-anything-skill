@@ -7,13 +7,13 @@ characters and words in their input. Used at intake to set {locale},
 explicitly confirms or overrides.
 
 Usage:
-    python detect_language.py "I want to learn AI agents"
+    python3 detect_language.py "I want to learn AI agents"
     # → {"locale": "en-US", "interface_language": "English", "learning_language": "English"}
 
-    python detect_language.py "我想学习营养学"
+    python3 detect_language.py "我想学习营养学"
     # → {"locale": "zh-CN", "interface_language": "中文", "learning_language": "中文"}
 
-    python detect_language.py "用中文对话，但学习仓库用英文"
+    python3 detect_language.py "用中文对话，但学习仓库用英文"
     # → {"locale": "zh-CN", "interface_language": "中文", "learning_language": "English"}
 
 Exit codes: 0 = en-US, 1 = zh-CN, 2 = mixed/ambiguous.

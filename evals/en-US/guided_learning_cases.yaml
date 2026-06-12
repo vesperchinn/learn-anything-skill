@@ -49,6 +49,32 @@ cases:
       - "Agent asks the learner to write code as the default task."
       - "Agent assigns multiple major tasks at once."
 
+  - id: complete_beginner_content_creator_interactive_lesson
+    description: Complete beginners using content workflows must receive an interactive Day 1 lesson, not a concept summary.
+    input: "Use learn-anything to create a 7-day learning plan for harness design. My background: complete beginner, no technical background. Goal: understand what a harness is and learn how to apply harness thinking to my content creation workflow. Daily time: 1 hour."
+    expected:
+      - must_use_interactive_beginner_lesson_mode: true
+      - must_not_stop_after_file_summary: true
+      - must_not_force_user_to_open_files_first: true
+      - must_include_one_plain_language_idea: true
+      - must_include_content_workflow_example: true
+      - must_include_worked_example: true
+      - must_include_bad_example: true
+      - must_include_better_example: true
+      - must_ask_for_one_workflow_step_only: true
+      - must_include_answer_template: true
+      - must_tell_user_to_reply_in_chat: true
+    quality_checks:
+      - "Response says the learner does not need to open files first."
+      - "Response teaches one core idea before any supporting terms."
+      - "Response uses content creation as the example context."
+      - "Response asks for one small workflow step, not a full multi-step workflow."
+      - "Response ends by asking the learner to reply directly in chat."
+    fail_conditions:
+      - "Agent starts with three abstract concepts."
+      - "Agent asks the learner to define criteria, rubrics, test cases, checkpoints, or standards before showing an example."
+      - "Agent asks the learner to write three or more workflow steps as the first task."
+
   - id: material_learning_mode
     description: Material-grounded repository creation must start guided learning after indexing materials.
     input: "Create a learning project based on the PDF I uploaded."

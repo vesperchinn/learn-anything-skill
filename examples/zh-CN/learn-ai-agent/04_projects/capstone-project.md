@@ -41,7 +41,7 @@
 | 7 | 打磨 + Demo 准备 | README、演示脚本、示例输出 | 2h |
 
 ## 最终验收标准
-- [ ] **可运行**: `python research_pal.py "AI Agent trends 2026"` 能生成一份报告
+- [ ] **可运行**: `python3 research_pal.py "AI Agent trends 2026"` 能生成一份报告
 - [ ] **可演示**: 别人能实时看到它的工作过程
 - [ ] **可解释**: 你能描述架构以及每个设计选择的原因
 - [ ] **可迭代**: README 包含 3 个升级改进的思路

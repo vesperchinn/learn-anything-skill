@@ -4,8 +4,8 @@
 
 ```text
 Use learn-anything to create a harness learning project in this directory.
-My background: technical beginner.
-Goal: in 7 days, understand the basic principles of harness and have a basic setup idea.
+My background: complete beginner, no technical background.
+Goal: in 7 days, understand what a harness is and learn how to apply harness thinking to my content creation workflow.
 Daily time: 1 hour.
 ```
 
@@ -14,74 +14,75 @@ Daily time: 1 hour.
 `````markdown
 Created learning project: ./learn-harness
 
-You do not need to open the files first. We will start Day 1 now.
+You do not need to open the files first. We will understand Day 1 here.
 
-## Day 1 Goal
+## Today, learn just one sentence first
 
-Understand what a harness is, why people use it, and how it could support a content workflow without writing code today.
+A harness is a repeatable way to run one workflow step and check whether the result is good enough.
 
-## First understand 3 concepts
+## Put it into your real situation
 
-### 1. Harness
+Imagine your content workflow has this step: turning one topic idea into several article titles.
 
-A harness is a controlled setup that lets you run the same process repeatedly and see whether the result is good enough.
+A harness for that step would not try to manage your whole publishing process. It would only answer one small question: "When I give the system a topic idea, does it reliably give me titles that a reader might click?"
 
-Life analogy: it is like a driving practice course. You are not driving across the whole city; you are testing turns, stops, and parking in a safe repeatable space.
+## I do
 
-Example connected to your goal: for content work, a harness can test whether a writing workflow consistently produces a useful title, clear outline, and safe factuality notes.
+Here is a complete example.
 
-### 2. Input
+```markdown
+## My Day 1 Answer
 
-Input is what you give the system before it starts working.
+1. My workflow step:
+Turn one article topic into three possible titles.
 
-Life analogy: ingredients before cooking.
+2. What I want this step to produce:
+Three titles for middle-aged readers. Each title should make the reader understand the benefit before clicking.
 
-Example connected to your goal: a draft article, a topic brief, or a source list can be the input for a content workflow harness.
+3. One simple way I can tell whether this step worked:
+At least one title clearly says who the article is for and what the reader will gain.
 
-### 3. Check
+4. What I am still unsure about:
+I am not sure yet how strict the title check should be.
+```
 
-A check is the rule that decides whether the result passes.
+## Look at a bad example
 
-Life analogy: tasting the dish before serving it.
+```markdown
+Make my article better.
+```
 
-Example connected to your goal: a check might ask whether the title has a clear reader benefit and whether claims needing sources are marked.
+This is hard to use because it is too broad. It does not name one workflow step, so you cannot tell what the harness should repeat or check.
 
-## Today's 1-hour plan
+## Now look at a better example
 
-| Time | What to do |
-|---|---|
-| 10 min | Understand the Day 1 goal and the 3 concepts |
-| 20 min | Read the explanations and examples in this chat |
-| 20 min | Complete the small task below |
-| 10 min | Check your answer against the criteria |
+```markdown
+Turn one article topic into three possible titles for middle-aged readers.
+```
 
-## What you must submit today
+This is easier to use because it names one step, one output, and one audience.
 
-Write a tiny harness idea for one content workflow you already use.
+## Your turn: do one very small task
+
+Choose one step from your own content creation workflow. Do not write the whole workflow. Pick only one small step.
 
 ## Copy this template and reply
 
 ```markdown
 ## My Day 1 Answer
 
-1. The content workflow I want to test:
+1. My workflow step:
 
-2. The input I would give it:
+2. What I want this step to produce:
 
-3. The result I expect:
+3. One simple way I can tell whether this step worked:
 
-4. The check that decides whether it passes:
-
-5. My question:
+4. What I am still unsure about:
 ```
 
-## Completion Criteria
+After you reply, I will check your answer and update `progress.md`.
 
-- The workflow is real or realistic.
-- The input and expected result are concrete.
-- The check is simple enough for a beginner to understand.
-
-After you finish, reply directly with the filled template. I will check it using the learning project rules and update `progress.md`.
+Please fill in the template above and send it to me directly.
 `````
 
 The user does not need to open `TODAY.md`, `START_HERE.md`, or any local Markdown file before starting.

@@ -3,7 +3,7 @@
 > 把 AI Agent 从「问答机器」变成「领域学习工程师」——一条命令启动一个完整的学习项目。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.1--beta-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.2--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.md)
 
 [English](./README.md)
@@ -20,7 +20,7 @@
 - 最终完成一个可展示的最小项目
 - 基于自己的 PDF、PPT、Markdown、TXT、Word 文档和网页导出学习
 
-当前版本：**v0.2.1-beta**。详见 [release notes](./docs/release-notes-v0.2.1-beta.md)
+当前版本：**v0.2.2-beta**。详见 [release notes](./RELEASE_NOTES.md)
 和 [roadmap](./ROADMAP.md)。
 
 ## 和直接问 ChatGPT 有什么不同？
@@ -92,14 +92,16 @@ Agent 会创建学习仓库，并立刻在对话里开始第 1 天。你不用�
 它会立刻开始第 1 天学习：
 
 - 告诉你今天学什么；
-- 用小白能懂的话解释 2-3 个概念；
+- 先用小白能懂的话讲一个核心概念；
 - 给一个很小的任务；
 - 给可复制的作答模板；
-- 告诉你完成标准；
+- 告诉你怎么判断这个答案能不能用；
 - 让你直接在对话里回复；
 - 根据你的答案更新 `progress.md`。
 
 这对技术小白、学生、非开发者、内容创作者、运营、老师和自媒体用户更友好。你不用先打开一堆 Markdown 文件，也不用自己判断第一步该看哪里。
+
+遇到这类小白用户时，会自动使用“小白交互式教学模式”：先用一句话讲清今天的核心概念，再放进用户熟悉的真实场景；然后按“我先示范 → 坏例子/好例子 → 你再自己做”的顺序，让用户只完成一个很小的步骤。
 
 新学习项目会包含：
 
@@ -153,11 +155,11 @@ cd learn-ai-agent
 
 ## 多平台支持
 
-Learn Anything 现在包含 **Platform Adapter Layer**，用于把仓库型 Codex Skill 分发到不能直接读取 `SKILL.md` 的平台。低代码平台支持在本 beta 版本中标记为 experimental，正式依赖前需要在自己的平台环境中验证。
+Learn Anything 现在包含 **Platform Adapter Layer**，用于把文件型 Agent / 原生 Skill 工作流分发到不能直接读取本仓库的低代码或聊天平台。低代码平台支持在本 beta 版本中标记为 experimental，正式依赖前需要在自己的平台环境中验证。
 
 | 形态 | 适用平台 | 使用方式 |
 | --- | --- | --- |
-| Codex 原生 Skill | Codex、能读取本仓库的文件型 Agent | 读取 `SKILL.md`、`core/`、`templates/`、`prompts/`、`references/`，直接创建学习仓库 |
+| 文件型 Agent / 原生 Skill | Codex、Claude Code、Cursor、Trae 等能读取本仓库的文件型 Agent | 读取 `SKILL.md`、`core/`、`templates/`、`prompts/`、`references/`；Codex 使用 `AGENTS.md`，Claude Code 使用 `CLAUDE.md`；直接创建学习仓库并开始陪跑学习 |
 | 平台适配包 | 国产 Agent 平台：Coze、WorkBuddy、Trae、CodeBuddy、通用低代码 Agent | 使用 `platforms/` 下的平台说明、知识库包、工作流、变量、记忆和测试清单 |
 | 聊天降级包 | 普通聊天 Agent | 复制核心协议和提示词，通过对话输出路径标记 Markdown |
 
