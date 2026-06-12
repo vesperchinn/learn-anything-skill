@@ -40,42 +40,62 @@ and [roadmap](./ROADMAP.md).
 
 ## Quick Start
 
-### 1. Install
+### If the Skill is already installed in your agent
+
+Type this in the chat box:
+
+```
+Use learn-anything to create a learning project for "AI Agents".
+My background: beginner.
+My goal: understand the basics and build a small project in 30 days.
+Daily time: 1 hour.
+```
+
+The agent should create the learning repository, domain map, plan, daily
+sessions, reviews, quizzes, and project practice from the Skill workflow.
+
+If you already have PDFs, slides, notes, or course material, say:
+
+```
+Use learn-anything to create a learning project from my materials.
+Prioritize the provided materials and mark anything that still needs verification.
+```
+
+### If the Skill is not installed yet
+
+Put this repository somewhere your agent can read:
 
 ```bash
 git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
-### 2. Initialize a learning repository (Fastest Way)
+Then type:
 
-Use the built-in script to instantly scaffold your structured learning repository:
+```
+Read learn-anything-skill/core/prompts/en-US/init-repo.md.
+Create a learning repository for "AI Agents".
+```
+
+### If you prefer a command
 
 ```bash
 ./scripts/new-domain.sh "AI Agent" en-US
-cd learn-ai-agent
 ```
 
-*(Alternatively, you can have your AI agent create it by reading `core/prompts/en-US/init-repo.md`)*
-
-### 3. Start learning
-
-Use the prompts under `core/prompts/{locale}/` in order:
+### How to continue
 
 ```
-init-repo.md           →  Scaffold the repo (Day 0)
-knowledge-map.md       →  Generate the knowledge map (Day 0)
-learning-plan.md       →  Create the 30-day plan (Day 0)
-daily-session.md       →  Daily learning (Days 1–30)
-daily-review.md        →  Daily review (Days 1–30)
-stage-test.md          →  Stage test every 7 days
-project-design.md      →  Capstone project (final 7 days)
+Continue with learn-anything. Read my progress and run today's learning session.
 ```
 
-Have PDFs, slide decks, notes, or docs already? Start **Material-Grounded
-Learning Mode** by placing files in `learning_materials/raw/`, then running
-`prompts/{locale}/material-intake.md` and
-`prompts/{locale}/material-grounded-learning-repo.md`.
+```
+Continue with learn-anything. Review what I learned today and update my progress.
+```
+
+```
+Continue with learn-anything. Give me a stage test. Ask questions first, then grade after I answer.
+```
 
 See [docs/quick-start.md](./docs/quick-start.md) for the full guide.
 
@@ -92,7 +112,7 @@ Low-code platform support is experimental in this beta; validate each adapter in
 
 See [platforms/README.md](./platforms/README.md), [platforms/capability-matrix.md](./platforms/capability-matrix.md), and [dist/README.md](./dist/README.md).
 
-## Mainland China Platform Adapters
+## Chinese Agent Platform Adapters
 
 | Platform | Adapter | Recommended form | File writing | Main limitation |
 | --- | --- | --- | --- | --- |

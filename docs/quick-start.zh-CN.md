@@ -1,87 +1,85 @@
 # 快速开始指南
 
-5 分钟从零到第一个学习仓库。
+从一句话开始你的第一个学习项目。
 
 ## 前提
 
 - 你有一个支持文件读写的 AI Agent（推荐 Claude Code 或 Codex）
 - 你有一个想学的领域
 
-## 第一步：克隆仓库
+## 如果已经安装为 Skill
+
+直接在 Agent 对话框里输入：
+
+```
+使用 learn-anything，帮我为「AI Agent」创建一个中文学习项目。
+我的背景：技术小白。
+我的目标：30 天后能看懂 AI Agent 的基本原理，并做出一个小项目。
+每天可学习：1 小时。
+```
+
+如果你想从自己的资料开始，输入：
+
+```
+使用 learn-anything，基于我提供的资料创建一个学习项目。
+请优先引用资料内容，并标记哪些内容还需要核实。
+```
+
+## 如果还没有安装 Skill
+
+把仓库放到 Agent 能读取的位置：
 
 ```bash
 git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
-## 第二步：创建你的学习仓库
-
-**用脚本（推荐）**：
-```bash
-./scripts/new-domain.sh "AI Agent"
-cd learn-ai-agent
-```
-
-**手动**：复制 `templates/zh-CN/{{domain-slug}}/` 到你的工作目录。
-
-## 第三步：告诉 Agent 开始工作
-
-启动你的 AI Agent 在当前目录，然后输入：
+然后在 Agent 对话框里输入：
 
 ```
 请读取 learn-anything-skill/core/prompts/zh-CN/init-repo.md，
-为「AI Agent」领域创建学习仓库。
-我的背景：编程初级，每天 2 小时，目标 30 天后做出一个项目。
+为「AI Agent」领域创建一个学习仓库。
 ```
 
-Agent 会创建所有文件。接下来：
+## 如果你会用命令
 
-```
-请读取 learn-anything-skill/core/prompts/zh-CN/knowledge-map.md，
-生成 AI Agent 的知识地图，写入 00_domain_map.md。
-```
+可以直接生成一个学习仓库：
 
-## 第四步：每天学习
-
-每天打开这个目录，对 Agent 说：
-
-```
-请读取 progress.md，然后读取 learn-anything-skill/core/prompts/zh-CN/daily-session.md，
-为我安排今天的学习。
+```bash
+./scripts/new-domain.sh "AI Agent" zh-CN
 ```
 
-学习完说：
+## 每天怎么继续
 
 ```
-请读取 learn-anything-skill/core/prompts/zh-CN/daily-review.md，
-帮我做今天的复盘。
+继续使用 learn-anything，读取我的学习进度，安排今天的学习。
 ```
 
-## 第五步：第 7 天测试
+学习完输入：
 
 ```
-请读取 learn-anything-skill/core/prompts/zh-CN/stage-test.md，
-对我进行阶段测试。先出题，等我回答后再评分。
+继续使用 learn-anything，帮我复盘今天学到的内容，并更新学习进度。
 ```
 
-## 可选：基于自己的资料学习
+第 7 天或学完一个阶段后输入：
 
-如果你已有 PDF、PPT、笔记、文档导出或课程资料，可以在创建学习仓库后使用
-**Material-Grounded Learning Mode**：
+```
+继续使用 learn-anything，给我做一次阶段测试。先出题，等我回答后再评分。
+```
 
-1. 把文件放入 `learning_materials/raw/`，或告诉 Agent 文件位置。
-2. 使用 `learn-anything-skill/prompts/zh-CN/material-intake.md`。
-3. 使用 `learn-anything-skill/prompts/zh-CN/material-grounded-learning-repo.md`。
+## 基于自己的资料学习
 
-Agent 会把你的资料作为 primary source，并把无法读取的 PDF/PPT 内容记录为提取问题，而不是猜测。
+如果你已有 PDF、PPT、笔记、文档导出或课程资料，直接告诉 Agent 文件位置，或把资料放到学习项目里。
+
+Agent 应该把你的资料作为 primary source，并把无法读取的 PDF/PPT 内容记录为提取问题，而不是猜测。
 
 ---
 
-就这么简单。30 天后，你会拥有一个完整的知识仓库和一个可展示的项目。
+就这么简单。你只需要在对话框里继续说“使用 learn-anything”，Agent 会按学习流程往下走。
 
 ## 常见问题
 
-**Q: 我的 Agent 不支持文件写入怎么办？**  
+**Q: 我的 Agent 不支持文件写入怎么办？**
 A: 参考 `adapters/generic-agent.md`，手动复制提示词结果到文件中。
 
 **Q: 我能用 ChatGPT 吗？**  

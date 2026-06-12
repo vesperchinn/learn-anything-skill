@@ -36,49 +36,63 @@
 
 ## 快速开始
 
-### 1. 安装
+### 已经把 Skill 装到 Agent 里
+
+直接在对话框里输入：
+
+```
+使用 learn-anything，帮我为「AI Agent」创建一个中文学习项目。
+我的背景：技术小白。
+我的目标：30 天后能看懂 AI Agent 的基本原理，并做出一个小项目。
+每天可学习：1 小时。
+```
+
+Agent 会按 Skill 里的流程创建学习仓库、知识地图、学习计划、每日学习任务、复盘、测验和项目练习。
+
+如果你已经有 PDF、PPT、笔记或课程资料，可以直接说：
+
+```
+使用 learn-anything，基于我提供的资料创建一个学习项目。
+请优先引用资料内容，并标记哪些内容还需要核实。
+```
+
+### 还没有安装 Skill
+
+把仓库放到你的 Agent 能读取的位置：
 
 ```bash
 git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
-### 2. 初始化学习仓库
-
-最快方式是使用内置脚本：
-
-```bash
-./scripts/new-domain.sh "AI Agent" zh-CN
-cd learn-ai-agent
-```
-
-**Codex / Claude Code 用户**：在终端中进入工作目录，启动 Agent，然后输入：
+然后在 Agent 对话框里输入：
 
 ```
 请读取 learn-anything-skill/core/prompts/zh-CN/init-repo.md，
 为「AI Agent」领域创建一个学习仓库。
 ```
 
-**其他 Agent 用户**：复制 `core/prompts/zh-CN/init-repo.md` 的内容，替换 `{domain}` 变量，粘贴给 Agent。
+### 想用命令快速生成
 
-### 3. 开始学习
+如果你会用终端，可以直接运行：
 
-按顺序使用 `core/prompts/{locale}/` 下的提示词：
-
-```
-init-repo.md        →  创建仓库（Day 0）
-knowledge-map.md    →  生成知识地图（Day 0）
-learning-plan.md    →  制定 30 天计划（Day 0）
-daily-session.md    →  每天学习（Day 1-30）
-daily-review.md     →  每天复盘（Day 1-30）
-stage-test.md       →  每 7 天阶段测试
-project-design.md   →  最后 7 天设计项目
+```bash
+./scripts/new-domain.sh "AI Agent" zh-CN
 ```
 
-已经有 PDF、PPT、笔记或文档资料时，可以启动 **Material-Grounded Learning
-Mode**：把文件放入 `learning_materials/raw/`，再使用
-`prompts/{locale}/material-intake.md` 和
-`prompts/{locale}/material-grounded-learning-repo.md`。
+### 后续学习怎么叫 Agent
+
+```
+继续使用 learn-anything，读取我的学习进度，安排今天的学习。
+```
+
+```
+继续使用 learn-anything，帮我复盘今天学到的内容，并更新学习进度。
+```
+
+```
+继续使用 learn-anything，给我做一次阶段测试。先出题，等我回答后再评分。
+```
 
 详细指南见 [docs/quick-start.zh-CN.md](./docs/quick-start.zh-CN.md)。
 
@@ -89,12 +103,12 @@ Learn Anything 现在包含 **Platform Adapter Layer**，用于把仓库型 Code
 | 形态 | 适用平台 | 使用方式 |
 | --- | --- | --- |
 | Codex 原生 Skill | Codex、能读取本仓库的文件型 Agent | 读取 `SKILL.md`、`core/`、`templates/`、`prompts/`、`references/`，直接创建学习仓库 |
-| 平台适配包 | Coze、WorkBuddy、Trae、CodeBuddy、通用低代码 Agent | 使用 `platforms/` 下的平台说明、知识库包、工作流、变量、记忆和测试清单 |
+| 平台适配包 | 国产 Agent 平台：Coze、WorkBuddy、Trae、CodeBuddy、通用低代码 Agent | 使用 `platforms/` 下的平台说明、知识库包、工作流、变量、记忆和测试清单 |
 | 聊天降级包 | 普通聊天 Agent | 复制核心协议和提示词，通过对话输出路径标记 Markdown |
 
 详见 [platforms/README.md](./platforms/README.md)、[platforms/capability-matrix.md](./platforms/capability-matrix.md) 和 [dist/README.md](./dist/README.md)。
 
-## 中国大陆平台适配说明
+## 国产 Agent 平台适配说明
 
 | 平台 | 适配目录 | 推荐形态 | 文件写入 | 主要限制 |
 | --- | --- | --- | --- | --- |

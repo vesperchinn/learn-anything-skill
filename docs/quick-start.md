@@ -1,79 +1,75 @@
 # Quick Start Guide
 
-From zero to your first learning repository in 5 minutes.
+Start your first learning project from one chat message.
 
 ## Prerequisites
 
 - An AI agent with file read/write capability (Claude Code or Codex recommended)
 - A domain you want to learn
 
-## Step 1: Clone the repo
+## If the Skill is already installed
+
+Type this in your agent chat:
+
+```
+Use learn-anything to create a learning project for "AI Agents".
+My background: beginner.
+My goal: understand the basics and build a small project in 30 days.
+Daily time: 1 hour.
+```
+
+If you want to start from your own materials, type:
+
+```
+Use learn-anything to create a learning project from my materials.
+Prioritize the provided materials and mark anything that still needs verification.
+```
+
+## If the Skill is not installed yet
+
+Put this repository somewhere your agent can read:
 
 ```bash
 git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
-## Step 2: Create your learning repository
-
-**Using the script (recommended)**:
-```bash
-./scripts/new-domain.sh "AI Agent"
-cd learn-ai-agent
-```
-
-**Manual**: Copy the template from `templates/en-US/{{domain-slug}}/` to your
-working directory.
-
-## Step 3: Tell your agent to get started
-
-Start your AI agent in the directory, then say:
+Then type:
 
 ```
 Read learn-anything-skill/core/prompts/en-US/init-repo.md.
 Create a learning repository for "AI Agents".
-My background: beginner programmer, 2 hours/day, goal is to build a project in 30 days.
 ```
 
-The agent will scaffold all the files. Then:
+## If you prefer a command
+
+```bash
+./scripts/new-domain.sh "AI Agent" en-US
+```
+
+## Daily learning
 
 ```
-Read learn-anything-skill/core/prompts/en-US/knowledge-map.md.
-Generate the knowledge map for AI Agents. Write it to 00_domain_map.md.
-```
-
-## Step 4: Daily learning
-
-Each day, open the directory and tell your agent:
-
-```
-Read progress.md, then read learn-anything-skill/core/prompts/en-US/daily-session.md.
-Run today's learning session.
+Continue with learn-anything. Read my progress and run today's learning session.
 ```
 
 After the session:
 
 ```
-Read learn-anything-skill/core/prompts/en-US/daily-review.md.
-Run today's review.
+Continue with learn-anything. Review what I learned today and update my progress.
 ```
 
-## Step 5: Stage test (Day 7)
+For a stage test:
 
 ```
-Read learn-anything-skill/core/prompts/en-US/stage-test.md.
-Give me the stage test. Present all questions first, wait for my answers, then grade.
+Continue with learn-anything. Give me a stage test. Ask questions first, then grade after I answer.
 ```
 
-## Optional: Learn from your own materials
+## Learn from your own materials
 
 If you already have PDFs, slide decks, notes, documentation exports, or pasted
-course material, use **Material-Grounded Learning Mode** after creating the
-learning repository:
-
-1. Put files in `learning_materials/raw/`, or tell the agent where they are.
-2. Run `learn-anything-skill/prompts/en-US/material-intake.md`.
-3. Run `learn-anything-skill/prompts/en-US/material-grounded-learning-repo.md`.
+course material, tell the agent where the files are, or put them in your
+learning project.
 
 The agent will treat your materials as the primary source and record extraction
 issues instead of guessing unreadable PDF/PPT content.

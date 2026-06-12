@@ -31,7 +31,7 @@ def check(root: Path) -> list[Issue]:
     for term in ["Maintenance Harness", "Multi-Platform Support"]:
         if term not in readme:
             issues.append(warn("RELEASE_README_SECTION_WEAK", "README.md", f"README may not mention {term}", "Add concise release-facing section"))
-    for term in ["Maintenance Harness", "中国大陆平台适配"]:
+    for term in ["Maintenance Harness", "国产 Agent 平台适配"]:
         if term not in readme_zh:
             issues.append(warn("RELEASE_README_ZH_SECTION_WEAK", "README.zh-CN.md", f"README.zh-CN may not mention {term}", "Add concise release-facing section"))
 
