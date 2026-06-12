@@ -1,71 +1,52 @@
-# Release Notes: v0.2.1-beta
+# Guided Learning Mode
 
-v0.2.1-beta focuses on the first-minute learning experience after a repository
-is created.
+This release improves the first-use learning experience.
 
-## Highlight: Guided Learning Mode
+Previously, after creating a learning repository, the agent could stop after listing generated files. This was not friendly for beginners, students, non-technical users, or content creators.
 
-Learn Anything now defaults to guided learning immediately after creating a
-learning repository. The agent should no longer stop at a file list. Instead,
-it tells the learner where the project was created, explains that they do not
-need to open the files first, and starts Day 1 directly in the chat.
+Now, by default, the agent starts the first guided learning session immediately after creating the repository.
 
-The first guided response includes:
+## What changed
 
-- Project location
-- A short explanation of what was created
-- Today's learning goal
-- 2-3 beginner-friendly concept explanations
-- One small task that can be completed in chat
-- A copyable answer template
-- Completion criteria
-- A direct instruction to reply in chat
-- A note that `progress.md` will be updated after completion
+- Added Guided Learning Mode.
+- Added `START_HERE.md`.
+- Added `TODAY.md`.
+- Added `07_daily_review/day-01.md`.
+- Added guided session prompts for en-US and zh-CN.
+- Added beginner-friendly Day 1 output behavior.
+- Added scaffold-only exception.
+- Added guided learning evals.
+- Added harness checks for guided learning behavior.
 
-## New Learning Repository Files
+## New default behavior
 
-Every newly scaffolded learning repository now includes:
+After creating a learning repository, the agent must:
 
-- `START_HERE.md` — beginner-friendly orientation
-- `TODAY.md` — today's single learning entry point
-- `07_daily_review/day-01.md` — Day 1 plan, checking criteria, and review slot
+- show the repository location
+- avoid stopping at a file list
+- start Day 1 immediately
+- explain today's goal
+- introduce 2-3 beginner-friendly concepts
+- provide one small task
+- provide a copyable answer template
+- define completion criteria
+- ask the user to reply in the chat
 
-These files are generated in both English and Chinese template packs.
+## Scaffold-only mode
 
-## Beginner-Friendly Defaults
+If the user only wants files, they can say:
 
-For technical beginners, students, non-developers, no-code learners, content
-creators, operators, teachers, self-media creators, and users who describe
-themselves as beginners, the agent must:
+```text
+scaffold only
+```
 
-- Give one main task at a time
-- Use familiar examples and life analogies
-- Avoid requiring code unless coding is the learning goal
-- Avoid asking the learner to open several Markdown files before starting
-- Provide a copyable answer template
+or:
 
-## Scaffold-Only Exception
+```text
+只创建项目，不要开始学习
+```
 
-The old file-only setup flow still exists, but only when explicitly requested.
-Recognized scaffold-only phrases include:
+## Why this matters
 
-- `scaffold only`
-- `generate files only`
-- `只创建项目`
-- `不要开始学习`
-
-## Validation
-
-This release adds bilingual evals and a dedicated harness check for Guided
-Learning Mode. The checks cover:
-
-- Repository creation must not stop after a file summary by default
-- Explicit scaffold-only mode must not start Day 1
-- Non-technical users must receive beginner-friendly behavior
-- Material-grounded learning must start guided learning after material indexing
-
-## Recommended Upgrade
-
-Use this release if you want Learn Anything to feel like an active learning
-companion immediately after project creation, especially for beginner and
-non-developer users.
+The project is now more useful for beginners and non-technical learners.
+Users no longer need to open multiple Markdown files before knowing what to do next.

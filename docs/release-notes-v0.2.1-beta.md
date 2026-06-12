@@ -1,64 +1,52 @@
-# Release Notes: v0.2.1-beta
+# Guided Learning Mode
 
-v0.2.1-beta improves the product experience after creating a learning
-repository.
+This release improves the first-use learning experience.
 
-## Guided Learning Mode
+Previously, after creating a learning repository, the agent could stop after listing generated files. This was not friendly for beginners, students, non-technical users, or content creators.
 
-After creating a learning repository, the default behavior is now:
+Now, by default, the agent starts the first guided learning session immediately after creating the repository.
+
+## What changed
+
+- Added Guided Learning Mode.
+- Added `START_HERE.md`.
+- Added `TODAY.md`.
+- Added `07_daily_review/day-01.md`.
+- Added guided session prompts for en-US and zh-CN.
+- Added beginner-friendly Day 1 output behavior.
+- Added scaffold-only exception.
+- Added guided learning evals.
+- Added harness checks for guided learning behavior.
+
+## New default behavior
+
+After creating a learning repository, the agent must:
+
+- show the repository location
+- avoid stopping at a file list
+- start Day 1 immediately
+- explain today's goal
+- introduce 2-3 beginner-friendly concepts
+- provide one small task
+- provide a copyable answer template
+- define completion criteria
+- ask the user to reply in the chat
+
+## Scaffold-only mode
+
+If the user only wants files, they can say:
 
 ```text
-Create repo -> show project location -> start Day 1 in chat -> give one task -> wait for the learner's answer -> update progress.md
+scaffold only
 ```
 
-The agent must not stop after listing generated files unless the user explicitly
-asks for scaffold-only mode.
+or:
 
-The Day 1 chat response includes:
+```text
+只创建项目，不要开始学习
+```
 
-- Project location
-- A short explanation of what was created
-- "You do not need to open the files first." or the localized equivalent
-- Today's learning goal
-- 2-3 beginner-friendly concept explanations
-- One small task that can be completed directly in chat
-- A copyable answer template
-- Completion criteria
-- A direct request for the learner to reply in chat
-- A note that `progress.md` will be updated after completion
+## Why this matters
 
-## New Repository Entry Files
-
-New learning repositories now include:
-
-- `START_HERE.md`
-- `TODAY.md`
-- `07_daily_review/day-01.md`
-
-These files make the first day usable without asking the learner to inspect a
-folder full of Markdown files.
-
-## Scaffold-Only Mode
-
-File-only setup is still supported when explicitly requested with:
-
-- `scaffold only`
-- `generate files only`
-- `只创建项目`
-- `不要开始学习`
-
-## Validation
-
-Added:
-
-- `evals/en-US/guided_learning_cases.yaml`
-- `evals/zh-CN/guided_learning_cases.yaml`
-- `harness/contracts/guided-learning-contract.yaml`
-- `harness/scripts/check_guided_learning_mode.py`
-
-The release was validated with:
-
-- Total harness
-- Guided Learning Mode harness
-- English and Chinese behavior evals
-- Real temporary repository smoke test
+The project is now more useful for beginners and non-technical learners.
+Users no longer need to open multiple Markdown files before knowing what to do next.

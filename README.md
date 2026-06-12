@@ -1,31 +1,155 @@
-# Learn Anything Skill Pack
-
-> Turn any AI agent from a Q&A bot into a domain learning engineer — a structured system for mastering any field.
+# Learn Anything Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-0.2.1--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.zh-CN.md)
 
-[中文说明](./README.zh-CN.md)
+A multilingual Agent Skill Pack that turns AI agents into guided learning coaches.
+
+Instead of generating one-off explanations or dumping a folder of Markdown files, Learn Anything Skill helps an AI agent create a structured learning repository and immediately guide the user through the first learning session.
+
+[中文说明](README.zh-CN.md)
 
 ## What is this?
 
-**Learn Anything Skill Pack** is an open-source, cross-AI-agent learning system
-toolkit. It bundles core prompts, learning repository templates, Skill
-definitions, adapters, and automation scripts so that any AI agent with file
-read/write or prompt-invocation capabilities (Codex, Claude Code, Cursor,
-ChatGPT, and others) can help users:
+Learn Anything Skill helps AI agents build structured learning systems for any domain.
 
-- Scaffold a structured "domain learning repository" in 5 minutes
-- Generate a knowledge map that shows the full landscape of a field
-- Follow a 30-day plan with daily learn → practice → test → review cycles
-- Get automatic error diagnosis with targeted remediation
-- Pass a stage test every 7 days that verifies real understanding
-- Complete a demonstrable capstone project
-- Learn from your own PDFs, slide decks, Markdown, TXT, Word docs, and webpage exports
+It can create:
+
+- domain maps
+- concept breakdowns
+- daily learning plans
+- exercises
+- quizzes
+- flashcards
+- progress tracking
+- source tracking
+- material-grounded learning plans
+- final projects
+- guided Day 1 learning sessions
 
 Current release: **v0.2.1-beta**. See [release notes](./docs/release-notes-v0.2.1-beta.md)
 and [roadmap](./ROADMAP.md).
+
+## Why it exists
+
+Most AI learning conversations are temporary.
+Most generated study plans are hard to continue.
+Most learning repositories are useful, but beginners often do not know where to start.
+
+This project solves that by combining:
+
+1. A structured learning repository.
+2. A guided learning session that starts immediately.
+3. Progress tracking and review loops.
+4. Source notes and freshness checks.
+5. Support for user-provided PDFs, slides, notes, and documents.
+
+## Key Feature: Guided Learning Mode
+
+By default, after creating a learning repository, the agent does not stop at a file summary.
+
+It immediately starts Day 1 in the chat:
+
+- explains today's goal
+- introduces 2-3 beginner-friendly concepts
+- gives one small task
+- provides a copyable answer template
+- defines completion criteria
+- asks the user to reply directly in the conversation
+- updates progress after the user completes the task
+
+If the user only wants files, they can say:
+
+```text
+scaffold only
+```
+
+or:
+
+```text
+只创建项目，不要开始学习
+```
+
+## Example
+
+User:
+
+```text
+I want to learn harness design.
+My background: beginner.
+Goal: understand the basic principles in 7 days and apply them to my content creation workflow.
+Daily time: 1 hour.
+```
+
+Agent:
+
+```text
+Learning project created.
+
+You do not need to open the files first. Let's start Day 1 now.
+
+Today's goal:
+Understand the difference between a workflow, a harness, and a test case.
+
+Your task:
+Write a 5-step content creation workflow.
+
+Copy and fill this template:
+
+# My Content Workflow
+
+1.
+2.
+3.
+4.
+5.
+
+Most fragile step:
+Why:
+```
+
+## Core Features
+
+### Guided Learning Mode
+
+Create a learning repository and immediately start the first learning session.
+
+### Domain Learning Repository
+
+Generate a structured repository with maps, concepts, exercises, quizzes, projects, reviews, and progress tracking.
+
+### Knowledge Reliability Layer
+
+Track sources, claims, freshness risk, and unverified information.
+
+This reduces hallucination risk, but does not guarantee absolute correctness.
+
+### Material-Grounded Learning Mode
+
+Build a learning plan from user-provided materials such as PDFs, PPTs, Markdown files, notes, manuals, and exported webpages.
+
+### Multilingual Support
+
+- English: en-US
+- Simplified Chinese: zh-CN
+
+### Multi-Agent / Multi-Platform Support
+
+Designed for:
+
+- Codex
+- Claude Code
+- Cursor
+- ChatGPT
+- generic file-based agents
+- generic chat-only agents
+- Coze / 扣子
+- WorkBuddy
+- Trae
+- CodeBuddy
+
+Platform support depends on each platform's file access, web access, workflow, and knowledge base capabilities.
 
 ## How is this different from asking ChatGPT directly?
 
@@ -96,23 +220,6 @@ Create a learning repository for "AI Agents".
 
 By default, repository creation continues into a guided Day 1 session. If you
 only want files, say `scaffold only` or `generate files only`.
-
-## Guided Learning Mode
-
-After creating a learning repository, the agent starts Day 1 immediately. It
-shows the project location, explains what was created, tells you that you do
-not need to open the files first, gives today's goal, explains 2-3 concepts,
-assigns one small task, provides a copyable answer template, and checks your
-reply before updating `progress.md`.
-
-The generated project includes:
-
-- `START_HERE.md`: beginner-friendly orientation
-- `TODAY.md`: today's single learning entry point
-- `07_daily_review/day-01.md`: Day 1 plan, checking criteria, and review slot
-
-Scaffold-only mode is available only when you explicitly say `scaffold only`,
-`generate files only`, `只创建项目`, or `不要开始学习`.
 
 ### 3. Continue learning
 
