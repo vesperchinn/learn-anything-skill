@@ -122,7 +122,7 @@ learn-anything-skill/
 
 我们在 `scripts/` 目录下提供了一套 Python 工具来增强你的学习体验：
 
-- `init_learning_repo.py`: 跨平台的学习仓库创建工具（完美支持 Windows/Mac/Linux）。
+- `init_learning_repo.py`: 支持 Windows/Mac/Linux 的跨平台脚手架工具。
 - `generate_index.py`: 动态扫描整个学习仓库，自动生成一份带有大纲链接的 `index.md`。
 - `export_flashcards.py`: 自动抽取闪卡内容，并导出为 Anki 可直接导入的 CSV 格式。
 - `validate_locale.py`: 启发式语言检测工具，防止学习仓库中出现“语言溢出”（如英文材料混入中文）。

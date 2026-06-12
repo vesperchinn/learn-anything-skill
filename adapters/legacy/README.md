@@ -6,6 +6,10 @@
 
 For current adapter guides, see the files in the parent `adapters/` directory.
 
+Do not use these files for new installs, examples, release packaging, or
+documentation snippets. They may contain old variable names, legacy paths, and
+installation steps that no longer match the v0.2.0 Skill Pack.
+
 ## Legacy → Current Mapping
 
 | Legacy file | Superseded by |
@@ -16,4 +20,5 @@ For current adapter guides, see the files in the parent `adapters/` directory.
 | `copilot-adapter.md` | `adapters/generic-agent.md` |
 | `generic-llm-adapter.md` | `adapters/generic-agent.md` |
 
-These files will be removed in a future release.
+These files will be removed or excluded from release packages in a future
+release.

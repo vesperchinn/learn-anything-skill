@@ -72,4 +72,5 @@ material-processing checklist only.
 
 Earlier versions of some adapters are archived in [legacy/](./legacy/).
 These are superseded by the main adapters listed above and are not actively
-maintained.
+maintained. Do not use files under `adapters/legacy/` for new installs or
+release examples; they may contain old variable names and historical paths.

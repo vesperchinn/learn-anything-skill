@@ -26,7 +26,9 @@ Cross-agent consistency:
 Stable interface:
 
 - Stable template field contract
-- Live Agent outcome evals
+- Required live multi-turn Agent learning-case evals covering initialization,
+  daily learning, error diagnosis, material-grounded learning, no-web fallback,
+  progress updates, and resume-after-gap behavior
 - More domain examples across technical and non-technical subjects
 - Versioned migration guide
 - Clear compatibility matrix for each Agent environment
