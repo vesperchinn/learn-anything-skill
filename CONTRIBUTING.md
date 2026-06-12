@@ -14,7 +14,7 @@ Thanks for your interest in improving Learn Anything Skill Pack!
 ## Development Setup
 
 ```bash
-git clone https://github.com/vionlabs/learn-anything-skill.git
+git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 
 # Run evals to verify everything is intact

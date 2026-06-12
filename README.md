@@ -43,7 +43,7 @@ and [roadmap](./ROADMAP.md).
 ### 1. Install
 
 ```bash
-git clone https://github.com/vionlabs/learn-anything-skill.git
+git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
@@ -71,6 +71,11 @@ daily-review.md        →  Daily review (Days 1–30)
 stage-test.md          →  Stage test every 7 days
 project-design.md      →  Capstone project (final 7 days)
 ```
+
+Have PDFs, slide decks, notes, or docs already? Start **Material-Grounded
+Learning Mode** by placing files in `learning_materials/raw/`, then running
+`prompts/{locale}/material-intake.md` and
+`prompts/{locale}/material-grounded-learning-repo.md`.
 
 See [docs/quick-start.md](./docs/quick-start.md) for the full guide.
 
@@ -248,7 +253,8 @@ See [SKILL.md § Language and Locale Policy](./SKILL.md#language-and-locale-poli
 ## Contributing
 
 Contributions welcome — new adapters, templates, examples, or prompt
-improvements. See [CONTRIBUTING.md](./CONTRIBUTING.md).
+improvements. See [CONTRIBUTING.md](./CONTRIBUTING.md) or
+[CONTRIBUTING.zh-CN.md](./CONTRIBUTING.zh-CN.md).
 
 ## Acknowledgments
 

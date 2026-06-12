@@ -10,7 +10,7 @@
 ## 第一步：克隆仓库
 
 ```bash
-git clone https://github.com/vionlabs/learn-anything-skill.git
+git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
@@ -63,6 +63,17 @@ Agent 会创建所有文件。接下来：
 请读取 learn-anything-skill/core/prompts/zh-CN/stage-test.md，
 对我进行阶段测试。先出题，等我回答后再评分。
 ```
+
+## 可选：基于自己的资料学习
+
+如果你已有 PDF、PPT、笔记、文档导出或课程资料，可以在创建学习仓库后使用
+**Material-Grounded Learning Mode**：
+
+1. 把文件放入 `learning_materials/raw/`，或告诉 Agent 文件位置。
+2. 使用 `learn-anything-skill/prompts/zh-CN/material-intake.md`。
+3. 使用 `learn-anything-skill/prompts/zh-CN/material-grounded-learning-repo.md`。
+
+Agent 会把你的资料作为 primary source，并把无法读取的 PDF/PPT 内容记录为提取问题，而不是猜测。
 
 ---
 

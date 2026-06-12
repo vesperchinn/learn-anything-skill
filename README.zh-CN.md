@@ -39,11 +39,18 @@
 ### 1. 安装
 
 ```bash
-git clone https://github.com/vionlabs/learn-anything-skill.git
+git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
-### 2. 用你的 AI Agent 初始化学习仓库
+### 2. 初始化学习仓库
+
+最快方式是使用内置脚本：
+
+```bash
+./scripts/new-domain.sh "AI Agent" zh-CN
+cd learn-ai-agent
+```
 
 **Codex / Claude Code 用户**：在终端中进入工作目录，启动 Agent，然后输入：
 
@@ -68,9 +75,14 @@ stage-test.md       →  每 7 天阶段测试
 project-design.md   →  最后 7 天设计项目
 ```
 
+已经有 PDF、PPT、笔记或文档资料时，可以启动 **Material-Grounded Learning
+Mode**：把文件放入 `learning_materials/raw/`，再使用
+`prompts/{locale}/material-intake.md` 和
+`prompts/{locale}/material-grounded-learning-repo.md`。
+
 详细指南见 [docs/quick-start.zh-CN.md](./docs/quick-start.zh-CN.md)。
 
-## Multi-Platform Support
+## 多平台支持
 
 Learn Anything 现在包含 **Platform Adapter Layer**，用于把仓库型 Codex Skill 分发到不能直接读取 `SKILL.md` 的平台。低代码平台支持在本 beta 版本中标记为 experimental，正式依赖前需要在自己的平台环境中验证。
 
@@ -232,7 +244,9 @@ Learn Anything 为生成的学习仓库加入了 Knowledge Reliability Layer：
 
 ## 贡献
 
-欢迎贡献新适配器、模板、示例或改进提示词。详见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
+欢迎贡献新适配器、模板、示例或改进提示词。详见
+[CONTRIBUTING.zh-CN.md](./CONTRIBUTING.zh-CN.md)，英文版见
+[CONTRIBUTING.md](./CONTRIBUTING.md)。
 
 ## 致谢
 

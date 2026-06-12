@@ -10,7 +10,7 @@ From zero to your first learning repository in 5 minutes.
 ## Step 1: Clone the repo
 
 ```bash
-git clone https://github.com/vionlabs/learn-anything-skill.git
+git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
@@ -64,6 +64,19 @@ Run today's review.
 Read learn-anything-skill/core/prompts/en-US/stage-test.md.
 Give me the stage test. Present all questions first, wait for my answers, then grade.
 ```
+
+## Optional: Learn from your own materials
+
+If you already have PDFs, slide decks, notes, documentation exports, or pasted
+course material, use **Material-Grounded Learning Mode** after creating the
+learning repository:
+
+1. Put files in `learning_materials/raw/`, or tell the agent where they are.
+2. Run `learn-anything-skill/prompts/en-US/material-intake.md`.
+3. Run `learn-anything-skill/prompts/en-US/material-grounded-learning-repo.md`.
+
+The agent will treat your materials as the primary source and record extraction
+issues instead of guessing unreadable PDF/PPT content.
 
 ---
 

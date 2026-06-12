@@ -19,6 +19,7 @@ RULES = [
     ("platforms/", ["check_platform_adapters.py", "check_eval_coverage.py", "check_docs_consistency.py"]),
     ("adapters/", ["check_platform_adapters.py", "check_docs_consistency.py"]),
     ("scripts/", ["check_script_contract.py", "check_docs_consistency.py"]),
+    ("docs/", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
     ("dist/", ["check_contracts.py", "check_release_readiness.py"]),
     ("harness/", ["check_contracts.py", "check_script_contract.py", "check_release_readiness.py"]),
     ("harness/scripts/", ["check_script_contract.py", "check_contracts.py"]),
@@ -26,6 +27,8 @@ RULES = [
     ("evals/", ["check_eval_coverage.py"]),
     ("README.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
     ("README.zh-CN.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
+    ("CONTRIBUTING.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
+    ("CONTRIBUTING.zh-CN.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
 ]
 
 

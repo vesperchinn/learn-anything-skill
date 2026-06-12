@@ -69,6 +69,23 @@ Must check:
 - No exaggerated anti-hallucination claims
 - Platform support table synchronization
 
+## `docs/`
+
+Must check:
+
+- README links and summary consistency
+- Locale parity for paired user-facing docs
+- Release notes or acceptance records when the documented feature changes
+- No exaggerated reliability, privacy, or material-processing claims
+
+## `CONTRIBUTING.md` and `CONTRIBUTING.zh-CN.md`
+
+Must check:
+
+- Bilingual contributor guidance stays aligned
+- Required local checks are current
+- Prompt, template, adapter, and release-update rules match the maintained repo structure
+
 ## Knowledge Reliability Layer
 
 Must check:
@@ -91,4 +108,3 @@ Must check:
 - Copyright rules
 - PDF/PPT handling
 - No-file-access fallback
-
