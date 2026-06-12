@@ -26,14 +26,14 @@ run without CI or third-party dependencies.
 ## Run all checks
 
 ```bash
-python harness/scripts/run_all_checks.py --root . --report
+python3 harness/scripts/run_all_checks.py --root . --report
 ```
 
 ## Run one check
 
 ```bash
-python harness/scripts/check_skill_manifest.py --root . --report
-python harness/scripts/check_platform_adapters.py --root . --json
+python3 harness/scripts/check_skill_manifest.py --root . --report
+python3 harness/scripts/check_platform_adapters.py --root . --json
 ```
 
 ## Report format
@@ -111,4 +111,3 @@ reports are never overwritten.
 - `dist/` is generated packaging documentation, not source of truth.
 - Examples validate behavior but do not define templates.
 - The harness reduces risk; it cannot guarantee zero mistakes.
-

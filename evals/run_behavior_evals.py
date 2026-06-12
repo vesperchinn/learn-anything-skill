@@ -124,9 +124,79 @@ def material_files(locale: str) -> tuple[str, ...]:
     )
 
 
+def cn_platform_files(platform: str) -> tuple[str, ...]:
+    base = f"platforms/cn/{platform}"
+    files = {
+        "coze": (
+            f"{base}/README.zh-CN.md",
+            f"{base}/bot-prompt.zh-CN.md",
+            f"{base}/workflow-blueprint.md",
+            f"{base}/knowledge-base-package.md",
+            f"{base}/variables-schema.md",
+            f"{base}/memory-schema.md",
+            f"{base}/material-upload-flow.md",
+            f"{base}/reliability-flow.md",
+            f"{base}/publishing-checklist.md",
+        ),
+        "workbuddy": (
+            f"{base}/README.zh-CN.md",
+            f"{base}/skill-call-prompt.zh-CN.md",
+            f"{base}/task-workflow.md",
+            f"{base}/knowledge-base-package.md",
+            f"{base}/file-processing-rules.md",
+            f"{base}/report-output-template.md",
+            f"{base}/publishing-checklist.md",
+        ),
+        "trae": (
+            f"{base}/README.zh-CN.md",
+            f"{base}/project_rules.md",
+            f"{base}/user_rules.md",
+            f"{base}/agent-prompt.md",
+            f"{base}/setup-guide.md",
+            f"{base}/commands.md",
+        ),
+        "codebuddy": (
+            f"{base}/README.zh-CN.md",
+            f"{base}/knowledge-base-upload-guide.md",
+            f"{base}/agent-rules.md",
+            f"{base}/setup-guide.md",
+            f"{base}/test-checklist.md",
+        ),
+        "generic-lowcode-agent": (
+            f"{base}/README.zh-CN.md",
+            f"{base}/system-prompt.zh-CN.md",
+            f"{base}/workflow-template.md",
+            f"{base}/knowledge-base-template.md",
+            f"{base}/state-schema.md",
+            f"{base}/fallback-mode.md",
+        ),
+    }
+    return files[platform]
+
+
+def base_learning_files(locale: str) -> tuple[str, ...]:
+    return (
+        "SKILL.md",
+        f"core/prompts/{locale}/init-repo.md",
+        f"core/prompts/{locale}/knowledge-map.md",
+        f"core/prompts/{locale}/concept-breakdown.md",
+        f"core/prompts/{locale}/daily-session.md",
+        f"core/prompts/{locale}/daily-review.md",
+        f"core/prompts/{locale}/error-diagnosis.md",
+        f"core/prompts/{locale}/stage-test.md",
+        f"core/prompts/{locale}/project-design.md",
+        f"core/prompts/{locale}/resume-session.md",
+        f"templates/{locale}/{{{{domain-slug}}}}/progress.md",
+        f"templates/{locale}/{{{{domain-slug}}}}/AGENTS.md",
+        f"templates/{locale}/{{{{domain-slug}}}}/CLAUDE.md",
+        f"examples/{locale}/learn-ai-agent/progress.md",
+    )
+
+
 def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
     common = base_files(locale)
     material = material_files(locale)
+    base_learning = base_learning_files(locale)
     readmes = ("README.md", "README.zh-CN.md")
     examples = (
         "examples/en-US/learn-ai-agent/learning_materials/material_manifest.md",
@@ -139,6 +209,66 @@ def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
         "examples/zh-CN/learn-ai-agent/09_sources/claim_ledger.md",
     )
     return {
+        ("base_learning", "TC01"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"Domain|领域", r"Background|基础|背景", r"daily_time|每天|每日", r"final_artifact|最终", r"interface_language", r"learning_language"),
+            input_patterns=(r"learn|学习", r"nutrition|营养学"),
+            forbidden_patterns=(r"knowledge map|知识地图", r"assumes defaults|默认值"),
+        ),
+        ("base_learning", "TC02"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"README\.md", r"AGENTS\.md", r"CLAUDE\.md", r"progress\.md", r"progress-log\.md", r"01_core_concepts", r"09_sources"),
+            input_patterns=(r"AI Agent", r"beginner|初学者"),
+            forbidden_patterns=(r"Missing any required|缺少任何", r"directory listing|目录列表"),
+        ),
+        ("base_learning", "TC03"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"knowledge map|知识地图", r"Feynman|费曼", r"20-60-20", r"What NOT to learn|不要学什么", r"learning order|学习顺序"),
+            input_patterns=(r"knowledge-map\.md|知识地图", r"00_domain_map\.md"),
+            forbidden_patterns=(r"Missing any|缺少", r"empty|为空"),
+        ),
+        ("base_learning", "TC04"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"One-line|一句话", r"Life Analogy|生活类比", r"Technical|技术", r"Real-world Case|真实案例", r"Common Pitfall|常见误区", r"Exercise|练习"),
+            input_patterns=(r"concept-breakdown\.md", r"01_core_concepts|概念文件"),
+            forbidden_patterns=(r"Missing any|缺少", r"pure prose|纯文字"),
+        ),
+        ("base_learning", "TC05"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"review|复习", r"learn|学习", r"practice|练习", r"output|输出", r"answers|答案", r"acceptance criteria|验收标准"),
+            input_patterns=(r"Day 3|第 3 天", r"daily-session\.md"),
+            forbidden_patterns=(r"prose-only|只有文字", r"reveals quiz answers|给出了答案"),
+        ),
+        ("base_learning", "TC06"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"\[concept-gap\]", r"\[application-failure\]", r"\[expression-unclear\]", r"\[knowledge-confusion\]", r"remedial|补救"),
+            input_patterns=(r"tool schema|Tool schema", r"name|名称", r"description|描述"),
+            forbidden_patterns=(r"without diagnosing|未诊断", r"generic remediation|通用补救"),
+        ),
+        ("base_learning", "TC07"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"examiner|考官", r"100", r"wait|等待", r"06_quizzes", r"weak points|薄弱点"),
+            input_patterns=(r"stage-test\.md", r"Stage 1|第 1 阶段"),
+            forbidden_patterns=(r"gives answers|给出答案", r"grades before|提前评分"),
+        ),
+        ("base_learning", "TC08"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"progress\.md", r"progress-log\.md", r"07_daily_review", r"append|追加", r"Error|错题|错误"),
+            input_patterns=(r"daily-review\.md", r"review|复盘"),
+            forbidden_patterns=(r"not updated|没有更新", r"overwritten|覆盖"),
+        ),
+        ("base_learning", "TC09"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"capstone|结业|最终项目", r"7-day|7 天", r"acceptance criteria|验收标准", r"no-code|无代码|低代码", r"weak points|薄弱点"),
+            input_patterns=(r"project-design\.md", r"personal research assistant|个人研究助手"),
+            forbidden_patterns=(r"No 7-day|没有 7 天", r"No acceptance|没有验收"),
+        ),
+        ("base_learning", "TC10"): CaseRequirement(
+            files=base_learning,
+            evidence=(r"progress\.md", r"progress-log\.md", r"warm-up|热身", r"continue|继续", r"review|复习"),
+            input_patterns=(r"two weeks|两周", r"continue|继续"),
+            forbidden_patterns=(r"without checking progress|不检查 progress", r"from day 1|第 1 天重新"),
+        ),
         ("factuality", "no_fabricated_urls"): CaseRequirement(
             files=common,
             evidence=(r"Never fabricate|不得伪造", r"URL", r"\[verified\]|\[已验证\]", r"\[unverified\]|\[未验证\]"),
@@ -294,6 +424,96 @@ def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
             evidence=(r"does not claim|不得声称|不能声称", r"paste|粘贴", r"OCR", r"Markdown", r"checklist|清单"),
             input_patterns=(r"uploaded PDF|cannot read files|上传.*PDF|不能读取文件",),
             forbidden_patterns=(r"Summarizes the PDF|总结 PDF|Invents page numbers|编造页码|file contents|文件内容",),
+        ),
+        ("platform_coze", "coze_no_skill_md_dependency"): CaseRequirement(
+            files=cn_platform_files("coze"),
+            evidence=(r"bot-prompt\.zh-CN\.md", r"知识库", r"workflow|工作流", r"variables|变量", r"memory|记忆", r"checklist|检查清单", r"不能假设.*SKILL\.md|不要假设.*SKILL\.md"),
+            input_patterns=(r"扣子|Coze", r"不能读取仓库文件|不能读取.*文件"),
+            forbidden_patterns=(r"读取仓库根目录 SKILL\.md|直接读取 SKILL\.md|没有知识库|没有.*工作流"),
+        ),
+        ("platform_coze", "coze_material_grounding"): CaseRequirement(
+            files=cn_platform_files("coze"),
+            evidence=(r"资料 ID|material_id|material", r"上传|知识库", r"Grounded|Partially grounded|Supplemental", r"extraction issue|提取问题"),
+            input_patterns=(r"PDF|资料", r"学习计划"),
+            forbidden_patterns=(r"未读取资料就总结|编造页码|编造.*图表|编造.*资料内容"),
+        ),
+        ("platform_coze", "coze_reliability_fallback"): CaseRequirement(
+            files=cn_platform_files("coze"),
+            evidence=(r"未验证草稿|Unverified Draft", r"claims_to_verify|待核查", r"单 Bot 降级|无工作流", r"learning_state"),
+            input_patterns=(r"没有联网|无联网", r"没有工作流|无工作流"),
+            forbidden_patterns=(r"声称已核查最新事实|没有状态摘要"),
+        ),
+        ("platform_workbuddy", "workbuddy_task_skill_form"): CaseRequirement(
+            files=cn_platform_files("workbuddy"),
+            evidence=(r"skill-call-prompt\.zh-CN\.md", r"报告", r"task-workflow\.md|任务流", r"file-processing-rules\.md|文件处理", r"report-output-template\.md|报告输出", r"验收标准"),
+            input_patterns=(r"培训资料|资料", r"30 天|阶段报告"),
+            forbidden_patterns=(r"聊天式学习建议|没有报告输出模板"),
+        ),
+        ("platform_workbuddy", "workbuddy_file_processing"): CaseRequirement(
+            files=cn_platform_files("workbuddy"),
+            evidence=(r"文件 ID|资料 ID|ID", r"PDF|PPT|Word", r"表格|图示|备注", r"extraction issue|提取问题", r"位置|页码|幻灯片"),
+            input_patterns=(r"PDF", r"PPT", r"Word", r"学习计划"),
+            forbidden_patterns=(r"把图表当普通文本处理|无法读取时仍总结内容"),
+        ),
+        ("platform_workbuddy", "workbuddy_reliability_report"): CaseRequirement(
+            files=cn_platform_files("workbuddy"),
+            evidence=(r"未验证草稿|Unverified Draft", r"Source Notes|来源", r"Freshness Risk|时效", r"Claims to Verify|待核查", r"不伪造|不得伪造"),
+            input_patterns=(r"阶段学习报告|阶段.*报告", r"不能联网|无联网"),
+            forbidden_patterns=(r"声称已联网确认|缺少待核查清单"),
+        ),
+        ("platform_trae", "trae_reads_repository_files"): CaseRequirement(
+            files=cn_platform_files("trae"),
+            evidence=(r"SKILL\.md", r"core/", r"templates/", r"prompts/", r"references/", r"project_rules\.md", r"agent-prompt\.md", r"不要把所有平台说明塞回 `?SKILL\.md`?|不把平台说明塞进 SKILL\.md"),
+            input_patterns=(r"Trae", r"本仓库|学习仓库"),
+            forbidden_patterns=(r"忽略仓库文件|只复制低代码提示词|删除或重写 Codex Skill"),
+        ),
+        ("platform_trae", "trae_file_write_safety"): CaseRequirement(
+            files=cn_platform_files("trae"),
+            evidence=(r"检查目标目录|目录.*存在|已存在", r"不覆盖|不要覆盖", r"progress\.md", r"progress-log\.md", r"ASCII"),
+            input_patterns=(r"learn-ai-agent", r"目录可能已存在"),
+            forbidden_patterns=(r"覆盖已有学习仓库|删除用户内容"),
+        ),
+        ("platform_trae", "trae_fallbacks"): CaseRequirement(
+            files=cn_platform_files("trae"),
+            evidence=(r"OCR|粘贴文本|格式转换", r"未验证草稿|Unverified Draft", r"待核查|claims_to_verify", r"不编造|不得伪造"),
+            input_patterns=(r"资料路径不可读|不可读", r"不能联网|无联网"),
+            forbidden_patterns=(r"声称已读取不可读资料|写成已验证事实"),
+        ),
+        ("platform_codebuddy", "codebuddy_kb_package"): CaseRequirement(
+            files=cn_platform_files("codebuddy"),
+            evidence=(r"core/", r"references/zh-CN/", r"templates/zh-CN/", r"prompts/zh-CN/", r"知识库分组|分组"),
+            input_patterns=(r"CodeBuddy", r"知识库"),
+            forbidden_patterns=(r"只上传 SKILL\.md|没有模板或提示词分组"),
+        ),
+        ("platform_codebuddy", "codebuddy_repo_or_kb_mode"): CaseRequirement(
+            files=cn_platform_files("codebuddy"),
+            evidence=(r"仓库连接模式", r"知识库模式", r"不假装|不能读取本地仓库", r"learning_state", r"grounding|资料"),
+            input_patterns=(r"CodeBuddy", r"只能用知识库|不能读取本地仓库"),
+            forbidden_patterns=(r"要求读取本地 SKILL\.md|缺少降级说明"),
+        ),
+        ("platform_codebuddy", "codebuddy_behavior_rules"): CaseRequirement(
+            files=cn_platform_files("codebuddy"),
+            evidence=(r"资料.*登记|material", r"未验证草稿|无联网", r"不伪造|不得伪造", r"阶段测试|答案"),
+            input_patterns=(r"上传资料|资料", r"无联网"),
+            forbidden_patterns=(r"未核查事实写成确定结论|编造资料内容"),
+        ),
+        ("platform_generic_lowcode", "generic_lowcode_package_complete"): CaseRequirement(
+            files=cn_platform_files("generic-lowcode-agent"),
+            evidence=(r"system-prompt\.zh-CN\.md", r"workflow-template\.md", r"knowledge-base-template\.md", r"state-schema\.md", r"fallback-mode\.md"),
+            input_patterns=(r"低代码 Agent|低代码.*平台", r"Learn Anything"),
+            forbidden_patterns=(r"只有系统提示词|没有知识库上传说明"),
+        ),
+        ("platform_generic_lowcode", "generic_lowcode_learning_loop"): CaseRequirement(
+            files=cn_platform_files("generic-lowcode-agent"),
+            evidence=(r"intake|采集|画像", r"知识地图|学习计划", r"练习|任务", r"阶段测试|评分", r"复盘|learning_state"),
+            input_patterns=(r"低代码 Agent", r"AI Agent"),
+            forbidden_patterns=(r"泛泛学习建议|没有练习或任务"),
+        ),
+        ("platform_generic_lowcode", "generic_lowcode_fallbacks"): CaseRequirement(
+            files=cn_platform_files("generic-lowcode-agent"),
+            evidence=(r"粘贴|OCR|Markdown", r"未验证草稿", r"system prompt|系统提示词", r"learning_state"),
+            input_patterns=(r"不能读文件|不能联网|没有长期记忆"),
+            forbidden_patterns=(r"假装读过文件|没有状态摘要"),
         ),
     }
 

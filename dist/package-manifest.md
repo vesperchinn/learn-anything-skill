@@ -1,5 +1,8 @@
 # Package Manifest
 
+This file is a manifest only. It documents which source files belong in a
+platform package; it is not itself a generated runtime package.
+
 ## Common files by locale
 
 For every platform package, include:
@@ -22,5 +25,6 @@ For every platform package, include:
 - Do not overwrite existing package files.
 - Do not include credentials, local secrets, generated learner repositories, or private user materials.
 - Do not require low-code platforms to read `SKILL.md`.
+- Mark low-code platform packages as beta / experimental until they are
+  validated in the target workspace.
 - Keep Codex native Skill files intact.
-

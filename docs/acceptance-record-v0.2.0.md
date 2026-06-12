@@ -1,4 +1,4 @@
-# Acceptance Record: v0.2.0
+# Acceptance Record: v0.2.0-beta
 
 Date: 2026-06-12
 
@@ -10,6 +10,8 @@ Date: 2026-06-12
 - English and Chinese template checks pass.
 - English and Chinese behavior-policy checks pass.
 - Mock end-to-end checks pass for English and Chinese.
+- Platform eval YAML cases are connected to executable behavior evaluator
+  requirements.
 - No-web fallback, material-grounding rules, source notes, claim ledger, and
   freshness tracking are represented in prompts, templates, and examples.
 
@@ -22,6 +24,7 @@ Date: 2026-06-12
 | Error diagnosis | Pass by policy/template inspection | Rules require error classification before correction. |
 | Material mode | Pass by policy/template inspection | User materials must be registered, indexed, and treated as primary source. |
 | No-web fallback | Pass by policy/template inspection | Unverified Draft and `claims_to_verify.md` are required when verification is unavailable. |
+| Platform eval linkage | Pass by executable harness check | Every YAML eval case must have a matching `CaseRequirement` in `evals/run_behavior_evals.py`. |
 | Live Agent run | Not yet a release gate | No live multi-turn Agent transcript is included in v0.2.0. |
 
 ## Evidence
@@ -32,6 +35,8 @@ Date: 2026-06-12
 - `evals/run_behavior_evals.py --locale zh-CN`
 - `evals/run_e2e_evals.py --mode mock --locale en-US`
 - `evals/run_e2e_evals.py --mode mock --locale zh-CN`
+- `harness/scripts/check_eval_coverage.py --root .`
+- `harness/scripts/run_all_checks.py --root . --report`
 
 ## Open Risk
 

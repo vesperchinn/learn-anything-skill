@@ -37,5 +37,5 @@ Error type tags: [concept-gap], [application-failure], [expression-unclear], [kn
 ## Next Steps (next 3 days)
 
 - Day 0: Initialize repo + generate knowledge map + create learning plan
-- Day 1: TBD after plan generation
-- Day 2: TBD after plan generation
+- Day 1: Set after learning plan generation
+- Day 2: Set after learning plan generation

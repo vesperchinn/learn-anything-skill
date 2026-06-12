@@ -34,6 +34,7 @@ platforms:
       - platforms/cn/workbuddy/skill-call-prompt.zh-CN.md
       - platforms/cn/workbuddy/task-workflow.md
       - platforms/cn/workbuddy/knowledge-base-package.md
+      - platforms/cn/workbuddy/state-schema.md
       - platforms/cn/workbuddy/file-processing-rules.md
       - platforms/cn/workbuddy/report-output-template.md
       - platforms/cn/workbuddy/publishing-checklist.md
@@ -49,6 +50,8 @@ platforms:
     paths:
       - platforms/cn/codebuddy/README.zh-CN.md
       - platforms/cn/codebuddy/knowledge-base-upload-guide.md
+      - platforms/cn/codebuddy/workflow-template.md
+      - platforms/cn/codebuddy/state-schema.md
       - platforms/cn/codebuddy/agent-rules.md
       - platforms/cn/codebuddy/setup-guide.md
       - platforms/cn/codebuddy/test-checklist.md
@@ -60,6 +63,7 @@ platforms:
       - platforms/cn/generic-lowcode-agent/knowledge-base-template.md
       - platforms/cn/generic-lowcode-agent/state-schema.md
       - platforms/cn/generic-lowcode-agent/fallback-mode.md
+      - platforms/cn/generic-lowcode-agent/test-checklist.md
 required_capabilities:
   - README
   - prompt_or_rules
@@ -68,4 +72,3 @@ required_capabilities:
   - reliability
   - material
   - checklist
-

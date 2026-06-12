@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from checklib import Issue, fail, ok, read_text, run_check, warn
 
 
 FORBIDDEN = ["completely avoid hallucinations", "fully eliminate hallucinations", "完全避免幻觉", "彻底杜绝幻觉"]
+EXAGGERATED_PATTERNS = [
+    re.compile(r"\b(completely|fully|entirely|totally)\s+\w*\s*(avoid|eliminate|prevent|remove|stop)s?\s+\w*\s*hallucinations?\b", re.IGNORECASE),
+    re.compile(r"\b(eliminate|prevent|remove|stop)s?\s+\w*\s*(all|any|every|ai)?\s*\w*\s*hallucinations?\b", re.IGNORECASE),
+    re.compile(r"(完全|彻底|百分百|100%)\s*(避免|消除|杜绝|防止).{0,8}(幻觉|胡编|编造)", re.IGNORECASE),
+]
 
 
 def check(root: Path) -> list[Issue]:
@@ -28,10 +34,15 @@ def check(root: Path) -> list[Issue]:
     for item in ["README.md", "README.zh-CN.md"]:
         path = root / item
         if path.exists():
-            text = read_text(path).lower()
+            raw_text = read_text(path)
+            text = raw_text.lower()
             for term in FORBIDDEN:
                 if term.lower() in text:
                     issues.append(fail("DOC_EXAGGERATED_CLAIM", item, f"Exaggerated claim found: {term}", "Replace with bounded reliability wording"))
+            for pattern in EXAGGERATED_PATTERNS:
+                if pattern.search(raw_text):
+                    issues.append(fail("DOC_EXAGGERATED_CLAIM", item, "Exaggerated hallucination guarantee found", "Replace absolute guarantees with bounded reliability wording"))
+                    break
 
     for item in ["core/prompts/en-US/init-repo.md", "core/prompts/zh-CN/init-repo.md"]:
         if not (root / item).exists():
@@ -44,4 +55,3 @@ def check(root: Path) -> list[Issue]:
 
 if __name__ == "__main__":
     raise SystemExit(run_check("Check docs consistency.", check))
-

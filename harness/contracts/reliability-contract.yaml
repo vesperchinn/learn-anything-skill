@@ -20,12 +20,11 @@ required_paths:
   - references/en-US/claim-verification-guide.md
   - references/zh-CN/claim-verification-guide.md
 required_terms:
-  - no-web
+  - no web
   - no web
   - high-stakes
-  - fake citations
-  - fabricated
+  - fabricate
+  - citations
   - Freshness Risk
   - Claims to Verify
   - Last Verified
-

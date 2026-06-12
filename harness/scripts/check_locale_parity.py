@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from checklib import Issue, WARN, ascii_ratio, fail, has_cjk, ok, read_text, rel, run_check, warn
+from checklib import FAIL, Issue, WARN, ascii_ratio, fail, has_cjk, ok, read_text, rel, run_check, warn
 
 
 PAIRED_DIRS = ["core/prompts", "prompts", "templates", "references", "evals"]

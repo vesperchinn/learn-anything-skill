@@ -31,6 +31,8 @@ CHECKS = [
     "check_release_readiness.py",
 ]
 
+BEHAVIOR_EVAL_LOCALES = ["en-US", "zh-CN"]
+
 
 def main() -> int:
     parser = make_parser("Run all read-only harness checks.")
@@ -53,6 +55,16 @@ def main() -> int:
             all_issues.append(Issue("CHECK_STDERR", "WARN", script, result.stderr.strip()[:500], "Review check stderr"))
         if result.returncode != 0 and not any(issue.severity == "FAIL" for issue in all_issues):
             all_issues.append(Issue("CHECK_FAILED", "FAIL", script, f"{script} exited with {result.returncode}", "Run the check directly for details"))
+
+    for locale in BEHAVIOR_EVAL_LOCALES:
+        command = [sys.executable, str(root / "evals" / "run_behavior_evals.py"), "--locale", locale]
+        result = subprocess.run(command, text=True, capture_output=True, cwd=root)
+        if result.returncode == 0:
+            summary = result.stdout.strip().splitlines()[-1] if result.stdout.strip() else "Behavior eval passed"
+            all_issues.append(Issue("BEHAVIOR_EVAL_OK", "PASS", f"evals/{locale}", summary, ""))
+        else:
+            output = "\n".join((result.stdout + "\n" + result.stderr).strip().splitlines()[:12])
+            all_issues.append(Issue("BEHAVIOR_EVAL_FAILED", "FAIL", f"evals/{locale}", output or f"{locale} behavior eval failed", "Run evals/run_behavior_evals.py for the locale and add missing CaseRequirement coverage"))
 
     has_fail = any(issue.severity == "FAIL" for issue in all_issues)
     has_warn = any(issue.severity == "WARN" for issue in all_issues)

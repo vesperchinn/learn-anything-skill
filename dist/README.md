@@ -1,6 +1,6 @@
 # Distribution Packages
 
-`dist/` documents how to assemble platform-specific packages from this repository. Generated packages should be built from source files and should not replace the source directories.
+`dist/` contains distribution manifests and build notes only. It is not the source of truth and does not contain a ready-to-publish package by default. Generated packages should be built from source files and should not replace the source directories.
 
 ## Package builder
 
@@ -34,3 +34,4 @@ Generated packages are written to:
 
 Each package includes a generated `PACKAGE.md` with the file list and copied source documents.
 
+Low-code packages are beta / experimental outputs. Validate them in the target platform before sharing them with users.

@@ -1,3 +1,6 @@
+test_suite: base_learning
+locale: zh-CN
+
 cases:
 - id: TC01
   name: 信息采集 — 收集学习者档案

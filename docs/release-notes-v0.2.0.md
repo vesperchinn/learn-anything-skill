@@ -1,10 +1,10 @@
-# Release Notes: v0.2.0
+# Release Notes: v0.2.0-beta
 
 Release date: 2026-06-12
 
 ## Summary
 
-v0.2.0 is the first release candidate intended for public use. It turns the
+v0.2.0-beta is a public beta release candidate. It turns the
 project from an early Codex-focused learning prompt set into a bilingual Skill
 Pack with templates, source tracking, material-grounded learning, adapters,
 scripts, examples, and evals.
@@ -33,12 +33,17 @@ scripts, examples, and evals.
   still require source verification.
 - Behavior evals are policy checks. They do not replace live Agent outcome
   evaluations.
+- Low-code platform adapters are experimental support in this beta. Validate
+  Coze, WorkBuddy, Trae, CodeBuddy, and generic low-code packages in the target
+  workspace before using them as release-critical workflows.
 
 ## Known Limits
 
 - Codex has the strongest verified workflow.
 - Claude Code and Cursor are documented workflows, not fully proven live-agent
   release gates.
+- Low-code platform support is experimental and depends on each product's
+  knowledge base, workflow, file access, and memory capabilities.
 - Material examples are intentionally small and should be expanded in a later
   release.
 - Live multi-turn Agent evals remain a v1.0 goal.

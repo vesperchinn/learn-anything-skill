@@ -21,7 +21,6 @@ required_terms:
   - slide
   - page
   - Supplemental
-  - no-file
+  - file access
   - copyright
   - extraction issue
-

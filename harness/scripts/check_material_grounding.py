@@ -35,6 +35,19 @@ REQUIRED_PATHS = [
     "references/zh-CN/material-grounding-policy.md",
 ]
 
+PDF_SLIDE_REQUIRED_PHRASES = {
+    "references/en-US/pdf-slide-handling.md": [
+        "Use page numbers only",
+        "Use slide numbers only",
+        "do not guess",
+    ],
+    "references/zh-CN/pdf-slide-handling.md": [
+        "才能使用页码",
+        "才能使用幻灯片编号",
+        "不得猜测",
+    ],
+}
+
 
 def check(root: Path) -> list[Issue]:
     issues: list[Issue] = []
@@ -48,6 +61,15 @@ def check(root: Path) -> list[Issue]:
             issues.append(fail("MATERIAL_FILE_MISSING", item, "Material-grounding file missing", "Add the required material prompt, template, or reference"))
         else:
             corpus += "\n" + read_text(path)
+
+    for item, phrases in PDF_SLIDE_REQUIRED_PHRASES.items():
+        path = root / item
+        if not path.exists():
+            continue
+        text = read_text(path)
+        for phrase in phrases:
+            if phrase not in text:
+                issues.append(fail("MATERIAL_PDF_SLIDE_RULE_MISSING", item, f"PDF/slide handling rule missing: {phrase}", "Restore explicit no-invented page/slide/location rules"))
     for item in ["README.md", "README.zh-CN.md"]:
         path = root / item
         if path.exists():

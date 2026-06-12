@@ -27,6 +27,25 @@ REQUIRED_PATHS = [
     "references/zh-CN/claim-verification-guide.md",
 ]
 
+CLAIM_LEDGER_REQUIRED_FIELDS = {
+    "templates/en-US/claim_ledger.md.template": [
+        "Status",
+        "Confidence",
+        "Freshness Risk",
+        "Verified Date",
+        "Source Type",
+        "Material ID / Location",
+    ],
+    "templates/zh-CN/claim_ledger.md.template": [
+        "状态",
+        "可信度",
+        "时效性风险",
+        "验证日期",
+        "来源类型",
+        "Material ID / Location",
+    ],
+}
+
 
 def check(root: Path) -> list[Issue]:
     issues: list[Issue] = []
@@ -39,6 +58,15 @@ def check(root: Path) -> list[Issue]:
             issues.append(fail("RELIABILITY_FILE_MISSING", item, "Reliability file missing", "Add the required reliability template or reference"))
         else:
             corpus += "\n" + read_text(path)
+
+    for item, fields in CLAIM_LEDGER_REQUIRED_FIELDS.items():
+        path = root / item
+        if not path.exists():
+            continue
+        text = read_text(path)
+        for field in fields:
+            if field not in text:
+                issues.append(fail("CLAIM_LEDGER_FIELD_MISSING", item, f"Claim ledger missing required field: {field}", "Restore the required claim ledger audit column"))
 
     contract_terms = contract.get("required_terms") or []
     required_terms = [

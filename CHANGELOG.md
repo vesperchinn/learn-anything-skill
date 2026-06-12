@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0] — 2026-06-12
+## [0.2.0-beta] — 2026-06-12
 
 Release notes: [docs/release-notes-v0.2.0.md](./docs/release-notes-v0.2.0.md)
 
@@ -22,7 +22,7 @@ Release notes: [docs/release-notes-v0.2.0.md](./docs/release-notes-v0.2.0.md)
 - Chinese example: `examples/zh-CN/learn-ai-agent/`
 - `.github/workflows/ci.yml` — GitHub Actions CI
 - `CLAUDE.md` templates for generated learning repositories
-- `ROADMAP.md` and v0.2.0 release notes
+- `ROADMAP.md` and v0.2.0-beta release notes
 - Acceptance record documenting manual/live-agent verification limits
 - `--dry-run` support for repository scaffolding scripts
 

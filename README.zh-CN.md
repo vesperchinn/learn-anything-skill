@@ -3,7 +3,7 @@
 > 把 AI Agent 从「问答机器」变成「领域学习工程师」——一条命令启动一个完整的学习项目。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.0--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.md)
 
 [English](./README.md)
@@ -20,7 +20,7 @@
 - 最终完成一个可展示的最小项目
 - 基于自己的 PDF、PPT、Markdown、TXT、Word 文档和网页导出学习
 
-当前版本：**v0.2.0**。详见 [release notes](./docs/release-notes-v0.2.0.md)
+当前版本：**v0.2.0-beta**。详见 [release notes](./docs/release-notes-v0.2.0.md)
 和 [roadmap](./ROADMAP.md)。
 
 ## 和直接问 ChatGPT 有什么不同？
@@ -72,7 +72,7 @@ project-design.md   →  最后 7 天设计项目
 
 ## Multi-Platform Support
 
-Learn Anything 现在包含 **Platform Adapter Layer**，用于把仓库型 Codex Skill 分发到不能直接读取 `SKILL.md` 的平台。
+Learn Anything 现在包含 **Platform Adapter Layer**，用于把仓库型 Codex Skill 分发到不能直接读取 `SKILL.md` 的平台。低代码平台支持在本 beta 版本中标记为 experimental，正式依赖前需要在自己的平台环境中验证。
 
 | 形态 | 适用平台 | 使用方式 |
 | --- | --- | --- |
@@ -167,7 +167,7 @@ learn-anything-skill/
 运行全部只读检查：
 
 ```bash
-python harness/scripts/run_all_checks.py --root . --report
+python3 harness/scripts/run_all_checks.py --root . --report
 ```
 
 报告写入 `harness/reports/`，文件名带时间戳，不覆盖旧报告。`PASS` 表示通过，`WARN` 表示需要人工确认，`FAIL` 表示发布前必须处理。

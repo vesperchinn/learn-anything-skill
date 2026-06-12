@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from checklib import Issue, fail, load_contract_lists, ok, parse_front_matter, read_text, run_check, warn
@@ -22,6 +23,11 @@ FORBIDDEN = [
     "fully eliminate hallucinations",
     "完全避免幻觉",
     "彻底杜绝幻觉",
+]
+EXAGGERATED_PATTERNS = [
+    re.compile(r"\b(completely|fully|entirely|totally)\s+\w*\s*(avoid|eliminate|prevent|remove|stop)s?\s+\w*\s*hallucinations?\b", re.IGNORECASE),
+    re.compile(r"\b(eliminate|prevent|remove|stop)s?\s+\w*\s*(all|any|every|ai)?\s*\w*\s*hallucinations?\b", re.IGNORECASE),
+    re.compile(r"(完全|彻底|百分百|100%)\s*(避免|消除|杜绝|防止).{0,8}(幻觉|胡编|编造)", re.IGNORECASE),
 ]
 
 
@@ -54,6 +60,8 @@ def check(root: Path) -> list[Issue]:
     for term in forbidden_terms:
         if term.lower() in lower:
             issues.append(fail("SKILL_EXAGGERATED_CLAIM", "SKILL.md", f"Exaggerated guarantee found: {term}", "Replace absolute guarantee with bounded reliability wording"))
+    if any(pattern.search(text) for pattern in EXAGGERATED_PATTERNS):
+        issues.append(fail("SKILL_EXAGGERATED_CLAIM", "SKILL.md", "Exaggerated hallucination guarantee found", "Replace absolute guarantee with bounded reliability wording"))
 
     if not issues:
         issues.append(ok("SKILL_MANIFEST_OK", "SKILL.md", "Skill manifest and required sections look valid"))

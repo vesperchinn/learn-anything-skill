@@ -1,3 +1,6 @@
+test_suite: base_learning
+locale: en-US
+
 cases:
 - id: TC01
   name: Intake — collect learner profile

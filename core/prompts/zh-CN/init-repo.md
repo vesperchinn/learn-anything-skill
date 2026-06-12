@@ -28,8 +28,8 @@
 ├── README.md                   # 如何使用本学习仓库
 ├── AGENTS.md                   # AI 智能体的教学规则
 ├── CLAUDE.md                   # Claude Code 使用的等价教学规则
-├── 00_domain_map.md            # （占位符——将由 knowledge-map.md 填充）
-├── 01_core_concepts/           # （占位符——将由 concept-breakdown.md 填充）
+├── 00_domain_map.md            # （初始文件——将由 knowledge-map.md 填充）
+├── 01_core_concepts/           # （初始目录——将由 concept-breakdown.md 填充）
 │   └── .gitkeep
 ├── 02_case_studies/            # 实际案例和示例
 │   └── .gitkeep
@@ -43,8 +43,8 @@
 │   └── .gitkeep
 ├── 07_daily_review/            # 每日复盘记录
 │   └── .gitkeep
-├── 08_glossary.md              # （占位符——随时间增长）
-├── 09_resources.md             # （占位符——推荐学习资源）
+├── 08_glossary.md              # （初始文件——随时间增长）
+├── 09_resources.md             # （初始文件——推荐学习资源）
 ├── learning_materials/          # 用户资料工作区
 │   ├── raw/                     # 原始 PDF/PPT/文档/网页导出
 │   │   └── .gitkeep
@@ -164,4 +164,4 @@
 
 ## 输出
 
-立即创建所有文件。对于占位文件（00_domain_map.md、08_glossary.md、09_resources.md），写入一个简短的说明头，指示将在下一阶段填充。`learning_materials` 和 `09_sources` 使用 `templates/{locale}/{{domain-slug}}/` 下的文件作为模板。对于 .gitkeep 文件，创建为空文件。
+立即创建所有文件。对于初始文件（00_domain_map.md、08_glossary.md、09_resources.md），写入一个简短的说明头，指示将在下一阶段填充。`learning_materials` 和 `09_sources` 使用 `templates/{locale}/{{domain-slug}}/` 下的文件作为模板。对于 .gitkeep 文件，创建为空文件。

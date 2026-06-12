@@ -3,7 +3,7 @@
 > Turn any AI agent from a Q&A bot into a domain learning engineer — a structured system for mastering any field.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.0--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.zh-CN.md)
 
 [中文说明](./README.zh-CN.md)
@@ -24,7 +24,7 @@ ChatGPT, and others) can help users:
 - Complete a demonstrable capstone project
 - Learn from your own PDFs, slide decks, Markdown, TXT, Word docs, and webpage exports
 
-Current release: **v0.2.0**. See [release notes](./docs/release-notes-v0.2.0.md)
+Current release: **v0.2.0-beta**. See [release notes](./docs/release-notes-v0.2.0.md)
 and [roadmap](./ROADMAP.md).
 
 ## How is this different from asking ChatGPT directly?
@@ -77,6 +77,7 @@ See [docs/quick-start.md](./docs/quick-start.md) for the full guide.
 ## Multi-Platform Support
 
 Learn Anything now includes a **Platform Adapter Layer** for platforms that cannot consume the native Codex `SKILL.md` directly.
+Low-code platform support is experimental in this beta; validate each adapter in your own workspace before relying on it.
 
 | Form | Target platforms | How it works |
 | --- | --- | --- |
@@ -181,7 +182,7 @@ The read-only maintenance guard layer lives in [harness/](./harness/). It is not
 Run all checks:
 
 ```bash
-python harness/scripts/run_all_checks.py --root . --report
+python3 harness/scripts/run_all_checks.py --root . --report
 ```
 
 Reports are written to `harness/reports/` with timestamped filenames and never overwrite older reports. `PASS` means OK, `WARN` means human review is needed, and `FAIL` means the issue should be resolved before release.
