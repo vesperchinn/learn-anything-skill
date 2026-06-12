@@ -70,6 +70,30 @@ project-design.md   →  最后 7 天设计项目
 
 详细指南见 [docs/quick-start.zh-CN.md](./docs/quick-start.zh-CN.md)。
 
+## Multi-Platform Support
+
+Learn Anything 现在包含 **Platform Adapter Layer**，用于把仓库型 Codex Skill 分发到不能直接读取 `SKILL.md` 的平台。
+
+| 形态 | 适用平台 | 使用方式 |
+| --- | --- | --- |
+| Codex 原生 Skill | Codex、能读取本仓库的文件型 Agent | 读取 `SKILL.md`、`core/`、`templates/`、`prompts/`、`references/`，直接创建学习仓库 |
+| 平台适配包 | Coze、WorkBuddy、Trae、CodeBuddy、通用低代码 Agent | 使用 `platforms/` 下的平台说明、知识库包、工作流、变量、记忆和测试清单 |
+| 聊天降级包 | 普通聊天 Agent | 复制核心协议和提示词，通过对话输出路径标记 Markdown |
+
+详见 [platforms/README.md](./platforms/README.md)、[platforms/capability-matrix.md](./platforms/capability-matrix.md) 和 [dist/README.md](./dist/README.md)。
+
+## 中国大陆平台适配说明
+
+| 平台 | 适配目录 | 推荐形态 | 文件写入 | 主要限制 |
+| --- | --- | --- | --- | --- |
+| 扣子 Coze | [platforms/cn/coze/](./platforms/cn/coze/) | Bot + 知识库 + Workflow + 变量 + 记忆 | 通常不直接写本地文件 | 不能假设可读取 `SKILL.md`；需拆成 Prompt、KB、Workflow |
+| WorkBuddy | [platforms/cn/workbuddy/](./platforms/cn/workbuddy/) | 办公任务 Skill + 报告输出 | 视平台任务能力而定 | 更适合报告、任务单、资料处理，不等同完整仓库工程 |
+| Trae | [platforms/cn/trae/](./platforms/cn/trae/) | 文件型工程 Agent | 支持 | 可保留读取 `SKILL.md`、模板、提示词和引用文档 |
+| CodeBuddy | [platforms/cn/codebuddy/](./platforms/cn/codebuddy/) | 代码/文档 Agent + 知识库 | 仓库连接时支持 | 需把 `references`、`templates`、`prompts` 打成知识库包 |
+| 通用低代码 Agent | [platforms/cn/generic-lowcode-agent/](./platforms/cn/generic-lowcode-agent/) | System Prompt + Workflow + KB + State | 通常不支持 | 必须提供无文件读取、无联网、无工作流降级 |
+
+不同平台能力不同，不能保证所有功能完全一致。文件型 Agent 可以创建和维护学习仓库；低代码平台通常只能通过知识库、工作流、变量、记忆和提示词模拟学习闭环；普通聊天 Agent 只能输出可复制保存的 Markdown。
+
 ## 用自己的资料学习
 
 如果你已有课程 PDF、PPT、笔记、文档导出或网页导出，使用 **Material-Grounded Learning Mode**：
@@ -98,6 +122,7 @@ learn-anything-skill/
 │   ├── prompts/
 │   │   ├── en-US/              #   13 个英文提示词模块
 │   │   └── zh-CN/              #   13 个中文提示词模块
+│   ├── *-protocol.*.md         #   平台无关协议
 │   └── principles.md           #   学习原则
 ├── templates/                  # 学习仓库模板
 │   ├── en-US/                  #   英文
@@ -109,6 +134,8 @@ learn-anything-skill/
 │   ├── en-US/learn-ai-agent/   #   英文示例
 │   └── zh-CN/learn-ai-agent/   #   中文示例
 ├── adapters/                   # 跨 Agent 适配说明
+├── platforms/                  # 平台适配层（Coze / WorkBuddy / Trae / CodeBuddy 等）
+├── dist/                       # 发行包清单和构建说明
 ├── prompts/                    # 基于资料学习的提示词
 ├── skills/codex/               # Codex / Claude Code 原生 Skill
 ├── scripts/                    # 自动化脚本
@@ -133,6 +160,20 @@ learn-anything-skill/
 两个创建仓库脚本都支持 `--dry-run`，并且不会覆盖已经存在的
 `learn-{domain-slug}` 目录。
 
+## Maintenance Harness
+
+维护防护层位于 [harness/](./harness/)。它不是新学习功能，而是用于日常维护和发布前检查，帮助发现结构缺失、locale 不一致、平台适配缺口、资料学习规则缺失、来源与时效规则缺失等问题。
+
+运行全部只读检查：
+
+```bash
+python harness/scripts/run_all_checks.py --root . --report
+```
+
+报告写入 `harness/reports/`，文件名带时间戳，不覆盖旧报告。`PASS` 表示通过，`WARN` 表示需要人工确认，`FAIL` 表示发布前必须处理。
+
+修改 `SKILL.md` 前，查看 [change-impact-matrix.md](./harness/architecture/change-impact-matrix.md)，并运行 `check_skill_manifest.py`、`check_docs_consistency.py`、`check_eval_coverage.py`。新增平台适配前，使用 [platform-adapter-checklist.md](./harness/checklists/platform-adapter-checklist.md)。发布前使用 [release-checklist.md](./harness/checklists/release-checklist.md) 和 [release-gates.md](./harness/architecture/release-gates.md)。
+
 ## 事实准确性、时效性和幻觉风险
 
 Learn Anything 为生成的学习仓库加入了 Knowledge Reliability Layer：
@@ -153,6 +194,17 @@ Learn Anything 为生成的学习仓库加入了 Knowledge Reliability Layer：
 | **Cursor** | 有文档化流程（.cursorrules） | [cursor.md](./adapters/cursor.md) |
 | **ChatGPT** | 复制粘贴提示词 | [chatgpt.md](./adapters/chatgpt.md) |
 | **通用 Agent** | 手动复制提示词 | [generic-agent.md](./adapters/generic-agent.md) |
+
+## 平台能力差异
+
+| 能力 | Codex / Trae / 文件型 Agent | Coze / WorkBuddy / CodeBuddy 知识库模式 | 普通聊天 Agent |
+| --- | --- | --- | --- |
+| 读取仓库文件 | 支持 | 通常不支持或需上传知识库 | 不支持 |
+| 写入学习仓库 | 支持 | 通常输出报告或平台内容 | 不支持 |
+| 资料学习 | 可读取本地文件 | 通过上传文件或知识库 | 需要粘贴文本/OCR |
+| 来源记录 | 写入 `09_sources/` | 写入报告、变量或记忆 | 写入对话摘要 |
+| 工作流 | 由 Agent 执行 | 平台 Workflow | 手动多轮对话 |
+| 降级方式 | 文件不可用时输出代码块 | 无插件时转为知识库/报告模式 | 输出 `learning_state` 和 Markdown 块 |
 
 ## 学习方法论
 

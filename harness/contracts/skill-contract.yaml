@@ -1,0 +1,26 @@
+name: skill_contract
+description: Native Skill contract for SKILL.md.
+required_paths:
+  - SKILL.md
+front_matter:
+  required: true
+  fields:
+    - name
+    - description
+description:
+  max_chars: 1200
+required_sections:
+  - Do Not Use When
+  - Workflow
+  - Language and Locale Policy
+  - Source-First Reliability Policy
+  - Material-Grounded Learning Mode
+  - Agent Capability Fallback
+  - Safety and Source Rules
+  - Privacy
+forbidden_terms:
+  - completely avoid hallucinations
+  - fully eliminate hallucinations
+  - 完全避免幻觉
+  - 彻底杜绝幻觉
+

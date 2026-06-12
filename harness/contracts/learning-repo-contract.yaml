@@ -1,0 +1,23 @@
+name: learning_repo_contract
+description: Expected generated learning repository shape.
+required_entries:
+  - AGENTS.md
+  - README.md
+  - 00_domain_map.md
+  - 01_core_concepts/
+  - 02_case_studies/
+  - 03_exercises/
+  - 04_projects/
+  - 05_flashcards/
+  - 06_quizzes/
+  - 07_daily_review/
+  - 08_glossary.md
+  - 09_sources/
+  - progress.md
+source_templates:
+  - sources.md
+  - source_quality_policy.md
+  - claim_ledger.md
+  - claims_to_verify.md
+  - freshness_log.md
+

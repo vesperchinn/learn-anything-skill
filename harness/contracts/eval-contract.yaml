@@ -1,0 +1,35 @@
+name: eval_contract
+description: Eval coverage contract.
+required_coverage:
+  - base learning
+  - localization
+  - reliability
+  - no-web fallback
+  - high-stakes domains
+  - hallucination traps
+  - material-grounded learning
+  - platform adapters
+  - release readiness
+required_files:
+  - evals/en-US/test_cases.yaml
+  - evals/zh-CN/test_cases.yaml
+  - evals/en-US/factuality_cases.yaml
+  - evals/zh-CN/factuality_cases.yaml
+  - evals/en-US/freshness_cases.yaml
+  - evals/zh-CN/freshness_cases.yaml
+  - evals/en-US/high_stakes_cases.yaml
+  - evals/zh-CN/high_stakes_cases.yaml
+  - evals/en-US/material_grounded_cases.yaml
+  - evals/zh-CN/material_grounded_cases.yaml
+  - evals/en-US/no_web_fallback_cases.yaml
+  - evals/zh-CN/no_web_fallback_cases.yaml
+  - evals/zh-CN/platform_coze_cases.yaml
+  - evals/zh-CN/platform_workbuddy_cases.yaml
+  - evals/zh-CN/platform_trae_cases.yaml
+  - evals/zh-CN/platform_codebuddy_cases.yaml
+  - evals/zh-CN/platform_generic_lowcode_cases.yaml
+required_terms:
+  - cases
+  - quality_checks
+  - fail_conditions
+

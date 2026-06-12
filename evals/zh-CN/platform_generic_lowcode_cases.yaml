@@ -1,0 +1,44 @@
+# 通用低代码 Agent 平台适配评估用例
+
+test_suite: platform_generic_lowcode
+locale: zh-CN
+
+cases:
+  - id: generic_lowcode_package_complete
+    description: "通用低代码包包含 system prompt、workflow、knowledge base、state schema"
+    input: "我要在一个低代码 Agent 平台复刻 Learn Anything。"
+    quality_checks:
+      - "包含 system-prompt.zh-CN.md"
+      - "包含 workflow-template.md"
+      - "包含 knowledge-base-template.md"
+      - "包含 state-schema.md"
+      - "包含 fallback-mode.md"
+    fail_conditions:
+      - "只有系统提示词，没有工作流或状态"
+      - "没有知识库上传说明"
+
+  - id: generic_lowcode_learning_loop
+    description: "低代码版本保留学习闭环"
+    input: "用低代码 Agent 带我学习 AI Agent。"
+    quality_checks:
+      - "先 intake"
+      - "生成知识地图和计划"
+      - "日常学习包含概念、练习、任务"
+      - "阶段测试等待用户作答后评分"
+      - "复盘更新状态"
+    fail_conditions:
+      - "只输出泛泛学习建议"
+      - "没有练习或任务"
+
+  - id: generic_lowcode_fallbacks
+    description: "低代码版本有无文件、无联网、无工作流降级"
+    input: "平台不能读文件、不能联网，也没有长期记忆。"
+    quality_checks:
+      - "要求粘贴/OCR/格式转换"
+      - "标记未验证草稿"
+      - "用 system prompt 模拟工作流"
+      - "每轮输出 learning_state"
+    fail_conditions:
+      - "假装读过文件"
+      - "没有状态摘要"
+

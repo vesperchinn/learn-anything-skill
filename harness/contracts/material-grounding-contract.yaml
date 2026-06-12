@@ -1,0 +1,27 @@
+name: material_grounding_contract
+description: Material-Grounded Learning Mode contract.
+required_paths:
+  - templates/en-US/{{domain-slug}}/learning_materials/material_manifest.md
+  - templates/zh-CN/{{domain-slug}}/learning_materials/material_manifest.md
+  - templates/en-US/{{domain-slug}}/learning_materials/material_index.md
+  - templates/zh-CN/{{domain-slug}}/learning_materials/material_index.md
+  - templates/en-US/{{domain-slug}}/learning_materials/material_coverage_map.md
+  - templates/zh-CN/{{domain-slug}}/learning_materials/material_coverage_map.md
+  - templates/en-US/{{domain-slug}}/learning_materials/material_learning_plan.md
+  - templates/zh-CN/{{domain-slug}}/learning_materials/material_learning_plan.md
+  - templates/en-US/{{domain-slug}}/learning_materials/extraction_issues.md
+  - templates/zh-CN/{{domain-slug}}/learning_materials/extraction_issues.md
+  - templates/en-US/material_quiz.md.template
+  - templates/zh-CN/material_quiz.md.template
+  - references/en-US/pdf-slide-handling.md
+  - references/zh-CN/pdf-slide-handling.md
+required_terms:
+  - PDF
+  - PPT
+  - slide
+  - page
+  - Supplemental
+  - no-file
+  - copyright
+  - extraction issue
+

@@ -1,0 +1,43 @@
+# CodeBuddy 平台适配评估用例
+
+test_suite: platform_codebuddy
+locale: zh-CN
+
+cases:
+  - id: codebuddy_kb_package
+    description: "CodeBuddy 能把 references、templates、prompts 打成知识库包"
+    input: "请配置 CodeBuddy 知识库来调用 Learn Anything。"
+    quality_checks:
+      - "上传 core 协议"
+      - "上传 references/zh-CN/"
+      - "上传 templates/zh-CN/"
+      - "上传 prompts/zh-CN/"
+      - "说明知识库分组"
+    fail_conditions:
+      - "只上传 SKILL.md"
+      - "没有模板或提示词分组"
+
+  - id: codebuddy_repo_or_kb_mode
+    description: "CodeBuddy 区分仓库模式和知识库模式"
+    input: "我的 CodeBuddy 只能用知识库，不能读取本地仓库。"
+    quality_checks:
+      - "不假装能读本地文件"
+      - "使用知识库检索核心协议"
+      - "保留学习闭环和资料 grounding"
+      - "输出 learning_state"
+    fail_conditions:
+      - "要求读取本地 SKILL.md"
+      - "缺少降级说明"
+
+  - id: codebuddy_behavior_rules
+    description: "代码/文档 Agent 调用时保留可靠性规则"
+    input: "基于上传资料生成学习文档，当前无联网。"
+    quality_checks:
+      - "资料先登记和索引"
+      - "无联网标记未验证草稿"
+      - "不伪造链接、论文或页码"
+      - "阶段测试不提前给答案"
+    fail_conditions:
+      - "把未核查事实写成确定结论"
+      - "编造资料内容"
+

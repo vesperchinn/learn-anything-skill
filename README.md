@@ -74,6 +74,30 @@ project-design.md      →  Capstone project (final 7 days)
 
 See [docs/quick-start.md](./docs/quick-start.md) for the full guide.
 
+## Multi-Platform Support
+
+Learn Anything now includes a **Platform Adapter Layer** for platforms that cannot consume the native Codex `SKILL.md` directly.
+
+| Form | Target platforms | How it works |
+| --- | --- | --- |
+| Native Codex Skill | Codex and file-based agents that can read this repo | Reads `SKILL.md`, `core/`, `templates/`, `prompts/`, and `references/`; writes the learning repo directly |
+| Platform package | Coze, WorkBuddy, Trae, CodeBuddy, generic low-code agents | Uses platform-specific prompts, knowledge-base packages, workflows, variables, memory, and test checklists under `platforms/` |
+| Chat-only package | Ordinary chat agents | Copies the core protocols and outputs path-labeled Markdown blocks |
+
+See [platforms/README.md](./platforms/README.md), [platforms/capability-matrix.md](./platforms/capability-matrix.md), and [dist/README.md](./dist/README.md).
+
+## Mainland China Platform Adapters
+
+| Platform | Adapter | Recommended form | File writing | Main limitation |
+| --- | --- | --- | --- | --- |
+| Coze | [platforms/cn/coze/](./platforms/cn/coze/) | Bot + knowledge base + workflow + variables + memory | Usually no local file writing | Do not assume it can read `SKILL.md`; split into prompt, KB, workflow |
+| WorkBuddy | [platforms/cn/workbuddy/](./platforms/cn/workbuddy/) | Office task Skill + report output | Depends on task environment | Best for reports, task sheets, and material processing |
+| Trae | [platforms/cn/trae/](./platforms/cn/trae/) | File-based engineering Agent | Yes | Can preserve direct repo reading |
+| CodeBuddy | [platforms/cn/codebuddy/](./platforms/cn/codebuddy/) | Code/document Agent + knowledge base | Yes when repo-connected | Package `references`, `templates`, and `prompts` into a KB |
+| Generic low-code Agent | [platforms/cn/generic-lowcode-agent/](./platforms/cn/generic-lowcode-agent/) | System prompt + workflow + KB + state | Usually no | Needs explicit fallback for no file read, no web, or no workflow |
+
+Capabilities differ by platform, product version, workspace policy, and enabled connectors. File-based agents can create and maintain a learning repository. Low-code platforms usually approximate the workflow through knowledge bases, workflows, variables, memory, and prompts. Chat-only agents can only output copyable Markdown and compact state summaries.
+
 ## Learn From Your Own Materials
 
 If you already have course PDFs, slide decks, notes, documentation exports, or
@@ -112,6 +136,7 @@ learn-anything-skill/
 │   ├── prompts/
 │   │   ├── en-US/              #   13 English prompt modules
 │   │   └── zh-CN/              #   13 Chinese prompt modules
+│   ├── *-protocol.*.md         #   Platform-neutral protocols
 │   └── principles.md           #   Learning principles
 ├── templates/                  # Learning repo templates
 │   ├── en-US/                  #   English (default)
@@ -123,6 +148,8 @@ learn-anything-skill/
 │   ├── en-US/learn-ai-agent/   #   English example
 │   └── zh-CN/learn-ai-agent/   #   Chinese example
 ├── adapters/                   # Cross-agent adaptation guides
+├── platforms/                  # Platform adapters (Coze / WorkBuddy / Trae / CodeBuddy, etc.)
+├── dist/                       # Distribution manifests and build notes
 ├── prompts/                    # Material-grounded learning prompts
 ├── skills/codex/               # Legacy wrapper / compatibility files
 ├── scripts/                    # Automation scripts
@@ -147,6 +174,20 @@ We provide a suite of Python tools in the `scripts/` directory to enhance your l
 Both scaffolding scripts support `--dry-run` and refuse to overwrite an existing
 `learn-{domain-slug}` directory.
 
+## Maintenance Harness
+
+The read-only maintenance guard layer lives in [harness/](./harness/). It is not a new learning feature; it helps maintainers catch structure drift, locale mismatch, platform adapter gaps, material-grounding gaps, and reliability-rule gaps before release.
+
+Run all checks:
+
+```bash
+python harness/scripts/run_all_checks.py --root . --report
+```
+
+Reports are written to `harness/reports/` with timestamped filenames and never overwrite older reports. `PASS` means OK, `WARN` means human review is needed, and `FAIL` means the issue should be resolved before release.
+
+Before changing `SKILL.md`, review [change-impact-matrix.md](./harness/architecture/change-impact-matrix.md) and run `check_skill_manifest.py`, `check_docs_consistency.py`, and `check_eval_coverage.py`. Before adding a platform adapter, use [platform-adapter-checklist.md](./harness/checklists/platform-adapter-checklist.md). Before release, use [release-checklist.md](./harness/checklists/release-checklist.md) and [release-gates.md](./harness/architecture/release-gates.md).
+
 ## Factuality, Freshness, and Hallucination Risk
 
 Learn Anything includes a Knowledge Reliability Layer for generated learning repositories:
@@ -167,6 +208,17 @@ Learn Anything includes a Knowledge Reliability Layer for generated learning rep
 | **Cursor** | Documented workflow (.cursorrules) | [cursor.md](./adapters/cursor.md) |
 | **ChatGPT** | Copy-paste prompts | [chatgpt.md](./adapters/chatgpt.md) |
 | **Generic Agent** | Manual prompt copy | [generic-agent.md](./adapters/generic-agent.md) |
+
+## Platform Capability Differences
+
+| Capability | Codex / Trae / file agents | Coze / WorkBuddy / CodeBuddy KB mode | Chat-only agents |
+| --- | --- | --- | --- |
+| Read repository files | Yes | Usually no, unless uploaded to KB | No |
+| Write learning repo files | Yes | Usually report or platform output only | No |
+| Learn from materials | Direct file reading | Upload or knowledge base | Pasted text/OCR |
+| Source records | `09_sources/` files | Reports, variables, or memory | Conversation summary |
+| Workflow | Agent execution | Platform workflow | Manual multi-turn chat |
+| Fallback | Path-labeled blocks when files are unavailable | KB/report mode when plugins are unavailable | `learning_state` plus Markdown blocks |
 
 ## Learning Methodology
 

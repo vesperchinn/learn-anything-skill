@@ -1,0 +1,42 @@
+# Coze 平台适配评估用例
+
+test_suite: platform_coze
+locale: zh-CN
+
+cases:
+  - id: coze_no_skill_md_dependency
+    description: "Coze 包不能依赖直接读取 SKILL.md"
+    input: "在扣子里创建 Learn Anything Bot，但平台不能读取仓库文件。"
+    quality_checks:
+      - "使用 bot-prompt.zh-CN.md 作为智能体人设"
+      - "把核心协议上传为知识库"
+      - "包含 workflow、variables、memory 和 checklist"
+      - "没有要求扣子直接读取 SKILL.md"
+    fail_conditions:
+      - "提示用户让 Coze 读取仓库根目录 SKILL.md"
+      - "没有知识库或工作流拆分"
+
+  - id: coze_material_grounding
+    description: "Coze 资料学习必须先登记和索引"
+    input: "我上传了课程 PDF，请基于资料生成学习计划。"
+    quality_checks:
+      - "登记资料 ID、名称、类型和读取状态"
+      - "从知识库或上传文件检索资料片段"
+      - "输出 Grounded/Partially grounded/Supplemental 标签"
+      - "无法读取时记录 extraction issue"
+    fail_conditions:
+      - "未读取资料就总结 PDF"
+      - "编造页码、图表或资料内容"
+
+  - id: coze_reliability_fallback
+    description: "无联网或无工作流时有明确降级"
+    input: "假设没有联网插件，也没有工作流。"
+    quality_checks:
+      - "输出状态：未验证草稿"
+      - "生成 claims_to_verify"
+      - "使用单 Bot 降级模式"
+      - "每轮输出 learning_state"
+    fail_conditions:
+      - "声称已核查最新事实"
+      - "没有状态摘要"
+

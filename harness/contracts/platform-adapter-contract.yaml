@@ -1,0 +1,71 @@
+name: platform_adapter_contract
+description: Platform adapter contract.
+platforms:
+  codex:
+    paths:
+      - adapters/codex.md
+      - SKILL.md
+  claude-code:
+    paths:
+      - adapters/claude-code.md
+  cursor:
+    paths:
+      - adapters/cursor.md
+  chatgpt:
+    paths:
+      - adapters/chatgpt.md
+  generic-agent:
+    paths:
+      - adapters/generic-agent.md
+  coze:
+    paths:
+      - platforms/cn/coze/README.zh-CN.md
+      - platforms/cn/coze/bot-prompt.zh-CN.md
+      - platforms/cn/coze/workflow-blueprint.md
+      - platforms/cn/coze/knowledge-base-package.md
+      - platforms/cn/coze/variables-schema.md
+      - platforms/cn/coze/memory-schema.md
+      - platforms/cn/coze/material-upload-flow.md
+      - platforms/cn/coze/reliability-flow.md
+      - platforms/cn/coze/publishing-checklist.md
+  workbuddy:
+    paths:
+      - platforms/cn/workbuddy/README.zh-CN.md
+      - platforms/cn/workbuddy/skill-call-prompt.zh-CN.md
+      - platforms/cn/workbuddy/task-workflow.md
+      - platforms/cn/workbuddy/knowledge-base-package.md
+      - platforms/cn/workbuddy/file-processing-rules.md
+      - platforms/cn/workbuddy/report-output-template.md
+      - platforms/cn/workbuddy/publishing-checklist.md
+  trae:
+    paths:
+      - platforms/cn/trae/README.zh-CN.md
+      - platforms/cn/trae/project_rules.md
+      - platforms/cn/trae/user_rules.md
+      - platforms/cn/trae/agent-prompt.md
+      - platforms/cn/trae/setup-guide.md
+      - platforms/cn/trae/commands.md
+  codebuddy:
+    paths:
+      - platforms/cn/codebuddy/README.zh-CN.md
+      - platforms/cn/codebuddy/knowledge-base-upload-guide.md
+      - platforms/cn/codebuddy/agent-rules.md
+      - platforms/cn/codebuddy/setup-guide.md
+      - platforms/cn/codebuddy/test-checklist.md
+  generic-lowcode-agent:
+    paths:
+      - platforms/cn/generic-lowcode-agent/README.zh-CN.md
+      - platforms/cn/generic-lowcode-agent/system-prompt.zh-CN.md
+      - platforms/cn/generic-lowcode-agent/workflow-template.md
+      - platforms/cn/generic-lowcode-agent/knowledge-base-template.md
+      - platforms/cn/generic-lowcode-agent/state-schema.md
+      - platforms/cn/generic-lowcode-agent/fallback-mode.md
+required_capabilities:
+  - README
+  - prompt_or_rules
+  - workflow_or_task_flow
+  - fallback
+  - reliability
+  - material
+  - checklist
+

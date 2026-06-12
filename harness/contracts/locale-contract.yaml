@@ -1,0 +1,22 @@
+name: locale_contract
+description: Locale parity contract for en-US and zh-CN.
+locales:
+  - en-US
+  - zh-CN
+paired_directories:
+  - core/prompts
+  - prompts
+  - templates
+  - references
+  - evals
+required_terms:
+  - interface_language
+  - learning_language
+  - material_language
+  - locale
+language_checks:
+  en-US:
+    warn_on_cjk: true
+  zh-CN:
+    warn_on_high_ascii_ratio: true
+

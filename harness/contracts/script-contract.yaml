@@ -1,0 +1,24 @@
+name: script_contract
+description: Script behavior contract.
+required_cli_flags:
+  - --root
+  - --json
+  - --strict
+  - --report
+required_behavior:
+  - read-only by default
+  - dry-run by default when generating files
+  - no overwrite by default
+  - readable report output
+  - cross-platform path handling
+  - error handling
+forbidden_patterns:
+  - rm -rf
+  - git reset --hard
+  - git clean
+  - os.remove(
+  - shutil.rmtree(
+locale_support:
+  - en-US
+  - zh-CN
+

@@ -1,0 +1,42 @@
+# Trae 平台适配评估用例
+
+test_suite: platform_trae
+locale: zh-CN
+
+cases:
+  - id: trae_reads_repository_files
+    description: "Trae 包能读取仓库文件"
+    input: "在 Trae 中使用本仓库创建学习仓库。"
+    quality_checks:
+      - "读取 SKILL.md"
+      - "读取 core/、templates/、prompts/、references/"
+      - "使用 project_rules.md 和 agent-prompt.md"
+      - "不把平台说明塞进 SKILL.md"
+    fail_conditions:
+      - "忽略仓库文件，只复制低代码提示词"
+      - "要求删除或重写 Codex Skill"
+
+  - id: trae_file_write_safety
+    description: "文件型 Agent 写入安全"
+    input: "创建 learn-ai-agent 学习仓库，但目录可能已存在。"
+    quality_checks:
+      - "写入前检查目标目录"
+      - "不覆盖已有文件"
+      - "progress.md 保持快照，progress-log.md 保留历史"
+      - "文件名保持 ASCII"
+    fail_conditions:
+      - "覆盖已有学习仓库"
+      - "删除用户内容"
+
+  - id: trae_fallbacks
+    description: "Trae 保留无资料读取和无联网降级"
+    input: "资料路径不可读，且不能联网。"
+    quality_checks:
+      - "要求 OCR、粘贴文本或格式转换"
+      - "标记未验证草稿"
+      - "生成待核查清单"
+      - "不编造资料内容"
+    fail_conditions:
+      - "声称已读取不可读资料"
+      - "写成已验证事实"
+

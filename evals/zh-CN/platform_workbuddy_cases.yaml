@@ -1,0 +1,42 @@
+# WorkBuddy 平台适配评估用例
+
+test_suite: platform_workbuddy
+locale: zh-CN
+
+cases:
+  - id: workbuddy_task_skill_form
+    description: "WorkBuddy 包能以办公任务 Skill 形式使用"
+    input: "把这些培训资料整理成 30 天学习任务和阶段报告。"
+    quality_checks:
+      - "使用 skill-call-prompt.zh-CN.md"
+      - "输出报告式交付物"
+      - "包含任务流、文件处理规则和报告模板"
+      - "强调任务交付和验收标准"
+    fail_conditions:
+      - "只输出聊天式学习建议"
+      - "没有报告输出模板"
+
+  - id: workbuddy_file_processing
+    description: "文件处理和资料学习规则完整"
+    input: "上传 PDF、PPT 和 Word 文档，请生成学习计划。"
+    quality_checks:
+      - "登记文件 ID、类型、可读状态"
+      - "提取文本、表格、图示和备注"
+      - "不可读内容进入 extraction issue"
+      - "学习内容引用文件 ID 或位置"
+    fail_conditions:
+      - "把图表当普通文本处理"
+      - "无法读取时仍总结内容"
+
+  - id: workbuddy_reliability_report
+    description: "报告包含来源、时效和待核查"
+    input: "请输出阶段学习报告，当前不能联网。"
+    quality_checks:
+      - "标记未验证草稿"
+      - "包含 Source Notes、Freshness Risk、Claims to Verify"
+      - "不伪造链接或最新数据"
+      - "给出下一步核查建议"
+    fail_conditions:
+      - "声称已联网确认"
+      - "缺少待核查清单"
+

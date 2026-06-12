@@ -1,0 +1,31 @@
+name: reliability_contract
+description: Knowledge Reliability Layer contract.
+required_paths:
+  - templates/en-US/sources.md.template
+  - templates/zh-CN/sources.md.template
+  - templates/en-US/source_notes.md.template
+  - templates/zh-CN/source_notes.md.template
+  - templates/en-US/claim_ledger.md.template
+  - templates/zh-CN/claim_ledger.md.template
+  - templates/en-US/claims_to_verify.md.template
+  - templates/zh-CN/claims_to_verify.md.template
+  - templates/en-US/freshness_log.md.template
+  - templates/zh-CN/freshness_log.md.template
+  - references/en-US/source-quality-policy.md
+  - references/zh-CN/source-quality-policy.md
+  - references/en-US/freshness-policy.md
+  - references/zh-CN/freshness-policy.md
+  - references/en-US/high-stakes-domain-policy.md
+  - references/zh-CN/high-stakes-domain-policy.md
+  - references/en-US/claim-verification-guide.md
+  - references/zh-CN/claim-verification-guide.md
+required_terms:
+  - no-web
+  - no web
+  - high-stakes
+  - fake citations
+  - fabricated
+  - Freshness Risk
+  - Claims to Verify
+  - Last Verified
+
