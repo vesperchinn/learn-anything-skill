@@ -19,6 +19,7 @@ CHECKS = [
     "check_reference_linkage.py",
     "check_eval_coverage.py",
     "check_platform_adapters.py",
+    "check_guided_learning_mode.py",
     "check_reliability_layer.py",
     "check_material_grounding.py",
     "check_source_notes.py",

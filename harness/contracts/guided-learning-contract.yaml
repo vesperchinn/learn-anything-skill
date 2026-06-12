@@ -1,0 +1,30 @@
+name: guided_learning_contract
+description: Guided Learning Mode must start Day 1 after repository creation.
+required_paths:
+  - prompts/en-US/start-guided-session.md
+  - prompts/zh-CN/start-guided-session.md
+  - references/en-US/guided-learning-mode.md
+  - references/zh-CN/guided-learning-mode.md
+  - templates/en-US/today.md.template
+  - templates/zh-CN/today.md.template
+  - templates/en-US/start_here.md.template
+  - templates/zh-CN/start_here.md.template
+  - templates/en-US/{{domain-slug}}/START_HERE.md
+  - templates/zh-CN/{{domain-slug}}/START_HERE.md
+  - templates/en-US/{{domain-slug}}/TODAY.md
+  - templates/zh-CN/{{domain-slug}}/TODAY.md
+  - templates/en-US/{{domain-slug}}/07_daily_review/day-01.md
+  - templates/zh-CN/{{domain-slug}}/07_daily_review/day-01.md
+  - evals/en-US/guided_learning_cases.yaml
+  - evals/zh-CN/guided_learning_cases.yaml
+required_terms:
+  - Guided Learning Mode
+  - start Day 1
+  - do not stop after file summary
+  - START_HERE.md
+  - TODAY.md
+  - day-01.md
+  - scaffold only
+  - answer template
+  - completion criteria
+  - progress.md

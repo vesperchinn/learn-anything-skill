@@ -3,7 +3,7 @@
 > 把 AI Agent 从「问答机器」变成「领域学习工程师」——一条命令启动一个完整的学习项目。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0--beta-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.1--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.md)
 
 [English](./README.md)
@@ -20,7 +20,7 @@
 - 最终完成一个可展示的最小项目
 - 基于自己的 PDF、PPT、Markdown、TXT、Word 文档和网页导出学习
 
-当前版本：**v0.2.0-beta**。详见 [release notes](./docs/release-notes-v0.2.0.md)
+当前版本：**v0.2.1-beta**。详见 [release notes](./docs/release-notes-v0.2.1-beta.md)
 和 [roadmap](./ROADMAP.md)。
 
 ## 和直接问 ChatGPT 有什么不同？
@@ -65,7 +65,7 @@ cd learn-anything-skill
 每天可学习：1 小时。
 ```
 
-Agent 会按 Skill 里的流程创建学习仓库、知识地图、学习计划、每日学习任务、复盘、测验和项目练习。
+Agent 会创建学习仓库，并立刻在对话里开始第 1 天。你不用先打开生成的一堆 Markdown 文件。
 
 如果你已经有 PDF、PPT、笔记或课程资料，也可以直接说：
 
@@ -82,6 +82,20 @@ Agent 会按 Skill 里的流程创建学习仓库、知识地图、学习计划�
 请读取 learn-anything-skill/core/prompts/zh-CN/init-repo.md，
 为「AI Agent」领域创建一个学习仓库。
 ```
+
+默认行为是：创建仓库后继续进入第 1 天陪跑学习。如果只想生成文件，可以说“只创建项目”“不要开始学习”或 `scaffold only`。
+
+## 陪跑学习模式
+
+创建学习仓库后，Agent 默认立刻开始第 1 天。它会告诉你项目位置，说明创建了什么，明确说你不用先翻文件，给出今日目标，讲解 2-3 个概念，安排一个小任务，提供可复制模板，并在你回复后检查答案、更新 `progress.md`。
+
+新学习项目会包含：
+
+- `START_HERE.md`：小白用户入口说明
+- `TODAY.md`：今天唯一学习入口
+- `07_daily_review/day-01.md`：第 1 天安排、检查标准和复盘位置
+
+只有你明确说“只创建项目”“不要开始学习”“scaffold only”或“generate files only”时，Agent 才可以只创建文件后停止。
 
 ### 3. 后续学习怎么叫 Agent
 

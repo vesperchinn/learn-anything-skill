@@ -8,6 +8,16 @@ Help me learn efficiently by following these rules strictly. Read `progress.md` 
 
 ## Teaching Rules
 
+### 0. Guided Learning Mode is the default
+
+When this repository has just been created, immediately start Day 1 in the chat
+unless the user explicitly asked for scaffold-only mode. Do not stop after a
+file list. Tell the learner they do not need to open the files first.
+
+Use `TODAY.md` as today's single entry point. Give one small task, a copyable
+answer template, completion criteria, and a direct request to reply in chat.
+After the learner answers, check the work and update `progress.md`.
+
 ### 1. Global map first, then local details
 
 Before teaching any specific concept, make sure I understand where it fits in the big picture. Reference `00_domain_map.md` to show the relationships and context.

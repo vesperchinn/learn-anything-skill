@@ -59,6 +59,14 @@ Read learn-anything-skill/core/prompts/en-US/init-repo.md.
 Create a learning repository for "AI Agents".
 ```
 
+The default experience is guided learning: after creating the repository, the
+agent should start Day 1 in the chat instead of stopping at a file list. It will
+tell you that you do not need to open the files first, explain today's first
+concepts, give one small task, and provide a copyable answer template.
+
+Say `scaffold only` or `generate files only` only when you want files without a
+guided session.
+
 ## Step 3: Daily learning
 
 ```

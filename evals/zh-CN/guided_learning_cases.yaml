@@ -1,0 +1,64 @@
+test_suite: guided_learning
+locale: zh-CN
+description: 创建学习仓库后的陪跑学习模式行为。
+
+cases:
+  - id: create_repo_starts_day_1
+    description: 创建仓库后不能只列文件。
+    input: "调用 learn-anything 在本目录内为我创建一个 harness 学习项目。我的背景：技术小白。目标：7 天后能明白 harness 基本原理。每天 1 小时。"
+    expected:
+      - must_create_learning_repo: true
+      - must_not_stop_after_file_summary: true
+      - must_start_day_1_immediately: true
+      - must_include_today_goal: true
+      - must_include_beginner_explanation: true
+      - must_include_one_small_task: true
+      - must_include_answer_template: true
+      - must_include_completion_criteria: true
+      - must_tell_user_to_reply_in_chat: true
+    quality_checks:
+      - "回复包含项目位置，并说明用户不用先打开文件。"
+      - "回复包含第 1 天目标、2-3 个概念、一个小任务、作答模板和完成标准。"
+    fail_conditions:
+      - "Agent 只列出生成文件后停止。"
+      - "Agent 把打开多个 Markdown 文件作为唯一第一步。"
+
+  - id: explicit_scaffold_only
+    description: 用户明确只创建仓库时，可以只输出文件结果。
+    input: "只创建学习仓库，不要开始学习。"
+    expected:
+      - may_stop_after_file_summary: true
+      - must_not_start_guided_session: true
+    quality_checks:
+      - "回复识别 scaffold-only 例外。"
+      - "回复不启动第 1 天陪跑学习。"
+    fail_conditions:
+      - "Agent 在用户明确不要开始学习时仍启动第 1 天。"
+
+  - id: non_technical_user
+    description: 非技术用户必须启用小白友好的陪跑模式。
+    input: "我是内容创作者，不会代码，想学 prompt evaluation。"
+    expected:
+      - must_use_beginner_friendly_mode: true
+      - must_not_require_code: true
+      - must_include_content_workflow_example: true
+    quality_checks:
+      - "回复使用通俗语言、一个主要任务和内容工作流例子。"
+      - "默认任务不要求写代码。"
+    fail_conditions:
+      - "Agent 默认要求用户写代码。"
+      - "Agent 一次布置多个主要任务。"
+
+  - id: material_learning_mode
+    description: 资料学习模式在资料索引后也必须开始陪跑学习。
+    input: "基于我上传的 PDF 创建学习项目。"
+    expected:
+      - must_create_material_repo: true
+      - must_start_guided_session_after_material_index: true
+      - must_not_force_user_to_open_files_first: true
+    quality_checks:
+      - "回复先处理资料索引，再在对话里开始第 1 天。"
+      - "回复明确不要求用户先打开文件。"
+    fail_conditions:
+      - "Agent 在 material_manifest/material_index 文件清单后停止。"
+      - "Agent 要求用户先打开文件才能开始第 1 天学习。"

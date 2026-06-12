@@ -60,8 +60,10 @@ My background: beginner. Daily time: 2 hours. Goal: build a project.
 Start with intake and scaffold.
 ```
 
-Cursor reads the skill workflow, runs intake, and fills in the repository files.
-Use **Composer** (Cmd+I) when you need multi-file edits (concept files, quizzes).
+Cursor reads the skill workflow, runs intake, fills in the repository files, and
+then starts Day 1 in chat unless the user explicitly requested scaffold-only
+mode. It should not stop after a file summary. Use **Composer** (Cmd+I) when you
+need multi-file edits (concept files, quizzes).
 
 ### Learn from PDFs, slides, or documents
 

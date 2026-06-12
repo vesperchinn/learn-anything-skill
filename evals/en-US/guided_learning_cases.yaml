@@ -1,0 +1,64 @@
+test_suite: guided_learning
+locale: en-US
+description: Guided Learning Mode behavior after repository creation.
+
+cases:
+  - id: create_repo_starts_day_1
+    description: Creating a repository must not stop after a file summary.
+    input: "Use learn-anything in this directory to create a harness learning project. My background: technical beginner. Goal: understand harness basics in 7 days. Daily time: 1 hour."
+    expected:
+      - must_create_learning_repo: true
+      - must_not_stop_after_file_summary: true
+      - must_start_day_1_immediately: true
+      - must_include_today_goal: true
+      - must_include_beginner_explanation: true
+      - must_include_one_small_task: true
+      - must_include_answer_template: true
+      - must_include_completion_criteria: true
+      - must_tell_user_to_reply_in_chat: true
+    quality_checks:
+      - "Response includes project location and says the learner does not need to open files first."
+      - "Response includes a Day 1 goal, 2-3 concepts, one task, answer template, and completion criteria."
+    fail_conditions:
+      - "Agent only lists generated files and stops."
+      - "Agent tells the learner to open several Markdown files as the only first step."
+
+  - id: explicit_scaffold_only
+    description: Explicit scaffold-only request may stop after file creation.
+    input: "Only create the learning repository. Do not start learning. scaffold only."
+    expected:
+      - may_stop_after_file_summary: true
+      - must_not_start_guided_session: true
+    quality_checks:
+      - "Response creates or describes files without starting Day 1."
+      - "Response recognizes scaffold-only as an explicit exception."
+    fail_conditions:
+      - "Agent starts a guided Day 1 session despite the scaffold-only request."
+
+  - id: non_technical_user
+    description: Non-technical users must receive beginner-friendly guided mode.
+    input: "I am a content creator and cannot code. I want to learn prompt evaluation."
+    expected:
+      - must_use_beginner_friendly_mode: true
+      - must_not_require_code: true
+      - must_include_content_workflow_example: true
+    quality_checks:
+      - "Response uses plain language, one main task, and a content workflow example."
+      - "Response does not require writing code."
+    fail_conditions:
+      - "Agent asks the learner to write code as the default task."
+      - "Agent assigns multiple major tasks at once."
+
+  - id: material_learning_mode
+    description: Material-grounded repository creation must start guided learning after indexing materials.
+    input: "Create a learning project based on the PDF I uploaded."
+    expected:
+      - must_create_material_repo: true
+      - must_start_guided_session_after_material_index: true
+      - must_not_force_user_to_open_files_first: true
+    quality_checks:
+      - "Response indexes materials first, then starts Day 1 in chat."
+      - "Response tells the learner they do not need to open files first."
+    fail_conditions:
+      - "Agent stops after material_manifest/material_index file summary."
+      - "Agent requires the learner to open files before any Day 1 teaching."

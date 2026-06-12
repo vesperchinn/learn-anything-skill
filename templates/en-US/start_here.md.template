@@ -1,0 +1,33 @@
+# START HERE
+
+This learning project is your long-term study folder for `{DOMAIN}`.
+
+You do not need to read every file before starting. Today, use only:
+
+1. `TODAY.md`
+2. The agent conversation
+
+Each day, the agent will explain the goal, teach the small set of concepts,
+give one task, check your answer, and update `progress.md`.
+
+## What to Do Now
+
+Open the chat with your agent and say:
+
+```text
+Please start today's guided learning session.
+```
+
+After the agent gives you today's task, fill in the answer template and send it
+back in chat.
+
+## Files You May Use Later
+
+- `00_domain_map.md`: the full knowledge map
+- `01_core_concepts/`: concept explanations
+- `03_exercises/`: practice tasks
+- `06_quizzes/`: stage tests
+- `progress.md`: your current progress
+
+These files are useful, but they are not the first step. Start with `TODAY.md`
+and the agent conversation.

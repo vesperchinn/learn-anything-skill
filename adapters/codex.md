@@ -45,9 +45,15 @@ I want to learn AI Agent. My background: beginner programmer.
 Daily time: 2 hours. Goal: build a project.
 ```
 
-Codex reads `SKILL.md`, runs the intake → scaffold → map → plan pipeline.
-It creates files directly in the working directory and can run
+Codex reads `SKILL.md`, creates the learning repository, and immediately starts
+Day 1 in chat unless the user explicitly requested scaffold-only mode. It
+creates files directly in the working directory and can run
 `scripts/new-domain.sh "AI Agent"` for instant scaffolding.
+
+After creation, Codex should not stop after a file summary. It should read
+`prompts/{locale}/start-guided-session.md`, tell the learner they do not need to
+open the files first, explain today's first concepts, give one small task, and
+ask for a chat reply.
 
 ### Learn from PDFs, slides, or documents
 

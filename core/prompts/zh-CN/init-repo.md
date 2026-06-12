@@ -25,6 +25,8 @@
 
 ```
 {domain_slug}/
+├── START_HERE.md               # 小白用户第一入口
+├── TODAY.md                    # 今天唯一学习入口
 ├── README.md                   # 如何使用本学习仓库
 ├── AGENTS.md                   # AI 智能体的教学规则
 ├── CLAUDE.md                   # Claude Code 使用的等价教学规则
@@ -42,7 +44,8 @@
 ├── 06_quizzes/                 # 测试题和答案
 │   └── .gitkeep
 ├── 07_daily_review/            # 每日复盘记录
-│   └── .gitkeep
+│   ├── .gitkeep
+│   └── day-01.md               # 第 1 天陪跑计划和复盘位置
 ├── 08_glossary.md              # （初始文件——随时间增长）
 ├── 09_resources.md             # （初始文件——推荐学习资源）
 ├── learning_materials/          # 用户资料工作区
@@ -73,6 +76,33 @@
 2. 学习方法论（5 个系统）
 3. 每日例行安排
 4. 如何在每个阶段使用 AI 智能体
+
+### START_HERE.md
+
+编写面向小白用户的入口文件，说明：
+1. 这个学习项目怎么用
+2. 今天先看哪里
+3. 不需要一次看完所有文件
+4. 每天只跟着 `TODAY.md` 和 Agent 对话走
+5. 完成任务后把答案发给 Agent
+
+### TODAY.md
+
+编写第 1 天唯一入口，必须包含：
+1. 今日目标
+2. 今日只需完成的任务
+3. 今日要理解的 2-3 个概念
+4. 小白解释
+5. 一个生活类比
+6. 一个和 `{learning_goal}` 相关的例子
+7. 今日练习
+8. 可复制作答模板
+9. 完成标准
+10. 完成后怎么回复 Agent
+
+### 07_daily_review/day-01.md
+
+创建第 1 天复盘文件，记录第 1 天学习安排、任务、检查标准，以及用户作答后写入复盘的位置。
 
 ### AGENTS.md 和 CLAUDE.md
 
@@ -164,4 +194,6 @@
 
 ## 输出
 
-立即创建所有文件。对于初始文件（00_domain_map.md、08_glossary.md、09_resources.md），写入一个简短的说明头，指示将在下一阶段填充。`learning_materials` 和 `09_sources` 使用 `templates/{locale}/{{domain-slug}}/` 下的文件作为模板。对于 .gitkeep 文件，创建为空文件。
+立即创建所有文件。对于初始文件（00_domain_map.md、08_glossary.md、09_resources.md），写入一个简短的说明头，指示将在下一阶段填充。`START_HERE.md`、`TODAY.md` 和 `07_daily_review/day-01.md` 必须使用对应语言模板，并能立刻用于第 1 天学习。`learning_materials` 和 `09_sources` 使用 `templates/{locale}/{{domain-slug}}/` 下的文件作为模板。对于 .gitkeep 文件，创建为空文件。
+
+创建仓库后，除非用户明确说“只创建项目”“不要开始学习”“scaffold only”或“generate files only”，否则不得只输出文件清单后停止。必须读取 `prompts/{locale}/start-guided-session.md`，并立刻在对话里开始第 1 天：告诉用户不用先打开文件，讲清今天 2-3 个概念，给一个能直接在聊天里完成的小任务，提供可复制作答模板，写明完成标准，要求用户直接回复，并说明用户完成后会更新 `progress.md`。

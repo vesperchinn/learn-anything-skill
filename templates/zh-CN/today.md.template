@@ -1,0 +1,61 @@
+# TODAY：第 1 天
+
+## 今日目标
+
+理解 `{DOMAIN}` 的第一个小切口，并能用自己的话解释它和你的目标有什么关系。
+
+## 今日只需完成的任务
+
+填写文末的作答模板，并直接发给 Agent。
+
+## 今天要理解的 2-3 个概念
+
+### 1. {CONCEPT_A}
+
+{BEGINNER_EXPLANATION}
+
+### 2. {CONCEPT_B}
+
+{BEGINNER_EXPLANATION}
+
+### 3. {CONCEPT_C}
+
+{BEGINNER_EXPLANATION}
+
+## 生活类比
+
+{LIFE_ANALOGY}
+
+## 和你的目标相关的例子
+
+{GOAL_RELATED_EXAMPLE}
+
+## 今日练习
+
+{ONE_SMALL_CHAT_TASK}
+
+## 作答模板
+
+```markdown
+## 我的第 1 天作业
+
+1. 我今天最理解的一个概念：
+
+2. 我还不确定的一个地方：
+
+3. 我的小交付物：
+
+4. 这个概念和我的目标/工作有什么关系：
+
+5. 我想追问的问题：
+```
+
+## 完成标准
+
+- {COMPLETION_CRITERION_1}
+- {COMPLETION_CRITERION_2}
+- {COMPLETION_CRITERION_3}
+
+## 完成后怎么回复 Agent
+
+把上面的模板填好，直接发在聊天里。Agent 会检查答案，并更新 `progress.md`。

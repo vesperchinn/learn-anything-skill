@@ -8,16 +8,18 @@ This repository is designed to be used with an AI agent (Codex, Claude Code, Cur
 
 ### Daily Routine
 
-1. Open this directory in your terminal
-2. Launch your AI agent
-3. Say: "Please read progress.md and give me today's learning session"
-4. Complete the assigned tasks and submit your answers
-5. Say: "Let's do the daily review"
+1. Start in the agent chat. You do not need to open every file first.
+2. Use `TODAY.md` as today's single entry point.
+3. Let the agent explain today's goal, concepts, and small task in the chat.
+4. Complete the answer template and send it back to the agent.
+5. The agent checks your answer, updates `progress.md`, and writes the review.
 
 ### Repository Structure
 
 ```
 ├── README.md               # This file — overview and instructions
+├── START_HERE.md           # Beginner-friendly first entry point
+├── TODAY.md                # Today's single learning entry point
 ├── AGENTS.md               # Teaching rules for the AI agent
 ├── CLAUDE.md               # Equivalent teaching rules for Claude Code
 ├── 00_domain_map.md        # Complete knowledge map of the domain
@@ -42,6 +44,16 @@ This repository is designed to be used with an AI agent (Codex, Claude Code, Cur
 - **Learn -> Practice -> Output -> Test** — Every day cycles through all four modes
 - **20-60-20 rule** — Focus on the critical 20% first, skip the middle 60%, save advanced 20% for later
 - **Minimum viable project** — The goal is to build something real, not just read about it
+
+### Guided Learning Mode
+
+After this repository is created, the agent should immediately start Day 1 in
+the chat. You do not need to open a stack of Markdown files first. The agent
+will give today's goal, explain 2-3 concepts, assign one small task, provide a
+copyable answer template, check your reply, and update `progress.md`.
+
+If you only want files and no guided session, say `scaffold only` or `generate
+files only`.
 
 ### Knowledge Reliability
 

@@ -30,6 +30,10 @@ For each wrong answer or incomplete criterion, classify the error:
 - `[knowledge-confusion]` — Knowledge confusion: mixed up with another concept
 
 ### 4. Update progress.md
+
+Only update `progress.md` after the learner has submitted the chat task and the
+work has been checked against the completion criteria.
+
 When `{locale}` is `en-US`, use English section headings:
 - Increment day counter
 - Mark completed modules in **Completed Modules**
@@ -62,5 +66,8 @@ Offer to generate today's knowledge compression card using `core/prompts/{locale
 ## Output Format
 
 Write the review to `07_daily_review/YYYY-MM-DD.md`. Update `progress.md` in-place. Append to `progress-log.md`.
+
+If the learner has not submitted the answer template yet, do not pretend the day
+is complete. Ask them to reply in chat with the filled template first.
 
 All output in {interface_language}.

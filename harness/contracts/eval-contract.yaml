@@ -8,6 +8,7 @@ required_coverage:
   - high-stakes domains
   - hallucination traps
   - material-grounded learning
+  - guided learning
   - platform adapters
   - release readiness
 required_files:
@@ -21,6 +22,8 @@ required_files:
   - evals/zh-CN/high_stakes_cases.yaml
   - evals/en-US/material_grounded_cases.yaml
   - evals/zh-CN/material_grounded_cases.yaml
+  - evals/en-US/guided_learning_cases.yaml
+  - evals/zh-CN/guided_learning_cases.yaml
   - evals/en-US/no_web_fallback_cases.yaml
   - evals/zh-CN/no_web_fallback_cases.yaml
   - evals/zh-CN/platform_coze_cases.yaml
@@ -32,4 +35,3 @@ required_terms:
   - cases
   - quality_checks
   - fail_conditions
-

@@ -3,7 +3,7 @@
 > Turn any AI agent from a Q&A bot into a domain learning engineer — a structured system for mastering any field.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0--beta-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.1--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.zh-CN.md)
 
 [中文说明](./README.zh-CN.md)
@@ -24,7 +24,7 @@ ChatGPT, and others) can help users:
 - Complete a demonstrable capstone project
 - Learn from your own PDFs, slide decks, Markdown, TXT, Word docs, and webpage exports
 
-Current release: **v0.2.0-beta**. See [release notes](./docs/release-notes-v0.2.0.md)
+Current release: **v0.2.1-beta**. See [release notes](./docs/release-notes-v0.2.1-beta.md)
 and [roadmap](./ROADMAP.md).
 
 ## How is this different from asking ChatGPT directly?
@@ -75,8 +75,8 @@ My goal: understand the basics and build a small project in 30 days.
 Daily time: 1 hour.
 ```
 
-The agent should create the learning repository, domain map, plan, daily
-sessions, reviews, quizzes, and project practice from the Skill workflow.
+The agent should create the learning repository and then immediately start Day
+1 in the chat. You do not need to open the generated Markdown files first.
 
 If you already have PDFs, slides, notes, or course material, say:
 
@@ -93,6 +93,26 @@ If your agent cannot call the Skill by name but can read files, type:
 Read learn-anything-skill/core/prompts/en-US/init-repo.md.
 Create a learning repository for "AI Agents".
 ```
+
+By default, repository creation continues into a guided Day 1 session. If you
+only want files, say `scaffold only` or `generate files only`.
+
+## Guided Learning Mode
+
+After creating a learning repository, the agent starts Day 1 immediately. It
+shows the project location, explains what was created, tells you that you do
+not need to open the files first, gives today's goal, explains 2-3 concepts,
+assigns one small task, provides a copyable answer template, and checks your
+reply before updating `progress.md`.
+
+The generated project includes:
+
+- `START_HERE.md`: beginner-friendly orientation
+- `TODAY.md`: today's single learning entry point
+- `07_daily_review/day-01.md`: Day 1 plan, checking criteria, and review slot
+
+Scaffold-only mode is available only when you explicitly say `scaffold only`,
+`generate files only`, `只创建项目`, or `不要开始学习`.
 
 ### 3. Continue learning
 

@@ -119,6 +119,48 @@ Every learning engagement follows these eight stages. At each stage, read the
 referenced prompt file from `core/prompts/{locale}/` for the full instruction
 template.
 
+## Guided Learning Mode
+
+Default mode is guided learning. Unless the user explicitly asks for
+scaffold-only mode, after creating a learning repository, the agent must
+immediately start a guided learning session. The agent must not stop after
+listing generated files.
+
+Scaffold-only mode is allowed only when the user explicitly says one of:
+
+- "只创建项目"
+- "不要开始学习"
+- "scaffold only"
+- "generate files only"
+
+After repository creation, read `prompts/{locale}/start-guided-session.md` and
+start Day 1 in the chat. The first response after repository creation must
+include:
+
+1. Repository location.
+2. A short explanation of what was created.
+3. The sentence: "You do not need to open the files first." or the localized
+   equivalent.
+4. Today's learning goal.
+5. A beginner-friendly explanation of the first 2-3 concepts.
+6. One small task that can be completed directly in the chat.
+7. A copyable answer template.
+8. Clear completion criteria.
+9. A prompt telling the user to reply with their answer.
+10. A note that `progress.md` will be updated after the user completes the task.
+
+If `{user_background}` indicates technical beginner, beginner, student, no code,
+non-developer, content creator, operations, teacher, self-media creator, or
+小白, enable Beginner-Friendly Guided Mode:
+
+- Say less about file paths and more about what to do now.
+- Use familiar scenarios instead of abstract theory.
+- Give one main task at a time.
+- Do not require the user to open multiple Markdown files.
+- Do not require code unless the user explicitly wants to learn coding.
+- Every daily task must include a copyable answer template.
+- End with a direct action instruction, such as: "请直接把上面模板填好发给我。"
+
 ### 1. intake — collect learner profile
 
 Ask the user (don't guess):
@@ -148,6 +190,8 @@ Create this structure under `learn-{domain_slug}/`:
 
 ```
 learn-{domain_slug}/
+├── START_HERE.md               # Beginner-friendly first entry point
+├── TODAY.md                    # Today's single learning entry point
 ├── README.md                   # How to use this repo
 ├── AGENTS.md                   # Teaching rules for the AI
 ├── CLAUDE.md                   # Equivalent teaching rules for Claude Code
@@ -159,6 +203,7 @@ learn-{domain_slug}/
 ├── 05_flashcards/              # Knowledge compression cards
 ├── 06_quizzes/                 # Stage tests
 ├── 07_daily_review/            # Date-stamped reviews
+│   └── day-01.md               # Day 1 guided learning plan and review slot
 ├── 08_glossary.md              # Running terminology
 ├── 09_resources.md             # Recommended reading
 ├── learning_materials/          # User-provided material workspace
@@ -181,6 +226,21 @@ learn-{domain_slug}/
 
 Template files live at `templates/{locale}/{{domain-slug}}/`. Copy and
 populate them using the intake variables.
+
+Every newly created learning repository must include `START_HERE.md`,
+`TODAY.md`, and `07_daily_review/day-01.md` in addition to the standard
+long-term learning files. `START_HERE.md` explains how to use the project
+without opening every file. `TODAY.md` is the only Day 1 entry point and must
+include today's goal, 2-3 concepts, beginner-friendly explanations, one life
+analogy, one example tied to the user's goal, one exercise, an answer template,
+completion criteria, and instructions to reply in chat. `07_daily_review/day-01.md`
+records the Day 1 plan, task, checking criteria, and where the review will be
+written after the user answers.
+
+Unless scaffold-only mode was explicitly requested, do not stop after file
+creation. After creating the repository, immediately output the guided Day 1
+session in the conversation using the format in
+`prompts/{locale}/start-guided-session.md`.
 
 **No-filesystem fallback**: If the agent cannot create files on disk, output
 every file as a fenced code block labeled with its path:

@@ -76,8 +76,14 @@ Daily time: 2 hours. Goal: build a project. Follow the learn-anything skill.
 ```
 
 When configured with this Skill Pack, Claude Code reads the SKILL.md workflow,
-runs intake → scaffold → map → plan, creates files in the working directory,
-and writes `CLAUDE.md` for future session continuity.
+creates files in the working directory, writes `CLAUDE.md` for future session
+continuity, and immediately starts Day 1 in chat unless the user explicitly
+requested scaffold-only mode.
+
+After creation, Claude Code should not stop after a file summary. It should read
+`prompts/{locale}/start-guided-session.md`, tell the learner they do not need to
+open the files first, explain today's first concepts, give one small task, and
+ask for a chat reply.
 
 ### Learn from PDFs, slides, or documents
 

@@ -27,6 +27,8 @@
 
 ### 阶段 0：初始化
 使用 `core/prompts/{locale}/init-repo.md`。创建学习仓库结构。
+除非用户明确要求只创建文件，否则不要只列文件清单后停止。读取
+`prompts/{locale}/start-guided-session.md`，并立刻在对话里开始第 1 天。
 
 ### 阶段 1：构建领域地图
 使用 `core/prompts/{locale}/knowledge-map.md` → 写入 `00_domain_map.md`。

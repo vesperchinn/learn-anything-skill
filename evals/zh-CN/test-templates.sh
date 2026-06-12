@@ -33,6 +33,8 @@ echo ""
 
 # Root template files
 check_file "$TEMPLATE/README.md"        "Template README.md"
+check_file "$TEMPLATE/START_HERE.md"    "Template START_HERE.md"
+check_file "$TEMPLATE/TODAY.md"         "Template TODAY.md"
 check_file "$TEMPLATE/AGENTS.md"        "Template AGENTS.md"
 check_file "$TEMPLATE/CLAUDE.md"        "Template CLAUDE.md"
 check_file "$TEMPLATE/00_domain_map.md" "Template 00_domain_map.md"
@@ -50,6 +52,7 @@ check_file "$TEMPLATE/09_sources/source_quality_policy.md" "Template 09_sources/
 check_file "$TEMPLATE/09_sources/claim_ledger.md"          "Template 09_sources/claim_ledger.md"
 check_file "$TEMPLATE/09_sources/claims_to_verify.md"      "Template 09_sources/claims_to_verify.md"
 check_file "$TEMPLATE/09_sources/freshness_log.md"         "Template 09_sources/freshness_log.md"
+check_file "$TEMPLATE/07_daily_review/day-01.md"           "Template 07_daily_review/day-01.md"
 
 # Subdirectories
 check_dir "$TEMPLATE/01_core_concepts"  "Template 01_core_concepts/"

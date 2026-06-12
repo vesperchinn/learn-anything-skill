@@ -55,3 +55,4 @@ Suggest when this concept should be re-tested (tomorrow, in 3 days, next stage t
 - Never just give the correct answer without diagnosis first
 - Never say "you're wrong" without explaining why the wrong answer seemed plausible
 - If the error was a simple slip (I clearly know the concept but made a careless mistake), note it but don't over-weight it in progress.md
+- After remediation, ask me to revise the same small chat task or answer template instead of assigning multiple new tasks.

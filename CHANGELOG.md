@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.2.1-beta] — 2026-06-12
+
+Release notes: [docs/release-notes-v0.2.1-beta.md](./docs/release-notes-v0.2.1-beta.md)
+
+### Added
+- Guided Learning Mode: newly created learning repositories now default to starting Day 1 immediately in the chat instead of stopping after a file list.
+- Beginner-friendly Day 1 entry files: `START_HERE.md`, `TODAY.md`, and `07_daily_review/day-01.md`.
+- Bilingual guided-session prompts, templates, references, examples, and eval coverage.
+- Harness contract and check script for Guided Learning Mode.
+
+### Changed
+- Repository initialization prompts and scripts now include the guided Day 1 entry files.
+- README, Quick Start, generated repository rules, and major adapters now describe the create repo -> start guided session flow.
+- Daily session and review prompts now require a copyable answer template and only update `progress.md` after the learner completes the task.
+
+### Fixed
+- The default product experience no longer leaves beginner users at a file list after repository creation.
+- Scaffold-only behavior remains available only for explicit requests such as `scaffold only`, `generate files only`, `只创建项目`, or `不要开始学习`.
+
 ## [0.2.0-beta] — 2026-06-12
 
 Release notes: [docs/release-notes-v0.2.0.md](./docs/release-notes-v0.2.0.md)

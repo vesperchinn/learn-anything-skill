@@ -15,6 +15,7 @@ CONTRACTS = [
     "platform-adapter-contract.yaml",
     "eval-contract.yaml",
     "script-contract.yaml",
+    "guided-learning-contract.yaml",
 ]
 
 
@@ -59,4 +60,3 @@ def check(root: Path) -> list[Issue]:
 
 if __name__ == "__main__":
     raise SystemExit(run_check("Check harness contracts.", check))
-

@@ -50,6 +50,8 @@ if [ ! -d "$TEMPLATE_DIR" ]; then
 fi
 
 REQUIRED_FILES=(
+    "START_HERE.md"
+    "TODAY.md"
     "README.md"
     "AGENTS.md"
     "CLAUDE.md"
@@ -68,6 +70,7 @@ REQUIRED_FILES=(
     "09_sources/claim_ledger.md"
     "09_sources/claims_to_verify.md"
     "09_sources/freshness_log.md"
+    "07_daily_review/day-01.md"
 )
 REQUIRED_DIRS=("01_core_concepts" "02_case_studies" "03_exercises" "04_projects" "05_flashcards" "06_quizzes" "07_daily_review" "learning_materials" "learning_materials/raw" "learning_materials/extracted" "09_sources")
 MISSING_FILES=()
@@ -183,10 +186,9 @@ fi
 echo ""
 echo "Done! Learning repository created at: $TARGET_DIR"
 echo ""
-echo "Next steps:"
-echo "  1. cd $TARGET_DIR"
-echo "  2. Start your AI agent in this directory"
-echo "  3. Use core/prompts/$LOCALE/knowledge-map.md to generate the knowledge map"
-echo "  4. Use core/prompts/$LOCALE/learning-plan.md to create the 30-day plan"
+echo "Guided Learning Mode:"
+echo "  You do not need to open the files first."
+echo "  Ask your AI agent to read prompts/$LOCALE/start-guided-session.md and start Day 1 now."
+echo "  Scaffold-only mode is only for explicit requests such as 'scaffold only' or 'generate files only'."
 echo ""
 echo "Happy learning!"

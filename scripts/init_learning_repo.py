@@ -51,6 +51,8 @@ def init_repo(domain: str, locale: str = "en-US", dry_run: bool = False):
         sys.exit(1)
 
     required_files = [
+        "START_HERE.md",
+        "TODAY.md",
         "README.md",
         "AGENTS.md",
         "CLAUDE.md",
@@ -69,6 +71,7 @@ def init_repo(domain: str, locale: str = "en-US", dry_run: bool = False):
         "09_sources/claim_ledger.md",
         "09_sources/claims_to_verify.md",
         "09_sources/freshness_log.md",
+        "07_daily_review/day-01.md",
     ]
     required_dirs = [
         "01_core_concepts",
@@ -146,11 +149,10 @@ def init_repo(domain: str, locale: str = "en-US", dry_run: bool = False):
         sys.exit(1)
         
     print(f"\nDone! Learning repository created at: {target_dir}\n")
-    print("Next steps:")
-    print(f"  1. cd {target_dir.name}")
-    print(f"  2. Start your AI agent in this directory")
-    print(f"  3. Use core/prompts/{locale}/knowledge-map.md to generate the knowledge map")
-    print(f"  4. Use core/prompts/{locale}/learning-plan.md to create the 30-day plan")
+    print("Guided Learning Mode:")
+    print("  You do not need to open the files first.")
+    print(f"  Ask your AI agent to read prompts/{locale}/start-guided-session.md and start Day 1 now.")
+    print("  Scaffold-only mode is only for explicit requests such as 'scaffold only' or 'generate files only'.")
     print("\nHappy learning!")
 
 if __name__ == "__main__":

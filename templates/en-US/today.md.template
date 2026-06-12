@@ -1,0 +1,61 @@
+# TODAY: Day 1
+
+## Today's Goal
+
+Understand the first small piece of `{DOMAIN}` well enough to explain it in your own words and connect it to your goal.
+
+## Today's Only Task
+
+Complete the answer template at the bottom and send it to the agent in chat.
+
+## 2-3 Concepts to Understand
+
+### 1. {CONCEPT_A}
+
+{BEGINNER_EXPLANATION}
+
+### 2. {CONCEPT_B}
+
+{BEGINNER_EXPLANATION}
+
+### 3. {CONCEPT_C}
+
+{BEGINNER_EXPLANATION}
+
+## Life Analogy
+
+{LIFE_ANALOGY}
+
+## Example Connected to Your Goal
+
+{GOAL_RELATED_EXAMPLE}
+
+## Today's Exercise
+
+{ONE_SMALL_CHAT_TASK}
+
+## Answer Template
+
+```markdown
+## My Day 1 Answer
+
+1. The idea I understood best:
+
+2. The idea I am still unsure about:
+
+3. My small deliverable:
+
+4. One example from my own goal or work:
+
+5. My question:
+```
+
+## Completion Criteria
+
+- {COMPLETION_CRITERION_1}
+- {COMPLETION_CRITERION_2}
+- {COMPLETION_CRITERION_3}
+
+## How to Reply to the Agent
+
+Fill in the template above and send it directly in chat. The agent will check it and update `progress.md`.

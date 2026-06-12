@@ -27,6 +27,9 @@ Execute the complete workflow. Reference the individual prompt files for detaile
 
 ### Phase 0: Initialize
 Use `core/prompts/{locale}/init-repo.md`. Create the learning repository structure.
+Unless the user explicitly requested scaffold-only mode, do not stop after
+listing files. Read `prompts/{locale}/start-guided-session.md` and start Day 1
+in the chat immediately.
 
 ### Phase 1: Map the Domain
 Use `core/prompts/{locale}/knowledge-map.md` → write `00_domain_map.md`.

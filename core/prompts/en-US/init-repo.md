@@ -25,6 +25,8 @@ Create a learning repository in the current directory with the following structu
 
 ```
 {domain_slug}/
+├── START_HERE.md               # Beginner-friendly first entry point
+├── TODAY.md                    # Today's single learning entry point
 ├── README.md                   # How to use this learning repository
 ├── AGENTS.md                   # Teaching rules for the AI agent
 ├── CLAUDE.md                   # Equivalent teaching rules for Claude Code
@@ -42,7 +44,8 @@ Create a learning repository in the current directory with the following structu
 ├── 06_quizzes/                 # Quiz questions and answers
 │   └── .gitkeep
 ├── 07_daily_review/            # Daily review records
-│   └── .gitkeep
+│   ├── .gitkeep
+│   └── day-01.md               # Day 1 guided plan and review slot
 ├── 08_glossary.md              # (placeholder — will grow over time)
 ├── 09_resources.md             # (placeholder — recommended learning resources)
 ├── learning_materials/          # user-provided material workspace
@@ -73,6 +76,32 @@ Write a README that explains:
 2. The learning methodology (5 systems)
 3. Daily routine expectations
 4. How to use the AI agent for each phase
+
+### START_HERE.md
+Write a beginner-friendly entry file explaining:
+1. How to use this learning project
+2. Where to start today
+3. The learner does not need to read every file at once
+4. Each day they should follow `TODAY.md` and the agent conversation
+5. After completing the task, they should send the answer back to the agent
+
+### TODAY.md
+Write the single Day 1 entry point. It must include:
+1. Today's goal
+2. The only task that must be completed today
+3. The 2-3 concepts to understand today
+4. Beginner-friendly explanation
+5. One life analogy
+6. One example connected to `{learning_goal}`
+7. Today's exercise
+8. A copyable answer template
+9. Completion criteria
+10. How to reply to the agent after completion
+
+### 07_daily_review/day-01.md
+Create a Day 1 review file that records the Day 1 learning plan, task, checking
+criteria, and the place where review notes will be added after the learner
+answers.
 
 ### AGENTS.md and CLAUDE.md
 Write both `AGENTS.md` and `CLAUDE.md` with equivalent teaching rules:
@@ -132,4 +161,14 @@ Initialize as empty with the header: `# Learning Progress Log — {domain}`
 
 ## Output
 
-Create all files now. For placeholder files (00_domain_map.md, 08_glossary.md, 09_resources.md), write a brief header in {interface_language} indicating they will be populated in the next phase. For `learning_materials` and `09_sources`, use the files under `templates/{locale}/{{domain-slug}}/` as the template. For .gitkeep files, create them as empty files.
+Create all files now. For placeholder files (00_domain_map.md, 08_glossary.md, 09_resources.md), write a brief header in {interface_language} indicating they will be populated in the next phase. For `START_HERE.md`, `TODAY.md`, and `07_daily_review/day-01.md`, use the locale templates and make them immediately usable for Day 1. For `learning_materials` and `09_sources`, use the files under `templates/{locale}/{{domain-slug}}/` as the template. For .gitkeep files, create them as empty files.
+
+After the repository is created, do not stop after a file summary unless the
+user explicitly requested scaffold-only mode with one of the scaffold-only
+phrases listed in `SKILL.md`, such as "scaffold only" or "generate files only".
+Otherwise read
+`prompts/{locale}/start-guided-session.md` and immediately start Day 1 in the
+chat. The response must tell the learner they do not need to open the files
+first, explain the first 2-3 concepts, give one small chat task, include a
+copyable answer template, state completion criteria, ask the learner to reply
+in chat, and note that `progress.md` will be updated after completion.

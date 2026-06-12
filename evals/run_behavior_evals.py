@@ -193,10 +193,34 @@ def base_learning_files(locale: str) -> tuple[str, ...]:
     )
 
 
+def guided_learning_files(locale: str) -> tuple[str, ...]:
+    return (
+        "SKILL.md",
+        f"prompts/{locale}/start-guided-session.md",
+        f"references/{locale}/guided-learning-mode.md",
+        f"core/prompts/{locale}/init-repo.md",
+        f"core/prompts/{locale}/daily-session.md",
+        f"core/prompts/{locale}/daily-review.md",
+        f"prompts/{locale}/material-grounded-learning-repo.md",
+        f"templates/{locale}/today.md.template",
+        f"templates/{locale}/start_here.md.template",
+        f"templates/{locale}/{{{{domain-slug}}}}/START_HERE.md",
+        f"templates/{locale}/{{{{domain-slug}}}}/TODAY.md",
+        f"templates/{locale}/{{{{domain-slug}}}}/07_daily_review/day-01.md",
+        "README.md",
+        "README.zh-CN.md",
+        "adapters/codex.md",
+        "adapters/claude-code.md",
+        "adapters/cursor.md",
+        "adapters/chatgpt.md",
+    )
+
+
 def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
     common = base_files(locale)
     material = material_files(locale)
     base_learning = base_learning_files(locale)
+    guided = guided_learning_files(locale)
     readmes = ("README.md", "README.zh-CN.md")
     examples = (
         "examples/en-US/learn-ai-agent/learning_materials/material_manifest.md",
@@ -268,6 +292,41 @@ def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
             evidence=(r"progress\.md", r"progress-log\.md", r"warm-up|热身", r"continue|继续", r"review|复习"),
             input_patterns=(r"two weeks|两周", r"continue|继续"),
             forbidden_patterns=(r"without checking progress|不检查 progress", r"from day 1|第 1 天重新"),
+        ),
+        ("guided_learning", "create_repo_starts_day_1"): CaseRequirement(
+            files=guided,
+            evidence=(
+                r"Guided Learning Mode|陪跑学习模式",
+                r"do not stop after (a )?file summary|不得只输出文件清单|不要只列文件清单",
+                r"start Day 1|开始第 1 天|第 1 天",
+                r"today'?s? learning goal|今日目标|第 1 天目标",
+                r"beginner-friendly|小白解释|小白",
+                r"one small task|一个小任务|一个聊天小任务",
+                r"answer template|作答模板|复制这个模板",
+                r"completion criteria|完成标准",
+                r"reply (directly )?in chat|聊天里回复|直接发给我",
+                r"progress\.md",
+            ),
+            input_patterns=(r"harness", r"technical beginner|技术小白", r"7 days|7 天", r"1 hour|1 小时"),
+            forbidden_patterns=(r"only lists generated files|只列出生成文件|file summary.*stops|文件清单后停止",),
+        ),
+        ("guided_learning", "explicit_scaffold_only"): CaseRequirement(
+            files=guided,
+            evidence=(r"scaffold only", r"generate files only", r"只创建项目", r"不要开始学习", r"must_not_start_guided_session|scaffold-only"),
+            input_patterns=(r"scaffold only|只创建", r"Do not start learning|不要开始学习"),
+            forbidden_patterns=(r"starts a guided Day 1|仍启动第 1 天|despite.*scaffold-only",),
+        ),
+        ("guided_learning", "non_technical_user"): CaseRequirement(
+            files=guided,
+            evidence=(r"content creator|内容创作者", r"no code|cannot code|不会代码", r"Beginner-Friendly Guided Mode", r"content workflow|内容工作流|用户目标", r"Do not require code|不要求写代码|不要求用户写代码"),
+            input_patterns=(r"content creator|内容创作者", r"cannot code|不会代码", r"prompt evaluation"),
+            forbidden_patterns=(r"write code as the default task|默认要求.*写代码|multiple major tasks|多个主要任务",),
+        ),
+        ("guided_learning", "material_learning_mode"): CaseRequirement(
+            files=guided,
+            evidence=(r"material index|资料索引|material_index", r"start guided|start Day 1|开始第 1 天|陪跑学习", r"do not need to open the files first|不用先翻文件|不用先打开文件", r"material-grounded|基于资料"),
+            input_patterns=(r"PDF", r"uploaded|上传"),
+            forbidden_patterns=(r"stops after material_manifest|material_index.*file summary|文件清单后停止|requires.*open files|要求用户先打开文件",),
         ),
         ("factuality", "no_fabricated_urls"): CaseRequirement(
             files=common,

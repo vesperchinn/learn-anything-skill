@@ -75,6 +75,10 @@ Paste into ChatGPT. It will output every file as a labeled code block:
 
 Save each block to the indicated path.
 
+After the file blocks, ChatGPT should immediately start Day 1 in the same chat
+unless you explicitly say `scaffold only` or `generate files only`. It should
+not require you to open multiple Markdown files before learning begins.
+
 ### Learn from PDFs, slides, or documents
 
 ChatGPT cannot read your local files directly in this adapter. To use

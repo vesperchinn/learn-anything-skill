@@ -33,6 +33,10 @@ Build the learning repository from the indexed user materials, not from a generi
 7. `09_sources/claim_ledger.md`
    - Log key factual claims derived from materials with Source Type = `Material`, Material ID / Location, Confidence, and Freshness Risk.
    - Log outside additions with Source Type = `Supplemental`.
+8. `START_HERE.md`, `TODAY.md`, and `07_daily_review/day-01.md`
+   - Create the guided Day 1 entry points after the material index is available.
+   - Day 1 must be grounded in the available material index and must not require
+     the learner to open several files before starting.
 
 ## Rules
 
@@ -43,5 +47,11 @@ Build the learning repository from the indexed user materials, not from a generi
 - Do not fabricate page numbers, slide numbers, visual content, citations, or material topics.
 - If visual content matters but cannot be extracted, mark the related module as `Partially grounded`.
 - Material-derived claims must be auditable in `09_sources/claim_ledger.md`.
+- After the material index and repository are created, do not stop after a file
+  summary. Start the guided Day 1 session in chat unless the user explicitly
+  requested scaffold-only mode.
+- The guided session must tell the learner they do not need to open the files
+  first, include one small chat task, an answer template, completion criteria,
+  and note that `progress.md` will be updated after completion.
 
 End generated learning modules with the standard Source Notes and freshness footer.
