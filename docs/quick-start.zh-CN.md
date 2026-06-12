@@ -27,6 +27,8 @@ cd learn-anything-skill
 
 安装好以后，直接输入：
 
+> 下面的「AI Agent」只是示例。你可以换成任何想学的领域，比如「Python」「营养学」「摄影」「英语写作」。
+
 ```
 使用 learn-anything，帮我为「AI Agent」创建一个中文学习项目。
 我的背景：技术小白。
@@ -42,6 +44,8 @@ cd learn-anything-skill
 ```
 
 如果你的 Agent 不能识别 Skill 名称，但能读取文件，就输入：
+
+> 同样，把「AI Agent」换成你真正想学的领域。
 
 ```
 请读取 learn-anything-skill/core/prompts/zh-CN/init-repo.md，
@@ -69,6 +73,12 @@ cd learn-anything-skill
 ## 可选：如果你会用命令
 
 可以直接生成一个学习仓库：
+
+```bash
+./scripts/new-domain.sh "你想学的领域" zh-CN
+```
+
+例如：
 
 ```bash
 ./scripts/new-domain.sh "AI Agent" zh-CN

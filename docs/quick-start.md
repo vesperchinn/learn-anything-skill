@@ -33,6 +33,9 @@ Then connect it based on your agent:
 
 After installation, type:
 
+> "AI Agents" is only an example. Replace it with the subject you actually want
+> to learn, such as "Python", "nutrition", "photography", or "English writing".
+
 ```
 Use learn-anything to create a learning project for "AI Agents".
 My background: beginner.
@@ -48,6 +51,8 @@ Prioritize the provided materials and mark anything that still needs verificatio
 ```
 
 If your agent cannot call the Skill by name but can read files, type:
+
+> Again, replace "AI Agents" with your real learning subject.
 
 ```
 Read learn-anything-skill/core/prompts/en-US/init-repo.md.
@@ -73,6 +78,12 @@ Continue with learn-anything. Give me a stage test. Ask questions first, then gr
 ```
 
 ## Optional: use the command line
+
+```bash
+./scripts/new-domain.sh "Your Subject" en-US
+```
+
+For example:
 
 ```bash
 ./scripts/new-domain.sh "AI Agent" en-US
