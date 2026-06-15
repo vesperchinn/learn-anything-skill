@@ -308,7 +308,7 @@ def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
                 r"reply (directly )?in chat|聊天里回复|直接发给我",
                 r"progress\.md",
             ),
-            input_patterns=(r"harness", r"technical beginner|刚开始接触|零基础", r"7 days|7 天", r"1 hour|1 小时"),
+            input_patterns=(r"harness", r"technical beginner|刚开始接触|零基础|技术小白|小白", r"7 days|7 天", r"1 hour|1 小时"),
             forbidden_patterns=(r"only lists generated files|只列出生成文件|file summary.*stops|文件清单后停止",),
         ),
         ("guided_learning", "explicit_scaffold_only"): CaseRequirement(
