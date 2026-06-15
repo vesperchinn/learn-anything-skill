@@ -217,11 +217,25 @@ def guided_learning_files(locale: str) -> tuple[str, ...]:
     )
 
 
+def maintenance_loop_files(locale: str) -> tuple[str, ...]:
+    return (
+        "harness/contracts/maintenance-loop-contract.yaml",
+        f"references/{locale}/maintenance-loop.md",
+        f"prompts/{locale}/maintenance-loop.md",
+        "harness/scripts/check_maintenance_loop.py",
+        "harness/architecture/change-impact-matrix.md",
+        "harness/architecture/release-gates.md",
+        "harness/checklists/pr-checklist.md",
+        "harness/checklists/release-checklist.md",
+    )
+
+
 def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
     common = base_files(locale)
     material = material_files(locale)
     base_learning = base_learning_files(locale)
     guided = guided_learning_files(locale)
+    maintenance_loop = maintenance_loop_files(locale)
     readmes = ("README.md", "README.zh-CN.md")
     examples = (
         "examples/en-US/learn-ai-agent/learning_materials/material_manifest.md",
@@ -347,6 +361,56 @@ def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
             evidence=(r"material index|资料索引|material_index", r"start guided|start Day 1|开始第 1 天|陪跑学习", r"do not need to open the files first|不用先翻文件|不用先打开文件", r"material-grounded|基于资料"),
             input_patterns=(r"PDF", r"uploaded|上传"),
             forbidden_patterns=(r"stops after material_manifest|material_index.*file summary|文件清单后停止|requires.*open files|要求用户先打开文件",),
+        ),
+        ("maintenance_loop", "maintainer_only"): CaseRequirement(
+            files=maintenance_loop,
+            evidence=(
+                r"maintainer-only|维护者专用",
+                r"ordinary learner|普通学习者|learner sessions|学习会话",
+                r"Guided Learning Mode",
+                r"Interactive Beginner Lesson Mode",
+                r"Material-Grounded Learning Mode",
+                r"token cost|token 消耗",
+                r"default.*loop|默认.*loop|额外对话轮次",
+            ),
+            input_patterns=(r"maintainer|维护者", r"maintenance loop|维护循环", r"user learning sessions|普通用户学习会话"),
+            forbidden_patterns=(r"ordinary learner sessions|普通学习者会话", r"default user learning loop|默认用户学习 loop", r"token cost|token 消耗"),
+        ),
+        ("maintenance_loop", "release_scope_freeze_required"): CaseRequirement(
+            files=maintenance_loop,
+            evidence=(
+                r"Scope Freeze|scope freeze|发布范围收口",
+                r"tracked modified files|tracked 修改文件",
+                r"untracked",
+                r"Staged files|已暂存文件",
+                r"Included in this version|进入本版本",
+                r"Excluded from this version|不进入本版本",
+                r"human confirmation|人工确认",
+            ),
+            input_patterns=(r"release|发布", r"tracked", r"untracked"),
+            forbidden_patterns=(r"without file classification|未做文件分类", r"staged file summary is omitted|缺少已暂存文件摘要", r"uncertain files remain|不确定文件"),
+        ),
+        ("maintenance_loop", "dirty_worktree_release_blocked"): CaseRequirement(
+            files=maintenance_loop,
+            evidence=(
+                r"worktree|工作区",
+                r"messy|混乱|unreviewed changes|未审查变更",
+                r"blocked|禁止|不得",
+                r"stash",
+                r"scope freeze|发布范围收口",
+            ),
+            input_patterns=(r"tag|release|发布", r"worktree|工作区", r"unreviewed changes|未审查变更"),
+            forbidden_patterns=(r"messy worktree|混乱工作区", r"unreviewed changes|未审查变更"),
+        ),
+        ("maintenance_loop", "ready_with_warnings_requires_explanation"): CaseRequirement(
+            files=maintenance_loop,
+            evidence=(
+                r"READY_WITH_WARNINGS",
+                r"human explanation|人工解释",
+                r"not.*clean release|不得当作干净发布|distinguishes READY from READY_WITH_WARNINGS|区分 READY 和 READY_WITH_WARNINGS",
+            ),
+            input_patterns=(r"READY_WITH_WARNINGS", r"release|发布"),
+            forbidden_patterns=(r"clean release|干净发布", r"No human explanation|不要求人工解释"),
         ),
         ("factuality", "no_fabricated_urls"): CaseRequirement(
             files=common,

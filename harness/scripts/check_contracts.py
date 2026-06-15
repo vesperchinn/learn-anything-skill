@@ -17,6 +17,7 @@ CONTRACTS = [
     "script-contract.yaml",
     "guided-learning-contract.yaml",
     "freshness-notice-contract.yaml",
+    "maintenance-loop-contract.yaml",
 ]
 
 

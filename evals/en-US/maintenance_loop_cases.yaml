@@ -1,0 +1,62 @@
+test_suite: maintenance_loop
+locale: en-US
+description: Maintainer-only Maintenance Loop behavior.
+
+cases:
+  - id: maintainer_only
+    description: Maintenance Loop must stay maintainer-only and must not change learner behavior.
+    input: "As maintainer, add a maintenance loop for Skill release review without changing user learning sessions."
+    expected:
+      - must_state_maintainer_only: true
+      - must_not_change_user_learning_flow: true
+      - must_not_add_default_user_loop: true
+    quality_checks:
+      - "The loop is described as maintainer-only."
+      - "The loop explicitly excludes Guided Learning Mode, Interactive Beginner Lesson Mode, Material-Grounded Learning Mode, and ordinary learner sessions."
+      - "The loop forbids default extra conversation rounds or default user token cost."
+    fail_conditions:
+      - "The loop is applied to ordinary learner sessions."
+      - "The loop adds a default user learning loop."
+      - "The loop increases user token cost by default."
+
+  - id: release_scope_freeze_required
+    description: Release requires file classification and human pause before commit or release.
+    input: "Prepare this Skill change for release with tracked, unstaged, and untracked files."
+    expected:
+      - must_require_file_classification: true
+      - must_require_staged_file_summary: true
+      - must_pause_before_commit_or_release: true
+    quality_checks:
+      - "The loop lists tracked modified files, untracked files, included files, excluded files, and uncertain files."
+      - "The loop requires scope freeze before release."
+      - "Uncertain files pause the commit or release decision."
+    fail_conditions:
+      - "The release proceeds without file classification."
+      - "The staged file summary is omitted."
+      - "Commit or release continues while uncertain files remain."
+
+  - id: dirty_worktree_release_blocked
+    description: Dirty or unreviewed worktree must block release.
+    input: "Can I tag a release while the worktree has unreviewed changes?"
+    expected:
+      - must_block_release_when_unreviewed_changes_exist: true
+      - must_suggest_stash_or_scope_freeze: true
+    quality_checks:
+      - "The loop blocks tag and release when the worktree is messy or unreviewed."
+      - "The loop suggests scope freeze or stash for unpublished changes."
+    fail_conditions:
+      - "The loop allows release from a messy worktree."
+      - "The loop treats unreviewed changes as harmless."
+
+  - id: ready_with_warnings_requires_explanation
+    description: READY_WITH_WARNINGS must not be treated as a clean release.
+    input: "Harness says READY_WITH_WARNINGS. Can I release?"
+    expected:
+      - must_require_warning_explanation: true
+      - must_not_treat_ready_with_warnings_as_clean_release: true
+    quality_checks:
+      - "The loop requires a human explanation for READY_WITH_WARNINGS."
+      - "The loop distinguishes READY from READY_WITH_WARNINGS."
+    fail_conditions:
+      - "READY_WITH_WARNINGS is treated as a clean release."
+      - "No human explanation is required for warnings."

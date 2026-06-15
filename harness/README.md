@@ -29,6 +29,47 @@ run without CI or third-party dependencies.
 python3 harness/scripts/run_all_checks.py --root . --report
 ```
 
+## Maintenance Loop
+
+Maintenance Loop is for maintainers only. It does not change ordinary learner
+sessions, Guided Learning Mode, Interactive Beginner Lesson Mode,
+Material-Grounded Learning Mode, Day 1 behavior, progress behavior, or default
+learner token cost.
+
+Use it for:
+
+- Skill maintenance
+- Codex edits
+- pre-release review
+- multi-file change closure
+- prompt/template/eval/README/adapter drift prevention
+
+Loop:
+
+```text
+Change Intake
+→ Impact Analysis
+→ Contract Check
+→ Related Eval Check
+→ Harness Check
+→ Risk Classification
+→ Release Scope Freeze
+→ Human Confirmation
+→ Commit / Release
+```
+
+Run the dedicated check:
+
+```bash
+python3 harness/scripts/check_maintenance_loop.py --root . --report
+```
+
+Before release, scope freeze must classify tracked modified files, untracked
+files, files included in the version, files excluded from the version, and
+uncertain files requiring human confirmation. Release is blocked while scope is
+unsettled, while the worktree is messy, or while unreviewed changes exist.
+`READY_WITH_WARNINGS` requires a human explanation.
+
 ## Run one check
 
 ```bash
@@ -52,18 +93,21 @@ reports are never overwritten.
 ## PR flow
 
 1. Identify changed modules using `architecture/change-impact-matrix.md`.
-2. Run the relevant single checks.
-3. Run `run_all_checks.py --root . --report`.
-4. Complete `checklists/pr-checklist.md`.
-5. Do not merge with unresolved `FAIL` items unless the release owner accepts them.
+2. Use the maintainer-only Maintenance Loop when the change touches prompts, templates, evals, README/docs, adapters, harness, reliability, material-grounding, or release files.
+3. Run the relevant single checks.
+4. Run `run_all_checks.py --root . --report`.
+5. Complete `checklists/pr-checklist.md`.
+6. Do not merge with unresolved `FAIL` items unless the release owner accepts them.
 
 ## Release flow
 
-1. Run all harness checks.
-2. Complete `checklists/release-checklist.md`.
-3. Review `architecture/release-gates.md`.
-4. Verify platform package manifests.
-5. Confirm README, changelog, license, examples, evals, safety, privacy, and copyright notes.
+1. Run the maintainer-only Maintenance Loop.
+2. Classify tracked modified files, untracked files, included files, excluded files, and uncertain files.
+3. Run all harness checks.
+4. Complete `checklists/release-checklist.md`.
+5. Review `architecture/release-gates.md`.
+6. Verify platform package manifests.
+7. Confirm README, changelog, release notes, license, examples, evals, safety, privacy, and copyright notes.
 
 ## Add a check script
 

@@ -61,6 +61,26 @@ Must check:
 - README test notes
 - Release gates
 
+## Maintenance Loop
+
+Maintenance Loop changes are maintainer-only and must not change ordinary
+learner behavior.
+
+Must check:
+
+- `harness/contracts/maintenance-loop-contract.yaml`
+- `references/en-US/maintenance-loop.md`
+- `references/zh-CN/maintenance-loop.md`
+- `prompts/en-US/maintenance-loop.md`
+- `prompts/zh-CN/maintenance-loop.md`
+- `evals/en-US/maintenance_loop_cases.yaml`
+- `evals/zh-CN/maintenance_loop_cases.yaml`
+- `harness/scripts/check_maintenance_loop.py`
+- Release scope freeze, READY_WITH_WARNINGS explanation, and dirty worktree
+  release block remain aligned with release gates and checklist
+- No default learner loop, extra learner conversation rounds, or default token
+  cost is introduced
+
 ## `README.md`
 
 Must check:

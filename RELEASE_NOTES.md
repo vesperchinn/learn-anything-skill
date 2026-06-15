@@ -1,48 +1,71 @@
-# v0.2.3-beta - Freshness Notice in Chat Output
+# v0.2.4-beta - Maintenance Loop
 
-This release adds Freshness Notice visibility to the repository creation chat
-output.
+This release adds a maintainer-only Maintenance Loop for Skill changes and
+pre-release review.
 
 ## What changed
 
-- After a learning repository is created, the chat output now shows a Freshness
-  Notice before Day 1 when the repository has freshness tracking or freshness
-  risk metadata.
-- High-risk or fast-changing topics point learners to
-  `09_sources/freshness_log.md` and, when verification is needed,
-  `09_sources/claims_to_verify.md`.
-- Stable foundational subjects use a short notice, so freshness tracking is
-  visible without interrupting the first learning session.
-- Material-grounded learning keeps user-provided PDF / PPT materials as primary
-  sources, marks outside context as Supplemental, and routes unverifiable claims
-  to the verification checklist.
+- Added a Maintenance Loop contract for:
+  - change intake
+  - impact analysis
+  - contract checks
+  - related eval checks
+  - harness checks
+  - risk classification
+  - release scope freeze
+  - human confirmation
+  - commit / release review
+- Added bilingual maintainer references and prompts for:
+  - starting a maintenance loop
+  - pre-commit review
+  - pre-release review
+  - post-release review
+- Added release scope freeze rules that require maintainers to classify:
+  - tracked modified files
+  - untracked files
+  - files included in the version
+  - files excluded from the version
+  - uncertain files that require human confirmation
+- Added commit and release gates for sensitive files, generated harness reports,
+  raw local materials, dirty worktrees, existing tags, and
+  `READY_WITH_WARNINGS` explanations.
+
+## User-flow boundary
+
+Maintenance Loop is not a learner feature.
+
+- It does not change ordinary learner sessions.
+- It does not change Guided Learning Mode.
+- It does not change Interactive Beginner Lesson Mode.
+- It does not change Material-Grounded Learning Mode.
+- It does not add a default learner loop.
+- It does not increase user token cost by default.
+- It does not create background automation tasks.
+- It does not continue learner sessions without explicit user consent.
 
 ## Eval and harness coverage
 
-- Added Freshness Notice eval cases for:
-  - material-grounded learning
-  - no-web / no-retrieval fallback
-  - latest API / pricing / policy / model trap cases
-- Added a Freshness Notice harness contract and checker.
-- The checker verifies:
-  - stable / evolving / high-risk notice variants
-  - no forced full verification checklist for stable foundational knowledge
-  - `claims_to_verify.md` for high-risk or fast-changing content
-  - creation summary -> Freshness Notice -> Day 1 order
-  - overclaiming phrases such as unsupported latest or fully verified claims
+- Added `harness/scripts/check_maintenance_loop.py`.
+- Added `harness/contracts/maintenance-loop-contract.yaml`.
+- Added Maintenance Loop eval cases for:
+  - maintainer-only boundary
+  - release scope freeze
+  - dirty worktree release block
+  - `READY_WITH_WARNINGS` explanation
+- Added Maintenance Loop coverage to the executable behavior eval runner.
+- Added Maintenance Loop to the full harness check list.
 
 ## Validation
 
-- Freshness Notice check: passed.
-- Guided Learning Mode check: passed.
+- Maintenance Loop check: passed.
 - Full harness: `READY_WITH_WARNINGS`.
-- The remaining warnings were reviewed and are mainly change-scope review
-  warnings, not Freshness Notice behavior failures.
+- The remaining warnings were reviewed as change-scope review warnings caused by
+  the current maintenance changes, not Maintenance Loop behavior failures.
 - English behavior evals: passed.
 - Chinese behavior evals: passed.
 
-## Reliability note
+## Release note
 
-Freshness Notice does not guarantee that generated content is current or fully
-accurate. It reduces risk by making freshness status visible, pointing to review
-logs, and recording claims that need authoritative verification.
+This release is intended as a maintenance safety release. It helps maintainers
+close change scope before commit or release, but it does not introduce any
+default learner-facing loop or hidden background automation.

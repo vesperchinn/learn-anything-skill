@@ -4,11 +4,25 @@
 - [ ] README.zh-CN checked.
 - [ ] LICENSE present.
 - [ ] SKILL.md checked.
+- [ ] Maintenance Loop completed for maintainer-side changes only.
+- [ ] Tracked modified files listed.
+- [ ] Untracked new files listed.
+- [ ] Files included in this version classified.
+- [ ] Files excluded from this version classified.
+- [ ] Uncertain files paused for human confirmation.
 - [ ] Examples checked.
 - [ ] Evals checked.
 - [ ] Platform package manifests checked.
 - [ ] Safety, privacy, and copyright notes checked.
 - [ ] No placeholder files.
-- [ ] Version tag and changelog checked.
+- [ ] No sensitive files, `.env`, token, secret, raw PDF/PPT/Word materials, temporary learning projects, or `harness/reports/*.json` included.
+- [ ] No local absolute path leaks.
+- [ ] Staged files belong to this release scope.
+- [ ] CHANGELOG.md updated.
+- [ ] RELEASE_NOTES.md updated.
+- [ ] Version tag checked and confirmed not to exist.
+- [ ] Worktree clean, or unpublished changes stashed and documented.
+- [ ] Harness status has no `FAIL`.
+- [ ] READY_WITH_WARNINGS, if present, has a human explanation and is not treated as a clean release.
+- [ ] Release blocked if worktree is messy, scope is unsettled, or unreviewed changes exist.
 - [ ] Release gates reviewed.
-

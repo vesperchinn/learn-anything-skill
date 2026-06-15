@@ -15,6 +15,7 @@ CHECKS = [
     "check_repository_structure.py",
     "check_locale_parity.py",
     "check_change_impact.py",
+    "check_maintenance_loop.py",
     "check_prompt_template_linkage.py",
     "check_reference_linkage.py",
     "check_eval_coverage.py",

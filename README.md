@@ -405,6 +405,8 @@ Both scaffolding scripts support `--dry-run` and refuse to overwrite an existing
 
 The read-only maintenance guard layer lives in [harness/](./harness/). It is not a new learning feature; it helps maintainers catch structure drift, locale mismatch, platform adapter gaps, material-grounding gaps, and reliability-rule gaps before release.
 
+Maintenance Loop is for maintainers only; it does not change ordinary learner sessions or add default learner loops.
+
 Run all checks:
 
 ```bash

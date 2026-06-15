@@ -1,0 +1,133 @@
+name: maintenance_loop_contract
+description: Maintainer-only loop for scoped Skill maintenance, pre-commit review, and pre-release review.
+scope:
+  applies_to:
+    - developer Skill maintenance
+    - Codex Skill edits
+    - pre-release review
+    - multi-file change closure
+    - prompt/template/eval/README/adapter drift prevention
+  does_not_apply_to:
+    - ordinary learner sessions
+    - Guided Learning Mode learner flow
+    - Interactive Beginner Lesson Mode learner flow
+    - Material-Grounded Learning Mode learner flow
+    - default user-facing progress loops
+required_paths:
+  - harness/contracts/maintenance-loop-contract.yaml
+  - references/en-US/maintenance-loop.md
+  - references/zh-CN/maintenance-loop.md
+  - prompts/en-US/maintenance-loop.md
+  - prompts/zh-CN/maintenance-loop.md
+  - evals/en-US/maintenance_loop_cases.yaml
+  - evals/zh-CN/maintenance_loop_cases.yaml
+  - harness/scripts/check_maintenance_loop.py
+  - harness/architecture/change-impact-matrix.md
+  - harness/architecture/release-gates.md
+  - harness/checklists/release-checklist.md
+change_intake_types:
+  - SKILL.md change
+  - prompt change
+  - template change
+  - eval change
+  - harness change
+  - README / docs change
+  - platform adapter change
+  - reliability layer change
+  - material-grounding change
+  - release-only change
+loop_steps:
+  - Change Intake
+  - Impact Analysis
+  - Contract Check
+  - Related Eval Check
+  - Harness Check
+  - Risk Classification
+  - Release Scope Freeze
+  - Human Confirmation
+  - Commit / Release
+impact_rules:
+  SKILL.md change:
+    must_review:
+      - prompts
+      - README
+      - evals
+      - adapters
+  prompt change:
+    must_review:
+      - templates
+      - examples
+      - evals
+  template change:
+    must_review:
+      - init scripts
+      - examples
+      - harness
+  reliability layer change:
+    must_review:
+      - freshness notice
+      - claim ledger
+      - evals
+  material-grounding change:
+    must_review:
+      - material prompts
+      - templates
+      - examples
+      - evals
+  platform adapter change:
+    must_review:
+      - capability matrix
+      - platform package docs
+  README / docs change:
+    must_review:
+      - bilingual sync
+      - actual behavior consistency
+required_checks:
+  every_maintenance_round:
+    - python3 harness/scripts/run_all_checks.py --root . --report
+  feature_specific:
+    guided_learning:
+      - python3 harness/scripts/check_guided_learning_mode.py --root . --report
+    freshness_notice:
+      - python3 harness/scripts/check_freshness_notice.py --root . --report
+    material_grounding:
+      - python3 harness/scripts/check_material_grounding.py --root . --report
+    platform_adapters:
+      - python3 harness/scripts/check_platform_adapters.py --root . --report
+scope_freeze:
+  required_before_release: true
+  required_items:
+    - list tracked modified files
+    - list untracked new files
+    - classify files included in this version
+    - classify files excluded from this version
+    - pause for human confirmation on uncertain files
+  release_blocked_until_closed: true
+commit_gate:
+  must_confirm:
+    - no sensitive files
+    - no temporary learning projects
+    - no harness/reports/*.json
+    - no .env / token / secret
+    - no PDF/PPT/Word raw materials
+    - no leaked local absolute paths
+    - staged files belong to the version scope
+release_gate:
+  must_confirm:
+    - worktree clean or unpublished changes stashed
+    - tag does not exist
+    - RELEASE_NOTES.md updated
+    - CHANGELOG.md updated
+    - harness status has no FAIL
+    - READY_WITH_WARNINGS has a human explanation
+    - no release from a messy worktree
+hard_boundaries:
+  - Maintenance Loop is maintainer-only.
+  - Maintenance Loop must not change ordinary learner flow.
+  - Maintenance Loop must not add a default user learning loop.
+  - Maintenance Loop must not increase user token cost by default.
+  - Maintenance Loop must not make an agent continue learner sessions without explicit user consent.
+references:
+  - harness/architecture/change-impact-matrix.md
+  - harness/architecture/release-gates.md
+  - harness/checklists/release-checklist.md

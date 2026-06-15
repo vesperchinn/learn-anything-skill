@@ -36,7 +36,36 @@ Core evals exist and cover meaningful behavior, not only file existence.
 
 Privacy, copyright, high-stakes, and dangerous-command checks pass.
 
-## Gate 10: Release Gate
+## Gate 10: Maintenance Loop Gate
+
+For maintainer-side changes, run the Maintenance Loop:
+
+- Change Intake
+- Impact Analysis
+- Contract Check
+- Related Eval Check
+- Harness Check
+- Risk Classification
+- Release Scope Freeze
+- Human Confirmation
+- Commit / Release
+
+This gate is maintainer-only. It must not change ordinary learner sessions,
+Guided Learning Mode, Interactive Beginner Lesson Mode, Material-Grounded
+Learning Mode, or default learner token cost.
+
+Before release, scope freeze must list tracked modified files, untracked files,
+files included in this version, files excluded from this version, and uncertain
+files requiring human confirmation. Tag and release are blocked while scope is
+unsettled, while the worktree is messy, or while unreviewed changes exist.
+
+`READY_WITH_WARNINGS` is not a clean release state. It requires a human
+explanation before release.
+
+## Gate 11: Release Gate
 
 README, license, roadmap, changelog, version notes, and release notes are present.
 
+Before tag or release, confirm `CHANGELOG.md` and `RELEASE_NOTES.md` are
+updated, the tag does not already exist, the worktree is clean or unpublished
+changes are stashed, and harness status has no `FAIL`.

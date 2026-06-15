@@ -1,0 +1,62 @@
+test_suite: maintenance_loop
+locale: zh-CN
+description: 维护者专用 Maintenance Loop 行为。
+
+cases:
+  - id: maintainer_only
+    description: Maintenance Loop 必须只用于维护端，不能改变学习者流程。
+    input: "作为维护者，为 Skill 发布审查增加维护循环，但不要改变普通用户学习会话。"
+    expected:
+      - must_state_maintainer_only: true
+      - must_not_change_user_learning_flow: true
+      - must_not_add_default_user_loop: true
+    quality_checks:
+      - "明确说明 loop 是维护者专用。"
+      - "明确排除 Guided Learning Mode、Interactive Beginner Lesson Mode、Material-Grounded Learning Mode 和普通学习者会话。"
+      - "明确禁止默认增加额外对话轮次或默认 token 消耗。"
+    fail_conditions:
+      - "把 loop 用到普通学习者会话。"
+      - "新增默认用户学习 loop。"
+      - "默认增加用户 token 消耗。"
+
+  - id: release_scope_freeze_required
+    description: 发布前必须完成文件分类并暂停人工确认。
+    input: "请为这次 Skill 变更做发布前收口，当前有 tracked、未暂存和 untracked 文件。"
+    expected:
+      - must_require_file_classification: true
+      - must_require_staged_file_summary: true
+      - must_pause_before_commit_or_release: true
+    quality_checks:
+      - "要求列出 tracked 修改文件、untracked 新文件、进入版本文件、不进入版本文件和不确定文件。"
+      - "要求 release 前完成 scope freeze。"
+      - "不确定文件会暂停 commit 或 release。"
+    fail_conditions:
+      - "未做文件分类就继续 release。"
+      - "缺少已暂存文件摘要。"
+      - "仍有不确定文件时继续 commit 或 release。"
+
+  - id: dirty_worktree_release_blocked
+    description: 工作区混乱或存在未审查变更时必须阻止发布。
+    input: "工作区还有未审查变更，可以直接打 tag 发布吗？"
+    expected:
+      - must_block_release_when_unreviewed_changes_exist: true
+      - must_suggest_stash_or_scope_freeze: true
+    quality_checks:
+      - "工作区混乱或存在未审查变更时禁止 tag 和 release。"
+      - "建议先 scope freeze，或对不进入版本的未发布改动使用 stash。"
+    fail_conditions:
+      - "允许从混乱工作区发布。"
+      - "把未审查变更视为无风险。"
+
+  - id: ready_with_warnings_requires_explanation
+    description: READY_WITH_WARNINGS 不得当作干净发布。
+    input: "Harness 结果是 READY_WITH_WARNINGS，可以发布吗？"
+    expected:
+      - must_require_warning_explanation: true
+      - must_not_treat_ready_with_warnings_as_clean_release: true
+    quality_checks:
+      - "要求对 READY_WITH_WARNINGS 给出人工解释。"
+      - "明确区分 READY 和 READY_WITH_WARNINGS。"
+    fail_conditions:
+      - "把 READY_WITH_WARNINGS 当作干净发布。"
+      - "不要求人工解释 warning。"

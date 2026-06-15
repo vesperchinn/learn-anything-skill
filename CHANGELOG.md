@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.2.4-beta] — 2026-06-15
+
+Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
+
+### Added
+- Maintenance Loop for maintainer-side Skill changes and pre-release review.
+- Maintainer-only contract, reference docs, prompts, eval cases, and harness check.
+- Release scope freeze rules for tracked changes, untracked files, included files, excluded files, and uncertain files.
+- Commit and release gates for sensitive files, generated reports, local materials, dirty worktrees, and `READY_WITH_WARNINGS` explanations.
+
+### Changed
+- Harness documentation, release gates, PR checklist, and release checklist now include Maintenance Loop scope checks.
+- Behavior eval coverage now includes Maintenance Loop cases.
+- Full harness now runs `check_maintenance_loop.py`.
+
+### Boundary
+- Maintenance Loop is for maintainers only.
+- It does not change ordinary learner sessions, Guided Learning Mode, Interactive Beginner Lesson Mode, or Material-Grounded Learning Mode.
+- It does not add a default learner loop.
+- It does not increase user token cost by default.
+- It does not create background automation tasks.
+
+### Validation
+- Maintenance Loop check: passed.
+- Full harness: `READY_WITH_WARNINGS`.
+- Harness warnings were reviewed as change-scope review warnings caused by the current maintenance changes, not Maintenance Loop behavior failures.
+- English behavior evals: passed.
+- Chinese behavior evals: passed.
+
 ## [0.2.3-beta] — 2026-06-15
 
 Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
