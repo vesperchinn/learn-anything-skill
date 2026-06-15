@@ -28,8 +28,10 @@ Execute the complete workflow. Reference the individual prompt files for detaile
 ### Phase 0: Initialize
 Use `core/prompts/{locale}/init-repo.md`. Create the learning repository structure.
 Unless the user explicitly requested scaffold-only mode, do not stop after
-listing files. Read `prompts/{locale}/start-guided-session.md` and start Day 1
-in the chat immediately.
+listing files. Read `templates/{locale}/freshness_notice.md.template` and
+`prompts/{locale}/start-guided-session.md`, print the required Freshness Notice
+for any freshness metadata, high-stakes domain, fast-changing domain, or no-web
+uncertainty, then start Day 1 in the chat immediately.
 
 ### Phase 1: Map the Domain
 Use `core/prompts/{locale}/knowledge-map.md` → write `00_domain_map.md`.
@@ -66,5 +68,6 @@ If I return after a break: Use `core/prompts/{locale}/resume-session.md`.
 - Source-first reliability: no fabricated citations, URLs, dates, papers, official docs, or benchmark data
 - If web access is unavailable, mark content as Unverified Draft and maintain `09_sources/claims_to_verify.md`
 - Every learning module ends with Source Notes, Freshness Risk, Claims to Verify, Last Verified, and Recommended Review Interval
+- Repository creation output includes a short Freshness Notice with the highest freshness risk, review interval, `09_sources/freshness_log.md`, and `09_sources/claims_to_verify.md` when verification is needed
 
 Start with Phase 0 now. Create the repository structure.

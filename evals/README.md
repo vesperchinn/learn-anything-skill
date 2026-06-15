@@ -42,6 +42,7 @@ python3 evals/run_e2e_evals.py --mode mock --locale zh-CN
 | `run_e2e_evals.py --mode mock` | Scaffolds a repo, checks key files, and runs behavior evals |
 | `factuality_cases.yaml` | Agents do not fabricate URLs, papers, benchmark data, version numbers, or source notes |
 | `freshness_cases.yaml` | Generated modules include freshness risk and review intervals |
+| `freshness_notice_cases.yaml` | Repository creation chat output includes a short Freshness Notice before Day 1 |
 | `no_web_fallback_cases.yaml` | No-web mode produces unverified drafts and verification checklists |
 | `high_stakes_cases.yaml` | Medical, legal, financial, and safety-critical topics include educational-use-only safeguards |
 | `material_grounded_cases.yaml` | User materials are treated as primary sources; extraction issues and supplemental content are handled explicitly |
@@ -57,6 +58,7 @@ evals/
 │   ├── test_cases.yaml             # 10 scenarios, 62 quality checks
 │   ├── factuality_cases.yaml       # factuality and no-fabrication checks
 │   ├── freshness_cases.yaml        # freshness risk checks
+│   ├── freshness_notice_cases.yaml # repo-creation freshness notice checks
 │   ├── no_web_fallback_cases.yaml  # no-web fallback checks
 │   ├── high_stakes_cases.yaml      # high-stakes domain checks
 │   ├── material_grounded_cases.yaml # material-grounded learning checks
@@ -68,6 +70,7 @@ evals/
     ├── test_cases.yaml             # 10 scenarios, 62 quality checks (zh-CN)
     ├── factuality_cases.yaml       # 事实准确性与禁止伪造检查
     ├── freshness_cases.yaml        # 时效性风险检查
+    ├── freshness_notice_cases.yaml # 创建仓库后的时效性提醒检查
     ├── no_web_fallback_cases.yaml  # 无联网退化检查
     ├── high_stakes_cases.yaml      # 高风险领域检查
     ├── material_grounded_cases.yaml # 基于用户资料学习检查

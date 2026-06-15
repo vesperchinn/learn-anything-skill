@@ -1,7 +1,7 @@
 # Init Learning Repository
 
 **Phase**: 0 — Initialize
-**Inputs**: `{domain}`, `{domain_slug}`, `{user_background}`, `{learning_goal}`, `{daily_time}`, `{interface_language}`, `{learning_language}`, `{locale}`
+**Inputs**: `{domain}`, `{domain_slug}`, `{user_background}`, `{learning_goal}`, `{daily_time}`, `{duration}`, `{interface_language}`, `{learning_language}`, `{locale}`
 **Context needed**: None
 **Typical total tokens**: ~500
 
@@ -14,7 +14,7 @@ You are a domain learning engineer. Your task is to create a structured learning
 - **Domain**: {domain}
 - **Background**: {user_background}
 - **Learning goal**: {learning_goal}
-- **Duration**: 30 days ({daily_time} per day)
+- **Duration**: {duration} days ({daily_time} per day)
 - **Interface language**: {interface_language}
 - **Learning material language**: {learning_language}
 - **Locale**: {locale}
@@ -105,7 +105,7 @@ answers.
 
 ### AGENTS.md and CLAUDE.md
 Write both `AGENTS.md` and `CLAUDE.md` with equivalent teaching rules:
-1. You are my domain learning engineer. The goal is mastering {domain} in 30 days ({daily_time} per day) and completing a demonstrable project.
+1. You are my domain learning engineer. The goal is mastering {domain} in {duration} days ({daily_time} per day) and completing a demonstrable project.
 2. Teaching workflow: Global map first → then local details → then exercises → then output → then review
 3. Each concept must include: one-line explanation, life analogy, technical explanation, real case, one exercise
 4. No theory-only sessions. Every day must include a deliverable task (≤ 60 minutes)
@@ -166,9 +166,16 @@ Create all files now. For placeholder files (00_domain_map.md, 08_glossary.md, 0
 After the repository is created, do not stop after a file summary unless the
 user explicitly requested scaffold-only mode with one of the scaffold-only
 phrases listed in `SKILL.md`, such as "scaffold only" or "generate files only".
-Otherwise read
-`prompts/{locale}/start-guided-session.md` and immediately start Day 1 in the
-chat. The response must tell the learner they do not need to open the files
-first, explain the first 2-3 concepts, give one small chat task, include a
-copyable answer template, state completion criteria, ask the learner to reply
-in chat, and note that `progress.md` will be updated after completion.
+Otherwise read `templates/{locale}/freshness_notice.md.template` and
+`prompts/{locale}/start-guided-session.md`, then immediately start Day 1 in the
+chat. The response must include a short Freshness Notice before or near Day 1
+whenever `09_sources/freshness_log.md`, `09_sources/claims_to_verify.md`, or
+freshness metadata exists. The notice must name the overall freshness status,
+highest freshness risk, recommended review interval, `09_sources/freshness_log.md`,
+`09_sources/claims_to_verify.md` when needed, and any no-web / no-retrieval
+disclaimer. High-stakes and fast-changing domains must include the notice and
+must not present the content as final professional advice. After the notice, the
+response must tell the learner they do not need to open the files first, explain
+the first 2-3 concepts, give one small chat task, include a copyable answer
+template, state completion criteria, ask the learner to reply in chat, and note
+that `progress.md` will be updated after completion.

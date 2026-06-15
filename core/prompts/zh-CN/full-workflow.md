@@ -28,7 +28,10 @@
 ### 阶段 0：初始化
 使用 `core/prompts/{locale}/init-repo.md`。创建学习仓库结构。
 除非用户明确要求只创建文件，否则不要只列文件清单后停止。读取
-`prompts/{locale}/start-guided-session.md`，并立刻在对话里开始第 1 天。
+`templates/{locale}/freshness_notice.md.template` 和
+`prompts/{locale}/start-guided-session.md`；如果存在时效性元数据、高风险领域、
+快速变化领域或无联网核查不确定性，先输出必要的“时效性提醒”，再立刻在对话里
+开始第 1 天。
 
 ### 阶段 1：构建领域地图
 使用 `core/prompts/{locale}/knowledge-map.md` → 写入 `00_domain_map.md`。
@@ -65,5 +68,6 @@
 - 来源优先：不得伪造引用、URL、日期、论文、官方文档或 benchmark
 - 如果没有联网能力，内容必须标记为未验证草稿，并维护 `09_sources/claims_to_verify.md`
 - 每个学习模块末尾必须包含来源注释、时效性风险、待验证主张、最后验证日期和建议复查间隔
+- 创建仓库后的对话输出必须包含简短的时效性提醒，说明最高时效风险、复查周期、`09_sources/freshness_log.md`，并在需要核查时列出 `09_sources/claims_to_verify.md`
 
 现在从阶段 0 开始。创建仓库结构。

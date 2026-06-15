@@ -18,7 +18,7 @@ It can create:
 
 - domain maps
 - concept breakdowns
-- daily learning plans
+- daily learning plans for a custom duration (30 days by default)
 - exercises
 - quizzes
 - flashcards
@@ -96,6 +96,10 @@ Agent:
 
 ```text
 Learning project created.
+
+Freshness Notice:
+This project includes evolving practice-based content. Review every 3-6 months.
+Detailed log: 09_sources/freshness_log.md
 
 You do not need to open the files first. We will understand Day 1 here.
 
@@ -182,6 +186,21 @@ Designed for:
 
 Platform support depends on each platform's file access, web access, workflow, and knowledge base capabilities.
 
+## Freshness Notice
+
+When a learning repository is created, the agent also prints a short freshness
+notice in the chat. This tells the learner whether the project contains
+time-sensitive content, where to find the freshness log, and which claims
+require verification. It also shows the recommended review interval, so the
+learner does not need to open generated files first to know that freshness
+tracking exists.
+
+Stable foundational subjects use a brief notice. High-risk or fast-changing
+subjects, such as finance, APIs, pricing, policies, platform rules, or current
+tools, use a more explicit verification reminder and point to
+`09_sources/freshness_log.md` and, when needed,
+`09_sources/claims_to_verify.md`.
+
 ## How is this different from asking ChatGPT directly?
 
 | Asking ChatGPT directly | Using Learn Anything Skill Pack |
@@ -226,7 +245,7 @@ After installation, type:
 ```
 Use learn-anything to create a learning project for "AI Agents".
 My background: beginner.
-My goal: understand the basics and build a small project in 30 days.
+My goal: understand the basics and build a small project in 14 days.
 Daily time: 1 hour.
 ```
 

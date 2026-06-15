@@ -13,6 +13,8 @@ The first guided response must include:
 
 - Repository location
 - Short explanation of what was created
+- Freshness Notice when the repository contains freshness tracking, high-stakes
+  content, fast-changing content, or no-web uncertainty
 - "You do not need to open the files first."
 - Today's learning goal
 - Beginner-friendly explanation of 2-3 concepts
@@ -21,6 +23,11 @@ The first guided response must include:
 - Completion criteria
 - Instruction to reply in chat
 - Note that `progress.md` will be updated after completion
+
+The Freshness Notice must be short and must point to
+`09_sources/freshness_log.md`. For high-stakes or fast-changing content, it must
+also point to `09_sources/claims_to_verify.md` and avoid presenting the content
+as final advice.
 
 ## Scaffold-Only Exception
 

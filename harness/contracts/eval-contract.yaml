@@ -18,6 +18,8 @@ required_files:
   - evals/zh-CN/factuality_cases.yaml
   - evals/en-US/freshness_cases.yaml
   - evals/zh-CN/freshness_cases.yaml
+  - evals/en-US/freshness_notice_cases.yaml
+  - evals/zh-CN/freshness_notice_cases.yaml
   - evals/en-US/high_stakes_cases.yaml
   - evals/zh-CN/high_stakes_cases.yaml
   - evals/en-US/material_grounded_cases.yaml

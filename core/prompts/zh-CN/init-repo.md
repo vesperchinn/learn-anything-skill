@@ -1,7 +1,7 @@
 # 初始化学习仓库
 
 **阶段**: 0 — 初始化
-**输入**: `{domain}`、`{domain_slug}`、`{user_background}`、`{learning_goal}`、`{daily_time}`、`{interface_language}`、`{learning_language}`、`{locale}`
+**输入**: `{domain}`、`{domain_slug}`、`{user_background}`、`{learning_goal}`、`{daily_time}`、`{duration}`、`{interface_language}`、`{learning_language}`、`{locale}`
 **需要上下文**: 无
 **典型 token 数**: ~500
 
@@ -14,7 +14,7 @@
 - **学习领域**：{domain}
 - **当前基础**：{user_background}
 - **学习目标**：{learning_goal}
-- **学习周期**：30 天（每天 {daily_time}）
+- **学习周期**：{duration} 天（每天 {daily_time}）
 - **对话语言**：{interface_language}
 - **学习材料语言**：{learning_language}
 - **语言环境**：{locale}
@@ -25,7 +25,7 @@
 
 ```
 {domain_slug}/
-├── START_HERE.md               # 小白用户第一入口
+├── START_HERE.md               # 用户第一入口
 ├── TODAY.md                    # 今天唯一学习入口
 ├── README.md                   # 如何使用本学习仓库
 ├── AGENTS.md                   # AI 智能体的教学规则
@@ -79,7 +79,7 @@
 
 ### START_HERE.md
 
-编写面向小白用户的入口文件，说明：
+编写面向用户的入口文件，说明：
 1. 这个学习项目怎么用
 2. 今天先看哪里
 3. 不需要一次看完所有文件
@@ -92,7 +92,7 @@
 1. 今日目标
 2. 今日只需完成的任务
 3. 今日要理解的 2-3 个概念
-4. 小白解释
+4. 清楚直白的解释
 5. 一个生活类比
 6. 一个和 `{learning_goal}` 相关的例子
 7. 今日练习
@@ -107,7 +107,7 @@
 ### AGENTS.md 和 CLAUDE.md
 
 编写 `AGENTS.md` 和 `CLAUDE.md`，两者包含等价规则：
-1. 你是我的一名领域学习工程师。目标是在 30 天内掌握 {domain}（每天 {daily_time}），并完成一个可展示的项目。
+1. 你是我的一名领域学习工程师。目标是在 {duration} 天内掌握 {domain}（每天 {daily_time}），并完成一个可展示的项目。
 2. 教学流程：先构建全局地图 → 再深入局部细节 → 然后做练习 → 接着出成果 → 最后复盘
 3. 每个概念必须包含：一句话解释、生活类比、技术解释、真实案例、一个练习
 4. 禁止纯理论课程。每天必须包含一个交付任务（≤ 60 分钟）
@@ -156,7 +156,7 @@
 
 ## 当前状态
 
-- **当前天数**：第 0 天 / 共 30 天
+- **当前天数**：第 0 天 / 共 {duration} 天
 - **当前阶段**：阶段 0 — 初始化
 - **上次学习**：（未开始）
 - **学习材料语言**：{learning_language}
@@ -196,4 +196,4 @@
 
 立即创建所有文件。对于初始文件（00_domain_map.md、08_glossary.md、09_resources.md），写入一个简短的说明头，指示将在下一阶段填充。`START_HERE.md`、`TODAY.md` 和 `07_daily_review/day-01.md` 必须使用对应语言模板，并能立刻用于第 1 天学习。`learning_materials` 和 `09_sources` 使用 `templates/{locale}/{{domain-slug}}/` 下的文件作为模板。对于 .gitkeep 文件，创建为空文件。
 
-创建仓库后，除非用户明确说“只创建项目”“不要开始学习”“scaffold only”或“generate files only”，否则不得只输出文件清单后停止。必须读取 `prompts/{locale}/start-guided-session.md`，并立刻在对话里开始第 1 天：告诉用户不用先打开文件，讲清今天 2-3 个概念，给一个能直接在聊天里完成的小任务，提供可复制作答模板，写明完成标准，要求用户直接回复，并说明用户完成后会更新 `progress.md`。
+创建仓库后，除非用户明确说“只创建项目”“不要开始学习”“scaffold only”或“generate files only”，否则不得只输出文件清单后停止。必须读取 `templates/{locale}/freshness_notice.md.template` 和 `prompts/{locale}/start-guided-session.md`，并立刻在对话里开始第 1 天。只要仓库包含 `09_sources/freshness_log.md`、`09_sources/claims_to_verify.md` 或任何时效性风险元数据，创建摘要后、Day 1 前后必须输出简短的“时效性提醒”。提醒必须说明整体时效状态、最高时效风险、建议复查周期、`09_sources/freshness_log.md` 路径、必要时的 `09_sources/claims_to_verify.md` 路径，以及没有联网或实时检索时的未实时核查说明。高风险或快速变化领域必须显示提醒，且不得把内容说成最终专业建议。提醒之后，告诉用户不用先打开文件，讲清今天 2-3 个概念，给一个能直接在聊天里完成的小任务，提供可复制作答模板，写明完成标准，要求用户直接回复，并说明用户完成后会更新 `progress.md`。

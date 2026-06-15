@@ -139,24 +139,68 @@ include:
 
 1. Repository location.
 2. A short explanation of what was created.
-3. The sentence: "You do not need to open the files first." or the localized
+3. A short Freshness Notice when the repository contains freshness files,
+   freshness risk metadata, high-stakes content, fast-changing content, or
+   no-web / no-retrieval uncertainty.
+4. The sentence: "You do not need to open the files first." or the localized
    equivalent.
-4. Today's learning goal.
-5. A beginner-friendly explanation of the first concepts, or exactly one
+5. Today's learning goal.
+6. A beginner-friendly explanation of the first concepts, or exactly one
    primary concept when Interactive Beginner Lesson Mode is active.
-6. One small task that can be completed directly in the chat.
-7. A copyable answer template.
-8. Clear completion criteria for regular learners; for Interactive Beginner
+7. One small task that can be completed directly in the chat.
+8. A copyable answer template.
+9. Clear completion criteria for regular learners; for Interactive Beginner
    Lesson Mode, a plain-language "how to tell this worked" prompt after the
    worked example.
-9. A prompt telling the user to reply with their answer.
-10. A note that `progress.md` will be updated after the user completes the task.
+10. A prompt telling the user to reply with their answer.
+11. A note that `progress.md` will be updated after the user completes the task.
+
+### Freshness Notice in Chat Output
+
+After creating a learning repository, if the generated repository contains any
+freshness-related files or freshness risk metadata, the agent must include a
+short Freshness Notice in the chat output. The notice appears together with the
+repository creation summary and before or near the Day 1 guided session. The
+agent must not require the learner to open `09_sources/freshness_log.md` before
+knowing that freshness tracking exists.
+
+The Freshness Notice must include:
+
+- overall freshness status
+- highest freshness risk level
+- recommended review interval
+- path to `09_sources/freshness_log.md`
+- path to `09_sources/claims_to_verify.md`, if any claims require verification
+- no-web / no-retrieval disclaimer if the agent could not verify current sources
+- educational-use-only / not-final-advice wording for high-stakes domains
+
+For high-stakes or fast-changing domains, the Freshness Notice is mandatory.
+These domains include but are not limited to finance, investment, medical,
+health, legal, policy, tax, immigration, AI tools, APIs, software libraries,
+pricing, benchmarks, exam policies, platform rules, and market data.
+
+Use `templates/{locale}/freshness_notice.md.template` when composing the notice.
+Keep it short so it does not overwhelm Day 1 learning:
+
+- Low-risk / stable domains: say the project is mainly stable foundational
+  knowledge and point to `09_sources/freshness_log.md`.
+- Medium-risk / evolving domains: say the content may evolve with tools or
+  practice, recommend a 3-6 month review, and point to
+  `09_sources/freshness_log.md`.
+- High-risk / fast-changing domains: say the content cannot rely only on model
+  memory, recommend checking official or authoritative sources before use, point
+  to `09_sources/freshness_log.md`, and point to
+  `09_sources/claims_to_verify.md`.
+
+Freshness Notice template fields are `freshness_risk_label`,
+`highest_freshness_risk`, `recommended_review_interval`, `freshness_log_path`,
+`claims_to_verify_path`, `source_status`, and `verification_disclaimer`.
 
 ### Interactive Beginner Lesson Mode
 
 If `{user_background}` indicates technical beginner, beginner, complete
 beginner, student, no code, no coding background, non-developer, content
-creator, writer, marketer, operations, teacher, self-media creator, or 小白,
+creator, writer, marketer, operations, teacher, self-media creator, or a user who wants a quick entry point,
 enable Interactive Beginner Lesson Mode.
 
 Trigger this mode when the user background includes:
@@ -168,8 +212,8 @@ Trigger this mode when the user background includes:
 - no coding background
 - writer
 - marketer
-- 技术小白
-- 小白
+- zero background
+- quick-start learner
 - 初学者
 - 学生
 - 非技术用户
@@ -382,7 +426,7 @@ Then read `core/prompts/{locale}/concept-breakdown.md` and populate
 life analogy, technical explanation, real-world case, common pitfall, one
 exercise.
 
-### 4. plan — create the 30-day route
+### 4. plan — create the duration-based route
 
 Read `core/prompts/{locale}/learning-plan.md`.
 
@@ -391,8 +435,9 @@ Generate a stage-by-stage schedule. Every day MUST include:
 - **5 quiz questions** (2 recall + 2 application + 1 integration)
 - **1 deliverable task** (≤ 60 minutes, with explicit acceptance criteria)
 
-Schedule stage tests at days 7, 14, 21, 25. Reserve the final 7 days for
-the capstone project.
+Schedule stage tests based on `{duration}`. For the default 30-day plan, use
+days 7, 14, 21, and 25. For shorter or longer plans, place tests roughly every
+7 days and keep the final project window proportional to the total duration.
 
 ### 5. daily — run one learning session
 
@@ -639,6 +684,10 @@ Rules:
   include a freshness tag.
 - The Agent must populate `09_sources/freshness_log.md` with each module's
   freshness risk and recommended review date.
+- Repository creation chat output must include a Freshness Notice when
+  `09_sources/freshness_log.md`, `09_sources/claims_to_verify.md`, or any
+  freshness risk metadata exists. The learner must learn the project's
+  time-sensitivity status from the chat, not only by opening files.
 - When generating content tagged 🔴 Volatile, the Agent must add a
   prominent warning: "This information may be outdated. Verify before use."
 

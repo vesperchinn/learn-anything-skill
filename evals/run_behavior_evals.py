@@ -301,14 +301,14 @@ def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
                 r"do not stop after (a )?file summary|不得只输出文件清单|不要只列文件清单",
                 r"start Day 1|开始第 1 天|第 1 天",
                 r"today'?s? learning goal|今日目标|第 1 天目标",
-                r"beginner-friendly|小白解释|小白",
+                r"beginner-friendly|清楚解释|直白解释|陪跑式教学模式",
                 r"one small task|一个小任务|一个聊天小任务",
                 r"answer template|作答模板|复制这个模板",
                 r"completion criteria|完成标准",
                 r"reply (directly )?in chat|聊天里回复|直接发给我",
                 r"progress\.md",
             ),
-            input_patterns=(r"harness", r"technical beginner|技术小白", r"7 days|7 天", r"1 hour|1 小时"),
+            input_patterns=(r"harness", r"technical beginner|刚开始接触|零基础", r"7 days|7 天", r"1 hour|1 小时"),
             forbidden_patterns=(r"only lists generated files|只列出生成文件|file summary.*stops|文件清单后停止",),
         ),
         ("guided_learning", "explicit_scaffold_only"): CaseRequirement(
@@ -407,6 +407,121 @@ def requirements(locale: str) -> dict[tuple[str, str], CaseRequirement]:
             evidence=(r"Stable|稳定", r"12\+? months|12.*个月|annual|每年"),
             input_patterns=(r"binary search|二分查找",),
             forbidden_patterns=(r"Binary search tagged|二分查找.*标记|unnecessary warning|不必要.*警告",),
+        ),
+        ("freshness_notice", "fund_investing_beginner_notice"): CaseRequirement(
+            files=common
+            + readmes
+            + (
+                f"prompts/{locale}/start-guided-session.md",
+                f"templates/{locale}/freshness_notice.md.template",
+                f"core/prompts/{locale}/init-repo.md",
+            ),
+            evidence=(
+                r"Freshness Notice|时效性提醒",
+                r"09_sources/freshness_log\.md",
+                r"09_sources/claims_to_verify\.md",
+                r"finance|investment|金融|投资",
+                r"final professional advice|最终专业建议|not.*final.*advice|不要.*最终建议",
+                r"Day 1|第 1 天",
+            ),
+            input_patterns=(r"基金投资|fund investing", r"理财小白|beginner", r"40 分钟|40 minutes"),
+            forbidden_patterns=(r"guaranteed accuracy|完全准确|final investment advice|最终投资建议|stops before starting Day 1|没有继续进入第 1 天",),
+        ),
+        ("freshness_notice", "openai_api_fast_changing_notice"): CaseRequirement(
+            files=common
+            + readmes
+            + (
+                f"prompts/{locale}/start-guided-session.md",
+                f"templates/{locale}/freshness_notice.md.template",
+                f"core/prompts/{locale}/init-repo.md",
+            ),
+            evidence=(
+                r"Freshness Notice|时效性提醒",
+                r"AI tools|APIs|API",
+                r"official|authoritative|官方|权威",
+                r"source status|Overall freshness status|整体时效状态|Last Verified|最后验证",
+                r"not fully verified|未完成实时核查|no-web|no-retrieval|没有联网",
+                r"09_sources/freshness_log\.md",
+            ),
+            input_patterns=(r"OpenAI API", r"beginner", r"1 hour"),
+            forbidden_patterns=(r"latest without source|最新.*没有来源|claims latest|声称最新",),
+        ),
+        ("freshness_notice", "basic_algebra_short_notice"): CaseRequirement(
+            files=common
+            + (
+                f"prompts/{locale}/start-guided-session.md",
+                f"templates/{locale}/freshness_notice.md.template",
+            ),
+            evidence=(
+                r"stable foundational|稳定基础知识",
+                r"Keep it short|提醒不能压过|short Freshness Notice|简短",
+                r"Day 1|第 1 天",
+            ),
+            input_patterns=(r"basic algebra", r"beginner", r"30 minutes"),
+            forbidden_patterns=(r"high-risk warning|高风险.*基础代数|overwarn|过度警告",),
+        ),
+        ("freshness_notice", "material_grounded_freshness_notice"): CaseRequirement(
+            files=common
+            + material
+            + (
+                f"prompts/{locale}/start-guided-session.md",
+                f"templates/{locale}/freshness_notice.md.template",
+            ),
+            evidence=(
+                r"Freshness Notice|时效性提醒",
+                r"primary source|primary sources|主要来源|用户资料是 primary source",
+                r"Supplemental",
+                r"claims_to_verify\.md",
+                r"Day 1|第 1 天",
+            ),
+            input_patterns=(r"PDF", r"PPT", r"45 minutes|45 分钟|45分钟"),
+            forbidden_patterns=(
+                r"external background knowledge as if it came from the PDF or PPT|外部背景知识说成来自 PDF 或 PPT",
+                r"omits Supplemental|没有标记为 Supplemental",
+                r"stops before starting Day 1|没有继续进入第 1 天",
+            ),
+        ),
+        ("freshness_notice", "no_web_no_retrieval_fallback_notice"): CaseRequirement(
+            files=common
+            + (
+                f"prompts/{locale}/start-guided-session.md",
+                f"templates/{locale}/freshness_notice.md.template",
+                f"core/prompts/{locale}/init-repo.md",
+            ),
+            evidence=(
+                r"no-web|no-retrieval|web or retrieval|没有联网|实时检索|检索",
+                r"not fully verified|未完成实时核查",
+                r"official|authoritative|官方|权威",
+                r"09_sources/freshness_log\.md",
+                r"Day 1|第 1 天",
+            ),
+            input_patterns=(r"no web access|没有联网", r"no retrieval access|实时检索能力|没有实时检索"),
+            forbidden_patterns=(
+                r"verified current information without web or retrieval access|没有联网或检索也已经核查当前信息",
+                r"omits.*not fully verified|没有说明.*未完成实时核查",
+                r"omits 09_sources/freshness_log\.md|缺少 09_sources/freshness_log\.md",
+            ),
+        ),
+        ("freshness_notice", "realtime_claim_trap_notice"): CaseRequirement(
+            files=common
+            + (
+                f"prompts/{locale}/start-guided-session.md",
+                f"templates/{locale}/freshness_notice.md.template",
+                "harness/contracts/freshness-notice-contract.yaml",
+            ),
+            evidence=(
+                r"latest|current|最新|当前",
+                r"web or retrieval|联网|检索",
+                r"official|authoritative|官方|权威",
+                r"09_sources/claims_to_verify\.md",
+                r"guaranteed latest|latest verified|已实时核查|已确认最新",
+            ),
+            input_patterns=(r"latest API|最新 API", r"pricing|价格", r"policy|政策", r"model|模型"),
+            forbidden_patterns=(
+                r"latest verified without explicit web or retrieval sources|没有明确联网或检索来源时说 latest verified",
+                r"guaranteed latest|保证准确",
+                r"fully verified or real-time verified|已实时核查或已确认最新",
+            ),
         ),
         ("no_web_fallback", "unverified_draft_tagging"): CaseRequirement(
             files=common,

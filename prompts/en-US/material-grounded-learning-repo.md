@@ -50,6 +50,15 @@ Build the learning repository from the indexed user materials, not from a generi
 - After the material index and repository are created, do not stop after a file
   summary. Start the guided Day 1 session in chat unless the user explicitly
   requested scaffold-only mode.
+- Before or near Day 1, include the Freshness Notice from
+  `templates/{locale}/freshness_notice.md.template` whenever the repository has
+  `09_sources/freshness_log.md`, `09_sources/claims_to_verify.md`, material
+  freshness risk metadata, supplemental claims, high-stakes content, or
+  fast-changing content.
+- The notice must state the highest freshness risk, recommended review interval,
+  `09_sources/freshness_log.md`, `09_sources/claims_to_verify.md` when claims
+  require verification, and a no-web / no-retrieval disclaimer if current
+  sources were not verified.
 - The guided session must tell the learner they do not need to open the files
   first, include one small chat task, an answer template, completion criteria,
   and note that `progress.md` will be updated after completion.

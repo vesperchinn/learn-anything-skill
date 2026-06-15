@@ -1,0 +1,47 @@
+name: freshness_notice_contract
+description: Repository creation chat output must include a short Freshness Notice when freshness tracking exists.
+required_paths:
+  - SKILL.md
+  - templates/en-US/freshness_notice.md.template
+  - templates/zh-CN/freshness_notice.md.template
+  - core/prompts/en-US/init-repo.md
+  - core/prompts/zh-CN/init-repo.md
+  - core/prompts/en-US/full-workflow.md
+  - core/prompts/zh-CN/full-workflow.md
+  - prompts/en-US/start-guided-session.md
+  - prompts/zh-CN/start-guided-session.md
+  - prompts/en-US/material-grounded-learning-repo.md
+  - prompts/zh-CN/material-grounded-learning-repo.md
+  - evals/en-US/freshness_notice_cases.yaml
+  - evals/zh-CN/freshness_notice_cases.yaml
+  - README.md
+  - README.zh-CN.md
+required_terms:
+  - Freshness Notice
+  - 时效性提醒
+  - chat output
+  - 09_sources/freshness_log.md
+  - 09_sources/claims_to_verify.md
+  - recommended review interval
+  - no-web
+  - high-stakes
+required_risk_tiers:
+  - stable
+  - evolving
+  - high-risk
+forbidden_terms:
+  - guarantee information is fully accurate
+  - guaranteed fully accurate
+  - guaranteed accurate
+  - always current
+  - guaranteed latest
+  - fully verified
+  - real-time verified
+  - latest verified
+  - 保证信息完全准确
+  - 保证准确
+  - 完全可信
+  - 保证最新
+  - 已实时核查
+  - 已确认最新
+  - 永远有效

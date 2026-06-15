@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.2.3-beta] — 2026-06-15
+
+Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
+
+### Added
+- Freshness Notice in repository creation chat output, shown before Day 1 when freshness tracking exists.
+- Short, medium, and full Freshness Notice variants for stable, evolving, and high-risk / fast-changing domains.
+- Freshness Notice eval coverage for material-grounded learning, no-web / no-retrieval fallback, and latest/current-information traps.
+- Freshness Notice harness contract and checker.
+
+### Changed
+- High-risk or fast-changing topics now point learners to `09_sources/freshness_log.md` and, when verification is needed, `09_sources/claims_to_verify.md`.
+- Stable foundational subjects use a short notice so freshness tracking does not overwhelm Day 1 learning.
+- Material-grounded repository creation now keeps Freshness Notice visible while preserving user materials as primary sources and external context as Supplemental.
+
+### Validation
+- Freshness Notice check: passed.
+- Guided Learning Mode check: passed.
+- Full harness: `READY_WITH_WARNINGS`.
+- Harness warnings were reviewed and are mainly change-scope review warnings, not Freshness Notice behavior failures.
+- English behavior evals: passed.
+- Chinese behavior evals: passed.
+
 ## [0.2.2-beta] — 2026-06-12
 
 Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)

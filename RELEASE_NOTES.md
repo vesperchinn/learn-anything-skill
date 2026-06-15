@@ -1,48 +1,48 @@
-# v0.2.2-beta - Interactive Beginner Lesson UX Fix
+# v0.2.3-beta - Freshness Notice in Chat Output
 
-This release is a Guided Learning Mode beginner teaching experience fix.
-
-It improves the first Day 1 chat session for beginners, complete beginners,
-non-technical users, students, content creators, writers, marketers, teachers,
-and learners with no coding background.
+This release adds Freshness Notice visibility to the repository creation chat
+output.
 
 ## What changed
 
-- Day 1 no longer starts with 3 abstract concepts for beginner learners.
-- Interactive Beginner Lesson Mode now uses this structure:
-  - one plain-language core idea
-  - real user scenario
-  - worked example
-  - bad example and better example
-  - tiny task
-  - copyable reply template
-- The first beginner task asks for one small workflow step instead of a full
-  multi-step workflow.
-- Content creator examples now use content creation workflows.
-- English beginner behavior is aligned with the Chinese beginner behavior.
-- `README.md` and `README.zh-CN.md` now describe the beginner interactive
-  lesson flow.
-- English examples and eval coverage now include a complete beginner content
-  creation workflow scenario.
+- After a learning repository is created, the chat output now shows a Freshness
+  Notice before Day 1 when the repository has freshness tracking or freshness
+  risk metadata.
+- High-risk or fast-changing topics point learners to
+  `09_sources/freshness_log.md` and, when verification is needed,
+  `09_sources/claims_to_verify.md`.
+- Stable foundational subjects use a short notice, so freshness tracking is
+  visible without interrupting the first learning session.
+- Material-grounded learning keeps user-provided PDF / PPT materials as primary
+  sources, marks outside context as Supplemental, and routes unverifiable claims
+  to the verification checklist.
+
+## Eval and harness coverage
+
+- Added Freshness Notice eval cases for:
+  - material-grounded learning
+  - no-web / no-retrieval fallback
+  - latest API / pricing / policy / model trap cases
+- Added a Freshness Notice harness contract and checker.
+- The checker verifies:
+  - stable / evolving / high-risk notice variants
+  - no forced full verification checklist for stable foundational knowledge
+  - `claims_to_verify.md` for high-risk or fast-changing content
+  - creation summary -> Freshness Notice -> Day 1 order
+  - overclaiming phrases such as unsupported latest or fully verified claims
 
 ## Validation
 
+- Freshness Notice check: passed.
 - Guided Learning Mode check: passed.
 - Full harness: `READY_WITH_WARNINGS`.
-- Harness warnings were manually reviewed and confirmed not to be failures.
+- The remaining warnings were reviewed and are mainly change-scope review
+  warnings, not Freshness Notice behavior failures.
 - English behavior evals: passed.
 - Chinese behavior evals: passed.
 
-## Scaffold-only behavior
+## Reliability note
 
-Scaffold-only mode is unchanged. If the user only wants files, they can say:
-
-```text
-scaffold only
-```
-
-or:
-
-```text
-只创建项目，不要开始学习
-```
+Freshness Notice does not guarantee that generated content is current or fully
+accurate. It reduces risk by making freshness status visible, pointing to review
+logs, and recording claims that need authoritative verification.

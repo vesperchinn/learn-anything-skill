@@ -2,7 +2,7 @@
 
 **Mode**: Guided Learning Mode
 **Inputs**: `{project_path}`, `{domain}`, `{user_background}`, `{learning_goal}`, `{daily_time}`, `{duration}`, `{interface_language}`, `{locale}`
-**Context needed**: newly created learning repository, especially `TODAY.md`, `START_HERE.md`, `progress.md`, and `07_daily_review/day-01.md`
+**Context needed**: newly created learning repository, especially `TODAY.md`, `START_HERE.md`, `progress.md`, `07_daily_review/day-01.md`, `09_sources/freshness_log.md`, and `09_sources/claims_to_verify.md`
 
 ---
 
@@ -12,6 +12,11 @@ phrases listed in `SKILL.md`, such as "scaffold only" or "generate files only".
 
 Do not stop after file summary. Do not make opening local files the only first
 step. The repository is the long-term asset; the chat is today's classroom.
+If the repository includes freshness tracking or freshness risk metadata, show a
+Freshness Notice after the creation summary and before starting Day 1. Choose the
+notice length from `templates/{locale}/freshness_notice.md.template` based on
+freshness risk. The notice must not become longer or more prominent than the
+Day 1 beginner lesson.
 
 ## Required Response Format
 
@@ -21,10 +26,39 @@ one task, a copyable answer template, completion criteria, and a note that
 
 When Interactive Beginner Lesson Mode is active, use the fixed structure below.
 
+## Freshness Notice Strategy
+
+- Stable / low-risk domains: use the short Freshness Notice variant. Do not show
+  the full claims-to-verify block unless there are actual claims that require
+  verification. Example: "This project is mainly stable foundational knowledge.
+  Source and review notes are in `09_sources/freshness_log.md`."
+- Evolving / medium-risk domains: use the medium variant from
+  `templates/{locale}/freshness_notice.md.template`. Mention that the content
+  may change with tools or practice, include the recommended review interval,
+  and point to `09_sources/freshness_log.md`.
+- High-risk / fast-changing domains: use the full variant from
+  `templates/{locale}/freshness_notice.md.template`. Mention that the content
+  cannot rely only on model memory, recommend checking official or authoritative
+  sources before relying on it, point to `09_sources/freshness_log.md`, and point
+  to `09_sources/claims_to_verify.md`.
+- If the current agent did not verify current sources through web or retrieval,
+  state that time-sensitive content is not fully verified.
+- When the user asks for latest APIs, pricing, policies, or models, do not
+  present current information as verified to the newest version unless explicit
+  web or retrieval sources were used.
+
 ## Beginner Day 1 Output Structure
 
 ````markdown
 Created learning project: {project_path}
+
+{Freshness Notice, selected by risk:
+
+- Stable foundational domains: one short sentence only, with `09_sources/freshness_log.md`.
+- Evolving domains: medium notice with review interval and `09_sources/freshness_log.md`.
+- High-risk / fast-changing domains: full notice with `09_sources/freshness_log.md`, `09_sources/claims_to_verify.md`, and source-status disclaimer.
+
+Do not include the full claims-to-verify block for stable foundational domains unless actual verification-needed claims exist.}
 
 You do not need to open the files first. We will understand Day 1 here.
 

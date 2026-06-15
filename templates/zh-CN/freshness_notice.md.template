@@ -1,0 +1,25 @@
+# 时效性提醒
+
+这个学习项目包含 {{freshness_risk_label}} 的内容。
+
+- 整体时效状态：{{source_status}}
+- 最高时效风险：{{highest_freshness_risk}}
+- 建议复查周期：{{recommended_review_interval}}
+- 详细记录：`{{freshness_log_path}}`
+- 待核查内容：`{{claims_to_verify_path}}`
+
+{{verification_disclaimer}}
+
+## 简短版本
+
+### 低风险 / 稳定知识
+
+本项目主要是稳定基础知识。详细来源和复查记录见 `{{freshness_log_path}}`。
+
+### 中风险 / 演变中领域
+
+本项目包含会随工具和实践演变的内容，建议每 {{recommended_review_interval}} 复查一次。详细记录见 `{{freshness_log_path}}`。
+
+### 高风险 / 快速变化领域
+
+本项目包含高时效性内容，不能只依赖模型记忆。建议学习前优先核查官方或权威来源。详细复查记录见 `{{freshness_log_path}}`，待核查内容见 `{{claims_to_verify_path}}`。

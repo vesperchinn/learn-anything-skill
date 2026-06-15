@@ -1,0 +1,25 @@
+# Freshness Notice
+
+This learning project contains {{freshness_risk_label}} content.
+
+- Overall freshness status: {{source_status}}
+- Highest freshness risk: {{highest_freshness_risk}}
+- Recommended review interval: {{recommended_review_interval}}
+- Detailed log: `{{freshness_log_path}}`
+- Claims to verify: `{{claims_to_verify_path}}`
+
+{{verification_disclaimer}}
+
+## Short Variants
+
+### Low-risk / Stable
+
+This project is mainly stable foundational knowledge. Source and review notes are in `{{freshness_log_path}}`.
+
+### Medium-risk / Evolving
+
+This project includes content that may evolve with tools or practice. Review every {{recommended_review_interval}}. Detailed notes are in `{{freshness_log_path}}`.
+
+### High-risk / Fast-changing
+
+This project includes high-freshness-risk content and should not rely only on model memory. Check official or authoritative sources before relying on it. Detailed review notes are in `{{freshness_log_path}}`; claims needing verification are in `{{claims_to_verify_path}}`.

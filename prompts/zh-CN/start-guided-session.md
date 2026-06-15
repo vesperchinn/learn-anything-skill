@@ -2,24 +2,41 @@
 
 **模式**：Guided Learning Mode / 陪跑学习模式
 **输入**：`{project_path}`、`{domain}`、`{user_background}`、`{learning_goal}`、`{daily_time}`、`{duration}`、`{interface_language}`、`{locale}`
-**需要上下文**：刚创建的学习仓库，尤其是 `TODAY.md`、`START_HERE.md`、`progress.md` 和 `07_daily_review/day-01.md`
+**需要上下文**：刚创建的学习仓库，尤其是 `TODAY.md`、`START_HERE.md`、`progress.md`、`07_daily_review/day-01.md`、`09_sources/freshness_log.md` 和 `09_sources/claims_to_verify.md`
 
 ---
 
 创建学习仓库后，除非用户明确说“只创建项目”“不要开始学习”“scaffold only”或“generate files only”，否则必须立刻在对话里开始第 1 天。
 
 不要只列文件清单后停止。不要把“打开本地文件”作为唯一第一步。文件是长期资产，对话才是今天的课堂。
+如果仓库包含时效性跟踪或时效性风险元数据，必须在创建摘要后、第 1 天前显示“时效性提醒”。根据时效风险从 `templates/{locale}/freshness_notice.md.template` 选择提醒长度。提醒不能压过第 1 天小白教学。
 
 ## 必须使用的输出格式
 
 普通学习者可以使用常规陪跑结构：第 1 天目标、最先需要理解的概念、一个小任务、可复制答题模板、完成标准，以及用户回复后更新 `progress.md` 的说明。
 
-当启用 Interactive Beginner Lesson Mode / 小白交互式教学模式时，必须使用下面的固定结构。
+当启用 Interactive Beginner Lesson Mode / 陪跑式教学模式时，必须使用下面的固定结构。
+
+## 时效性提醒策略
+
+- 稳定 / 低风险领域：对于稳定基础知识，只使用一句话短提醒。除非确实存在待核查内容，否则不要默认展示完整 `claims_to_verify.md` 提醒。示例：“本项目主要是稳定基础知识。详细来源和复查记录见 `09_sources/freshness_log.md`。”
+- 演变中 / 中风险领域：使用 `templates/{locale}/freshness_notice.md.template` 中的中等提醒版本。说明内容会随工具或实践变化，包含建议复查周期，并指向 `09_sources/freshness_log.md`。
+- 高风险 / 快速变化领域：使用 `templates/{locale}/freshness_notice.md.template` 中的完整提醒版本。说明不能只依赖模型记忆，建议学习前优先核查官方或权威来源，并指向 `09_sources/freshness_log.md` 和 `09_sources/claims_to_verify.md`。
+- 如果当前 Agent 没有通过联网或检索核查当前来源，必须说明时效性内容未完成实时核查。
+- 当用户询问最新 API、价格、政策或模型时，除非明确使用了联网或检索来源，否则不要把当前信息说成已经核对到最新版本。
 
 ## Beginner Day 1 Output Structure
 
 ````markdown
 已创建学习项目：{project_path}
+
+{按风险选择时效性提醒：
+
+- 稳定基础知识：只用一句话短提醒，并指向 `09_sources/freshness_log.md`。
+- 演变中领域：使用中等提醒，包含建议复查周期和 `09_sources/freshness_log.md`。
+- 高风险 / 快速变化领域：使用完整提醒，包含 `09_sources/freshness_log.md`、`09_sources/claims_to_verify.md` 和来源状态说明。
+
+稳定基础知识除非确实存在待核查内容，否则不要默认展示完整待核查清单。}
 
 你不用先打开文件。我们先在这里把第 1 天学明白。
 
@@ -66,9 +83,9 @@
 请直接把模板填好发给我。
 ````
 
-## Interactive Beginner Lesson Mode / 小白交互式教学模式
+## Interactive Beginner Lesson Mode / 陪跑式教学模式
 
-当用户背景包含以下任一信号时启用：beginner、non-technical、student、技术小白、小白、初学者、学生、非技术用户、内容创作者、自媒体、运营、老师。
+当用户背景包含以下任一信号时启用：beginner、non-technical、student、零基础、初学者、学生、非技术用户、内容创作者、自媒体、运营、老师，或明确表示希望快速入门。
 
 - 第一次陪跑必须在对话里自包含完成。
 - 不依赖用户先打开 Markdown 文件。

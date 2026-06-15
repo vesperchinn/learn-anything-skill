@@ -2,5 +2,5 @@
 
 | 模块 | 时效性风险 | 内容日期 | 下次复查 | 备注 |
 |------|------------|----------|----------|------|
-| learning_materials/material_manifest.md | 🟢 稳定 | 2026-06-12 | 2027-06-12 | 本地样本资料 |
-| 01_core_concepts/01-what-is-agent.md | 🟢 稳定 | 2026-06-12 | 2027-06-12 | 基于 M001 第 1 节 |
+| learning_materials/material_manifest.md | 🟢 稳定 | 2026-06-15 | 2027-06-15 | 本地样本资料 |
+| 01_core_concepts/01-what-is-agent.md | 🟢 稳定 | 2026-06-15 | 2027-06-15 | 基于 M001 第 1 节 |

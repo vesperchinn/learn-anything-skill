@@ -47,6 +47,8 @@
 - 如果视觉内容重要但无法提取，相关模块标记为 `Partially grounded`。
 - 来自资料的主张必须可在 `09_sources/claim_ledger.md` 中审计。
 - 资料索引和学习仓库创建完成后，不得只输出文件清单后停止。除非用户明确要求 scaffold-only，否则必须立刻在聊天里开始第 1 天陪跑学习。
+- Day 1 前后必须根据 `templates/{locale}/freshness_notice.md.template` 输出“时效性提醒”，适用于仓库包含 `09_sources/freshness_log.md`、`09_sources/claims_to_verify.md`、资料时效性风险元数据、外部补充主张、高风险内容或快速变化内容的情况。
+- 提醒必须说明最高时效风险、建议复查周期、`09_sources/freshness_log.md`，有待核查主张时说明 `09_sources/claims_to_verify.md`；如果没有完成联网或实时检索核查，必须说明当前内容未完成实时核查。
 - 陪跑学习必须告诉学习者不用先翻文件，包含一个聊天小任务、作答模板、完成标准，并说明完成后会更新 `progress.md`。
 
 生成的学习模块末尾必须包含标准来源注释和时效性尾部。

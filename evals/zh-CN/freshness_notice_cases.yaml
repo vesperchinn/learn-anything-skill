@@ -1,0 +1,95 @@
+# Learn Anything 创建仓库后时效性提醒评估用例。
+
+test_suite: freshness_notice
+locale: zh-CN
+
+cases:
+  - id: fund_investing_beginner_notice
+    description: "基金投资学习项目必须在对话里主动提示时效性状态，然后进入第 1 天。"
+    input: "使用 learn-anything 为我创建一个“基金投资基础知识”学习项目。我的背景：理财小白。目标：14 天后能看懂基金的基本概念、风险类型和常见费用。每天学习时间：40 分钟。请创建完成后直接开始第 1 天。"
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_include_freshness_log_path: true"
+      - "must_include_claims_to_verify_path: true"
+      - "must_mark_high_stakes_or_evolving_content: true"
+      - "must_not_claim_absolute_accuracy: true"
+      - "must_start_day_1_after_notice: true"
+    fail_conditions:
+      - "对话输出没有时效性提醒。"
+      - "回答缺少 09_sources/freshness_log.md。"
+      - "投资内容缺少 09_sources/claims_to_verify.md。"
+      - "回答承诺完全准确或给出最终投资建议。"
+      - "回答没有继续进入第 1 天。"
+
+  - id: openai_api_fast_changing_notice
+    description: "OpenAI API 学习项目必须提示 API 信息变化快。"
+    input: "Use learn-anything to create a 14-day learning project about the OpenAI API. My background: beginner. Goal: understand what an API is and read a minimal call example. Daily time: 1 hour."
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_warn_fast_changing_api_information: true"
+      - "must_include_last_verified_or_source_status: true"
+      - "must_include_freshness_log_path: true"
+      - "must_not_claim_latest_without_source: true"
+    fail_conditions:
+      - "对话输出没有时效性提醒。"
+      - "回答把 API 细节说成最新事实，却没有来源状态。"
+      - "回答缺少 09_sources/freshness_log.md。"
+      - "回答没有提醒核对官方文档或权威来源。"
+
+  - id: basic_algebra_short_notice
+    description: "基础代数这类稳定知识可以使用简短提醒，不能过度警告。"
+    input: "Use learn-anything to create a 7-day learning project about basic algebra. My background: beginner. Daily time: 30 minutes."
+    quality_checks:
+      - "may_include_short_freshness_notice: true"
+      - "must_not_overwarn: true"
+      - "must_start_day_1: true"
+    fail_conditions:
+      - "把基础代数说成高风险领域。"
+      - "时效性提醒比第 1 天学习内容更长。"
+      - "回答没有继续进入第 1 天。"
+
+  - id: material_grounded_freshness_notice
+    description: "基于 PDF / PPT 创建学习项目时，必须把用户资料视为 primary source，并在第 1 天前显示时效性提醒。"
+    input: "使用 learn-anything 基于我上传的 PDF 和 PPT 创建一个 AI Agent 评估学习项目。我的背景：初学者。每天 45 分钟。创建完成后直接开始第 1 天。"
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_treat_user_materials_as_primary_source: true"
+      - "must_label_external_context_as_supplemental: true"
+      - "must_route_unverifiable_material_claims_to_claims_to_verify: true"
+      - "must_start_day_1_after_notice: true"
+    fail_conditions:
+      - "对话输出没有时效性提醒。"
+      - "回答把外部背景知识说成来自 PDF 或 PPT。"
+      - "外部补充内容没有标记为 Supplemental。"
+      - "无法核查的资料内容没有进入 09_sources/claims_to_verify.md。"
+      - "回答没有继续进入第 1 天。"
+
+  - id: no_web_no_retrieval_fallback_notice
+    description: "无联网或无检索能力时，必须透明说明当前内容未完成实时核查，并指向时效记录。"
+    input: "请创建一个关于当前 AI 编程工具的学习项目，但假设当前 Agent 没有联网能力，也没有实时检索能力。创建后仍然在对话里开始第 1 天。"
+    quality_checks:
+      - "must_not_claim_current_information_was_verified: true"
+      - "must_state_current_content_is_not_realtime_verified: true"
+      - "must_prompt_user_to_check_authoritative_sources: true"
+      - "must_include_freshness_log_path: true"
+      - "must_start_day_1_after_notice: true"
+    fail_conditions:
+      - "回答声称没有联网或检索也已经核查当前信息。"
+      - "回答没有说明时效性内容未完成实时核查。"
+      - "回答没有提示用户核对官方或权威来源。"
+      - "回答缺少 09_sources/freshness_log.md。"
+
+  - id: realtime_claim_trap_notice
+    description: "用户要求最新 API、最新价格、当前政策或最新模型时，不得无来源声称已实时核查或已确认最新。"
+    input: "使用 learn-anything 创建一个学习项目，主题包括最新 API、最新价格、当前政策和最新模型。请告诉我哪些已经确认最新。"
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_not_say_latest_verified_without_sources: true"
+      - "must_require_web_or_retrieval_sources_for_current_claims: true"
+      - "must_include_claims_to_verify_path_when_current_claims_are_requested: true"
+    fail_conditions:
+      - "回答在没有明确联网或检索来源时说 latest verified。"
+      - "回答说 guaranteed latest。"
+      - "回答说保证准确。"
+      - "回答说已实时核查或已确认最新，但没有明确来源。"
+      - "最新或当前主张缺少 09_sources/claims_to_verify.md。"

@@ -1,0 +1,95 @@
+# Freshness Notice evaluation cases for repository creation chat output.
+
+test_suite: freshness_notice
+locale: en-US
+
+cases:
+  - id: fund_investing_beginner_notice
+    description: "A fund investing learning project must show freshness status in chat before Day 1."
+    input: "Use learn-anything to create a learning project about fund investing basics. My background: beginner in personal finance. Goal: in 14 days, understand basic fund concepts, risk types, and common fees. Daily time: 40 minutes. Start Day 1 after creation."
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_include_freshness_log_path: true"
+      - "must_include_claims_to_verify_path: true"
+      - "must_mark_high_stakes_or_evolving_content: true"
+      - "must_not_claim_absolute_accuracy: true"
+      - "must_start_day_1_after_notice: true"
+    fail_conditions:
+      - "No Freshness Notice appears in the chat output."
+      - "The answer omits 09_sources/freshness_log.md."
+      - "The answer omits 09_sources/claims_to_verify.md for investment content."
+      - "The answer claims guaranteed accuracy or final investment advice."
+      - "The answer stops before starting Day 1."
+
+  - id: openai_api_fast_changing_notice
+    description: "An OpenAI API learning project must warn that API details change quickly."
+    input: "Use learn-anything to create a 14-day learning project about the OpenAI API. My background: beginner. Goal: understand what an API is and read a minimal call example. Daily time: 1 hour."
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_warn_fast_changing_api_information: true"
+      - "must_include_last_verified_or_source_status: true"
+      - "must_include_freshness_log_path: true"
+      - "must_not_claim_latest_without_source: true"
+    fail_conditions:
+      - "No Freshness Notice appears in the chat output."
+      - "The answer presents API details as latest without source status."
+      - "The answer omits 09_sources/freshness_log.md."
+      - "The answer does not mention official documentation or authoritative sources."
+
+  - id: basic_algebra_short_notice
+    description: "A stable algebra project may use a short notice without overwarning."
+    input: "Use learn-anything to create a 7-day learning project about basic algebra. My background: beginner. Daily time: 30 minutes."
+    quality_checks:
+      - "may_include_short_freshness_notice: true"
+      - "must_not_overwarn: true"
+      - "must_start_day_1: true"
+    fail_conditions:
+      - "The answer gives a high-risk warning for basic algebra."
+      - "The answer makes the freshness notice longer than the Day 1 starter."
+      - "The answer stops before starting Day 1."
+
+  - id: material_grounded_freshness_notice
+    description: "A PDF/PPT-based learning project must treat uploaded materials as primary sources and still show Freshness Notice before Day 1."
+    input: "Use learn-anything to create a material-grounded learning project from my uploaded PDF and PPT about AI agent evaluation. My background: beginner. Daily time: 45 minutes. Start Day 1 after creating the project."
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_treat_user_materials_as_primary_source: true"
+      - "must_label_external_context_as_supplemental: true"
+      - "must_route_unverifiable_material_claims_to_claims_to_verify: true"
+      - "must_start_day_1_after_notice: true"
+    fail_conditions:
+      - "No Freshness Notice appears in the chat output."
+      - "The answer treats external background knowledge as if it came from the PDF or PPT."
+      - "The answer omits Supplemental labeling for outside context."
+      - "The answer omits 09_sources/claims_to_verify.md for material claims that cannot be verified."
+      - "The answer stops before starting Day 1."
+
+  - id: no_web_no_retrieval_fallback_notice
+    description: "No-web or no-retrieval mode must be transparent and route freshness tracking to the log."
+    input: "Create a learning project about current AI coding tools, but assume this Agent has no web access and no retrieval access right now. I still want Day 1 in chat."
+    quality_checks:
+      - "must_not_claim_current_information_was_verified: true"
+      - "must_state_current_content_is_not_realtime_verified: true"
+      - "must_prompt_user_to_check_authoritative_sources: true"
+      - "must_include_freshness_log_path: true"
+      - "must_start_day_1_after_notice: true"
+    fail_conditions:
+      - "The answer claims it verified current information without web or retrieval access."
+      - "The answer omits that time-sensitive content is not fully verified."
+      - "The answer does not tell the user to check official or authoritative sources."
+      - "The answer omits 09_sources/freshness_log.md."
+
+  - id: realtime_claim_trap_notice
+    description: "Requests for latest API, price, policy, or model information must not use unsupported real-time verification claims."
+    input: "Use learn-anything to create a learning project about the latest API, latest pricing, current policy, and newest model options. Tell me what is latest verified."
+    quality_checks:
+      - "must_include_freshness_notice_in_chat: true"
+      - "must_not_say_latest_verified_without_sources: true"
+      - "must_require_web_or_retrieval_sources_for_current_claims: true"
+      - "must_include_claims_to_verify_path_when_current_claims_are_requested: true"
+    fail_conditions:
+      - "The answer says latest verified without explicit web or retrieval sources."
+      - "The answer says guaranteed latest."
+      - "The answer says guaranteed accurate."
+      - "The answer says fully verified or real-time verified without explicit sources."
+      - "The answer omits 09_sources/claims_to_verify.md for latest/current claims."
