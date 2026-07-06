@@ -1,7 +1,7 @@
 # Learn Anything Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.2--beta-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.4--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.zh-CN.md)
 
 A multilingual Agent Skill Pack that turns AI agents into guided learning coaches.
@@ -28,7 +28,7 @@ It can create:
 - final projects
 - guided Day 1 learning sessions
 
-Current release: **v0.2.2-beta**. See [release notes](./RELEASE_NOTES.md)
+Current release: **v0.2.4-beta**. See [release notes](./RELEASE_NOTES.md)
 and [roadmap](./ROADMAP.md).
 
 ## Why it exists

@@ -3,7 +3,7 @@
 > 把 AI Agent 从「问答机器」变成「领域学习工程师」——一条命令启动一个完整的学习项目。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.2--beta-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.4--beta-blue)](./CHANGELOG.md)
 [![Locales](https://img.shields.io/badge/locales-en--US_|_zh--CN-blue)](./README.md)
 
 [English](./README.md)
@@ -20,7 +20,7 @@
 - 最终完成一个可展示的最小项目
 - 基于自己的 PDF、PPT、Markdown、TXT、Word 文档和网页导出学习
 
-当前版本：**v0.2.2-beta**。详见 [release notes](./RELEASE_NOTES.md)
+当前版本：**v0.2.4-beta**。详见 [release notes](./RELEASE_NOTES.md)
 和 [roadmap](./ROADMAP.md)。
 
 ## 和直接问 ChatGPT 有什么不同？
