@@ -21,6 +21,7 @@ RULES = [
     ("scripts/", ["check_script_contract.py", "check_docs_consistency.py"]),
     ("docs/", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
     ("dist/", ["check_contracts.py", "check_release_readiness.py"]),
+    (".github/", ["check_release_readiness.py"]),
     ("harness/", ["check_contracts.py", "check_script_contract.py", "check_release_readiness.py"]),
     ("harness/scripts/", ["check_script_contract.py", "check_contracts.py"]),
     ("harness/contracts/", ["check_contracts.py"]),
