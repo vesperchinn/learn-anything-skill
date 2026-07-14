@@ -221,7 +221,7 @@ learn-anything-skill/
 ├── platforms/                  # 平台适配层（Coze / WorkBuddy / Trae / CodeBuddy 等）
 ├── dist/                       # 发行包清单和构建说明
 ├── prompts/                    # 基于资料学习的提示词
-├── skills/codex/               # Codex / Claude Code 原生 Skill
+├── skills/codex/               # 旧版 wrapper / 兼容文件
 ├── scripts/                    # 自动化脚本
 ├── evals/                      # 测试用例
 │   ├── en-US/                  #   英文测试
