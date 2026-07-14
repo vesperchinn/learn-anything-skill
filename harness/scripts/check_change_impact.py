@@ -28,6 +28,7 @@ RULES = [
     ("evals/", ["check_eval_coverage.py"]),
     ("README.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
     ("README.zh-CN.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
+    ("CHANGELOG.md", ["check_docs_consistency.py", "check_release_readiness.py"]),
     ("CONTRIBUTING.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
     ("CONTRIBUTING.zh-CN.md", ["check_docs_consistency.py", "check_locale_parity.py", "check_release_readiness.py"]),
 ]

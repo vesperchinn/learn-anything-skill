@@ -31,7 +31,7 @@ Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
 
 ## [0.2.3-beta] — 2026-06-15
 
-Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
+Release notes: [docs/release-notes-v0.2.3-beta.md](./docs/release-notes-v0.2.3-beta.md)
 
 ### Added
 - Freshness Notice in repository creation chat output, shown before Day 1 when freshness tracking exists.
@@ -54,7 +54,7 @@ Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
 
 ## [0.2.2-beta] — 2026-06-12
 
-Release notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md)
+Release notes: [docs/release-notes-v0.2.2-beta.md](./docs/release-notes-v0.2.2-beta.md)
 
 ### Fixed
 - Interactive Beginner Lesson UX Fix for Guided Learning Mode.
