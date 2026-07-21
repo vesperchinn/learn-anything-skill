@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="520" viewBox="0 0 1200 520"
+     role="img" aria-labelledby="title desc">
+  <title id="title">一条需求变成一套学习系统</title>
+  <desc id="desc">真实学习需求会变成包含领域地图、今日课程、进度记录、来源记录和第 1 天对话陪跑的学习仓库。</desc>
+
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FAFD"/>
+      <stop offset="1" stop-color="#EEF3F9"/>
+    </linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#8EA0B8" opacity="0.15"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="520" rx="28" fill="url(#paper)"/>
+  <rect width="1200" height="520" rx="28" fill="url(#dots)"/>
+  <rect x="1" y="1" width="1198" height="518" rx="27" fill="none" stroke="#D9E2EE" stroke-width="2"/>
+
+  <g id="heading" transform="translate(56 46)">
+    <text font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16"
+          font-weight="750" letter-spacing="2.4" fill="#0F8F83">真实产物 · 第一节课</text>
+    <text y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="42" font-weight="700" letter-spacing="-1" fill="#101827">一条需求，变成一套学得下去的系统。</text>
+  </g>
+
+  <g id="user-prompt" transform="translate(56 132)">
+    <rect x="8" y="10" width="404" height="260" rx="22" fill="#AAB8C9" opacity="0.25"/>
+    <rect width="404" height="260" rx="22" fill="#0B1628"/>
+    <circle cx="30" cy="30" r="5" fill="#F7B955"/>
+    <circle cx="48" cy="30" r="5" fill="#2DD4BF"/>
+    <text x="24" y="69" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+          font-size="16" font-weight="700" letter-spacing="2" fill="#7E92AE">你只要说</text>
+    <text x="24" y="111" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="28" font-weight="700" fill="#F7FAFC">「我想学习</text>
+    <text x="24" y="146" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="28" font-weight="700" fill="#F7FAFC">AI Agent。」</text>
+    <text x="24" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+          font-size="18" fill="#9FB0C8">零基础 · 14 天 · 每天 1 小时</text>
+    <rect x="24" y="211" width="228" height="32" rx="16" fill="#143C43"/>
+    <text x="138" y="233" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+          font-size="15" font-weight="700" fill="#67E8D6">一条消息就够了</text>
+  </g>
+
+  <g id="route" fill="none" stroke-linecap="round">
+    <path d="M482 261H585" stroke="#B9C6D6" stroke-width="4"/>
+    <path d="M563 242L585 261L563 280" stroke="#2DD4BF" stroke-width="5"/>
+    <circle cx="506" cy="261" r="7" fill="#F7B955" stroke="#F8FAFD" stroke-width="4"/>
+    <circle cx="544" cy="261" r="7" fill="#2DD4BF" stroke="#F8FAFD" stroke-width="4"/>
+  </g>
+
+  <g id="learning-repo" transform="translate(612 112)">
+    <rect x="8" y="10" width="532" height="300" rx="22" fill="#AAB8C9" opacity="0.25"/>
+    <rect width="532" height="300" rx="22" fill="#FFFFFF" stroke="#D9E2EE" stroke-width="1.5"/>
+    <text x="26" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+          font-size="16" font-weight="750" letter-spacing="2" fill="#64748B">学习仓库已创建</text>
+    <rect x="412" y="18" width="94" height="30" rx="15" fill="#DDF8F4"/>
+    <text x="459" y="39" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+          font-size="14" font-weight="750" fill="#0F766E">可以开始</text>
+
+    <g transform="translate(24 66)">
+      <rect width="484" height="48" rx="12" fill="#F3F6FA"/>
+      <rect width="6" height="48" rx="3" fill="#2DD4BF"/>
+      <text x="24" y="31" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="20" font-weight="700" fill="#101827">00_domain_map.md</text>
+      <text x="460" y="31" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+            font-size="18" fill="#64748B">看清领域全貌</text>
+    </g>
+    <g transform="translate(24 122)">
+      <rect width="484" height="48" rx="12" fill="#F3F6FA"/>
+      <rect width="6" height="48" rx="3" fill="#F7B955"/>
+      <text x="24" y="31" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="20" font-weight="700" fill="#101827">TODAY.md</text>
+      <text x="460" y="31" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+            font-size="18" fill="#64748B">今天只做一小步</text>
+    </g>
+    <g transform="translate(24 178)">
+      <rect width="484" height="48" rx="12" fill="#F3F6FA"/>
+      <rect width="6" height="48" rx="3" fill="#6C7FF8"/>
+      <text x="24" y="31" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="20" font-weight="700" fill="#101827">progress.md</text>
+      <text x="460" y="31" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+            font-size="18" fill="#64748B">薄弱点不会丢</text>
+    </g>
+    <g transform="translate(24 234)">
+      <rect width="484" height="48" rx="12" fill="#F3F6FA"/>
+      <rect width="6" height="48" rx="3" fill="#F17884"/>
+      <text x="24" y="31" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="20" font-weight="700" fill="#101827">09_sources/</text>
+      <text x="460" y="31" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+            font-size="18" fill="#64748B">来源和时效可追踪</text>
+    </g>
+  </g>
+
+  <g id="day-one" transform="translate(174 440)">
+    <rect width="852" height="58" rx="18" fill="#102D33"/>
+    <rect x="14" y="12" width="92" height="34" rx="11" fill="#2DD4BF"/>
+    <text x="60" y="35" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+          font-size="16" font-weight="800" fill="#07111F">DAY 01</text>
+    <text x="128" y="36" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="20" font-weight="650" fill="#F7FAFC">讲清一个概念 → 示范一次 → 给一个小任务 → 检查你的回答</text>
+  </g>
+</svg>

@@ -1,56 +1,99 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="1200" height="460" viewBox="0 0 1200 460"
+     width="1200" height="430" viewBox="0 0 1200 430"
      role="img" aria-labelledby="title desc">
   <title id="title">Learn Anything Skill Pack</title>
-  <desc id="desc">Learn Anything：把 AI Agent 变成陪跑式学习教练。海报式 hero，右侧为项目真实产物纸片拼贴——知识地图、进度记录与 Day 1 陪跑印章。</desc>
+  <desc id="desc">一条陪跑学习路线，把一个目标变成结构化学习仓库、第 1 天对话课程和持续进度闭环。</desc>
 
   <defs>
-    <pattern id="grain" width="14" height="14" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.2" fill="#1E2421" opacity="0.055"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111F"/>
+      <stop offset="1" stop-color="#101D36"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#F7B955"/>
+    </linearGradient>
+    <pattern id="map-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#9FB0C8" stroke-width="1" opacity="0.08"/>
     </pattern>
   </defs>
 
-  <rect width="1200" height="460" rx="26" fill="#F6EFE2"/>
-  <rect width="1200" height="460" rx="26" fill="url(#grain)"/>
-  <rect x="1" y="1" width="1198" height="458" rx="25" fill="none" stroke="#DED2BA" stroke-width="2"/>
+  <rect width="1200" height="430" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="430" rx="28" fill="url(#map-grid)"/>
+  <rect x="1" y="1" width="1198" height="428" rx="27" fill="none" stroke="#263752" stroke-width="2"/>
 
-  <!-- 眉头 -->
-  <rect x="64" y="60" width="16" height="16" fill="#E8A33D"/>
-  <text x="92" y="75" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" letter-spacing="5" fill="#6E675A">AGENT SKILL PACK · 开源学习系统</text>
+  <g id="title-block" transform="translate(62 54)">
+    <rect width="14" height="14" rx="4" fill="#2DD4BF"/>
+    <text x="28" y="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+          font-size="16" font-weight="700" letter-spacing="2.8" fill="#9FB0C8">开源 · AGENT SKILL</text>
 
-  <!-- 巨型堆叠标题 -->
-  <text x="60" y="212" font-family="Georgia, 'Songti SC', serif" font-size="132" font-weight="700" fill="#1E2421">Learn</text>
-  <rect x="56" y="252" width="588" height="80" fill="#E8A33D"/>
-  <text x="60" y="320" font-family="Georgia, 'Songti SC', serif" font-size="132" font-weight="700" fill="#1E2421">Anything</text>
+    <text x="0" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="72" font-weight="650" letter-spacing="-2" fill="#F7FAFC">Learn</text>
+    <text x="0" y="190" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="72" font-weight="650" letter-spacing="-2" fill="#F7FAFC">Anything<tspan fill="#2DD4BF">.</tspan></text>
 
-  <!-- 一句话价值 -->
-  <text x="64" y="392" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="23" fill="#3A4148">把 AI Agent 变成陪跑式学习教练。</text>
-  <text x="64" y="428" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#6E675A">MIT · v0.2.4-beta · en-US / zh-CN · 10+ Agent 平台</text>
+    <text x="2" y="242" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="25" font-weight="600" fill="#DCE6F4">把一个目标，变成一套学得下去的系统。</text>
+    <text x="2" y="278" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="22" fill="#9FB0C8">仓库搭好，第 1 天直接在对话里开始。</text>
 
-  <!-- 真实产物纸片拼贴 -->
-  <g transform="rotate(-2.5 930 130)">
-    <rect x="751" y="70" width="370" height="132" rx="10" fill="#1E2421" opacity="0.07"/>
-    <rect x="745" y="64" width="370" height="132" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
-    <text x="769" y="96" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="700" fill="#C77F22">00_domain_map.md</text>
-    <text x="769" y="124" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#6E675A">├── 01_core_concepts/</text>
-    <text x="769" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#6E675A">├── 06_quizzes/</text>
-    <text x="769" y="176" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#6E675A">└── 09_sources/</text>
+    <g transform="translate(0 316)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+      <rect width="126" height="34" rx="17" fill="#14243F" stroke="#2D4262"/>
+      <text x="63" y="22" text-anchor="middle" fill="#DCE6F4">v0.2.4-beta</text>
+      <rect x="138" width="112" height="34" rx="17" fill="#14243F" stroke="#2D4262"/>
+      <text x="194" y="22" text-anchor="middle" fill="#DCE6F4">中文 / EN</text>
+      <rect x="262" width="68" height="34" rx="17" fill="#14243F" stroke="#2D4262"/>
+      <text x="296" y="22" text-anchor="middle" fill="#DCE6F4">MIT</text>
+    </g>
   </g>
 
-  <g transform="rotate(2 970 270)">
-    <rect x="796" y="206" width="365" height="140" rx="10" fill="#1E2421" opacity="0.07"/>
-    <rect x="790" y="200" width="365" height="140" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
-    <text x="814" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="700" fill="#1E2421">progress.md</text>
-    <text x="814" y="260" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#2E6B4F">✓ 第 1 天 · 基础概念</text>
-    <text x="814" y="286" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#2E6B4F">✓ 第 2 天 · 单步检验</text>
-    <text x="814" y="312" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#9A937F">☐ 第 3 天 · 阶段测试</text>
-  </g>
+  <g id="learning-route">
+    <path d="M716 100 C804 112 757 188 842 205 C926 222 873 299 972 327"
+          fill="none" stroke="url(#route)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="716" cy="100" r="8" fill="#2DD4BF" stroke="#07111F" stroke-width="5"/>
+    <circle cx="842" cy="205" r="8" fill="#77E2D4" stroke="#07111F" stroke-width="5"/>
+    <circle cx="972" cy="327" r="8" fill="#F7B955" stroke="#07111F" stroke-width="5"/>
 
-  <!-- DAY 01 印章 -->
-  <g transform="rotate(-6 850 385)">
-    <rect x="758" y="358" width="190" height="66" rx="8" fill="#1E2421" opacity="0.10"/>
-    <rect x="752" y="352" width="190" height="66" rx="8" fill="#2E6B4F"/>
-    <text x="847" y="384" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="27" font-weight="700" fill="#F6EFE2" text-anchor="middle">DAY 01</text>
-    <text x="847" y="406" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2" fill="#BFD4C8" text-anchor="middle">陪跑进行中</text>
+    <g id="goal-card" transform="translate(680 54)">
+      <rect x="7" y="8" width="430" height="92" rx="18" fill="#020814" opacity="0.55"/>
+      <rect width="430" height="92" rx="18" fill="#12213A" stroke="#2C4568" stroke-width="1.5"/>
+      <rect x="22" y="23" width="40" height="40" rx="12" fill="#163C45"/>
+      <text x="42" y="50" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="18" font-weight="700" fill="#2DD4BF">01</text>
+      <text x="82" y="32" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="15" font-weight="700" letter-spacing="1.8" fill="#8094B2">你的目标</text>
+      <text x="82" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+            font-size="22" font-weight="650" fill="#F7FAFC">「我想学 AI Agent」</text>
+    </g>
+
+    <g id="repo-card" transform="translate(736 166)">
+      <rect x="7" y="8" width="402" height="116" rx="18" fill="#020814" opacity="0.55"/>
+      <rect width="402" height="116" rx="18" fill="#F7FAFC"/>
+      <rect x="22" y="22" width="40" height="40" rx="12" fill="#DDF8F4"/>
+      <text x="42" y="49" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="18" font-weight="700" fill="#0F766E">02</text>
+      <text x="82" y="32" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="15" font-weight="700" letter-spacing="1.8" fill="#64748B">结构化学习仓库</text>
+      <text x="82" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+            font-size="20" font-weight="700" fill="#111827">地图 · 练习 · 来源记录</text>
+      <text x="82" y="91" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="17" fill="#64748B">TODAY.md  ·  progress.md</text>
+    </g>
+
+    <g id="day-one-card" transform="translate(650 302)">
+      <rect x="7" y="8" width="486" height="94" rx="18" fill="#020814" opacity="0.55"/>
+      <rect width="486" height="94" rx="18" fill="#142D34" stroke="#2DD4BF" stroke-width="1.5"/>
+      <rect x="22" y="22" width="88" height="38" rx="11" fill="#2DD4BF"/>
+      <text x="66" y="47" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="17" font-weight="800" fill="#07111F">DAY 01</text>
+      <text x="130" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="14" font-weight="700" letter-spacing="1.7" fill="#88A9A9">对话陪跑</text>
+      <text x="130" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
+            font-size="21" font-weight="650" fill="#F7FAFC">一个概念 · 一个任务 · 你的回答</text>
+      <text x="420" y="30" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+            font-size="15" fill="#F7B955">01 / 14</text>
+      <rect x="420" y="43" width="42" height="6" rx="3" fill="#29444A"/>
+      <rect x="420" y="43" width="12" height="6" rx="3" fill="#F7B955"/>
+    </g>
   </g>
 </svg>

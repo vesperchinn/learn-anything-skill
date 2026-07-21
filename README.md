@@ -1,232 +1,186 @@
-<p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="Learn Anything Skill Pack — turn any AI agent into a guided learning coach that builds a structured learning repository and starts Day 1 with you in the chat">
+<p align="right">
+  <strong>English</strong> · <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
 <p align="center">
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
-  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.2.4--beta-blue" alt="Version 0.2.4-beta"></a>
-  <a href="./README.zh-CN.md"><img src="https://img.shields.io/badge/locales-en--US_|_zh--CN-blue" alt="Locales: en-US and zh-CN"></a>
+  <img src="./assets/readme/hero.svg" width="100%" alt="Learn Anything Skill Pack turns one learning goal into a structured repository, a guided Day 1 conversation, and a progress loop">
 </p>
 
 <p align="center">
-  English · <a href="./README.zh-CN.md">中文说明</a>
+  <a href="#start-in-two-minutes"><strong>Quick start</strong></a> ·
+  <a href="#see-the-system-take-shape">See it work</a> ·
+  <a href="./examples/en-US/learn-ai-agent/">Example repo</a> ·
+  <a href="./docs/user-guide.md">User guide</a> ·
+  <a href="./RELEASE_NOTES.md">v0.2.4-beta</a>
 </p>
 
-A multilingual Agent Skill Pack that turns AI agents into guided learning coaches. Instead of one-off explanations or a dumped folder of Markdown files, the agent creates a structured learning repository for any subject — and immediately starts teaching Day 1 in the chat.
+**Learn Anything** is an open-source Agent Skill Pack for learning any subject with an AI agent. It creates a durable learning repository, starts teaching immediately in the conversation, and keeps the next lesson tied to your real progress.
 
-## See it in action
+## See the system take shape
 
-You type one message:
+<p align="center">
+  <img src="./assets/readme/proof.svg" width="100%" alt="A real learning request becomes a repository with a domain map, today's lesson, progress tracking, source records, and a guided Day 1 conversation">
+</p>
+
+Tell the agent what you want to learn, your background, your goal, and your available time:
 
 ```text
 Use learn-anything to create a learning project for "harness design".
-My background: complete beginner, no technical background.
-Goal: in 7 days, understand what a harness is and apply it to my content workflow.
+My background: complete beginner.
+Goal: understand the basics in 7 days and apply them to my content workflow.
 Daily time: 1 hour.
 ```
 
-The agent creates the learning repository — then starts teaching right in the conversation:
+The agent then:
 
-```text
-Created learning project: ./learn-harness
+- creates a domain map, lessons, exercises, quizzes, a final project, and source records;
+- writes `START_HERE.md` and `TODAY.md` so the next step is obvious;
+- starts Day 1 in the chat with one explanation, one example, and one small task;
+- checks your reply before updating `progress.md` and the next session.
 
-You do not need to open the files first. We will understand Day 1 here.
+See a [complete Day 1 transcript](./examples/en-US/guided-learning-session.md) or browse a [generated AI Agent learning repository](./examples/en-US/learn-ai-agent/).
 
-Today, learn just one sentence first:
-A harness is a repeatable way to run one workflow step
-and check whether the result is good enough.
+If you only want the files, add `scaffold only` or `generate files only`.
 
-I do:    one topic idea → three article titles, with a simple check.
-We do:   why "make my article better" is too broad to test.
-You do:  pick one small step from your own workflow, fill the template.
-```
+### Guided Learning Mode
 
-No files to open first. Day 1 happens in the chat, and your answer updates `progress.md`. Full transcript: [examples/en-US/guided-learning-session.md](./examples/en-US/guided-learning-session.md). A complete generated repository: [examples/en-US/learn-ai-agent/](./examples/en-US/learn-ai-agent/).
+You do not need to open the generated files first. Unless you ask for scaffold-only output, Day 1 starts immediately in the chat with a plain-language idea, a worked example, a small task, a copyable answer template, and a clear way to check your answer.
 
-If you only want the files, say `scaffold only` or `generate files only`.
+## Start in two minutes
 
-## How it works
-
-<p align="center">
-  <img src="./assets/readme/workflow.svg" width="100%" alt="How it works: say the subject in chat, the agent builds a structured learning repository, Day 1 starts in the conversation, and progress keeps looping with reviews and tests">
-</p>
-
-The pack is built on five learning systems:
-
-1. **Knowledge Map** — solves "I don't know what's in this field"
-2. **Glossary** — solves "I don't understand the terminology"
-3. **Exercise System** — solves "I thought I understood but I didn't"
-4. **Project System** — solves "I learned a lot but can't apply it"
-5. **Review System** — solves "I forgot it all and never fixed my mistakes"
-
-See [references/en-US/learning-principles.md](./references/en-US/learning-principles.md).
-
-## Quick start
-
-### 1. Install it where your agent can read it
+### 1. Put the Skill where your agent can read it
 
 ```bash
 git clone https://github.com/vesperchinn/learn-anything-skill.git
 cd learn-anything-skill
 ```
 
-Then connect it based on your agent:
+Open this directory in Codex, Claude Code, Cursor, Trae, or another file-capable agent. If your agent supports Skills directly, import this repository or place it in its Skills directory.
 
-- **Codex / Claude Code / Trae-style file agents**: open this directory or add it to the agent-readable workspace.
-- **Agents with Skill support**: import this repository as a Skill or place it in the Skills directory.
-- **Coze, WorkBuddy, CodeBuddy, and other Chinese agent platforms**: follow the adapter notes under `platforms/cn/`.
-- **Chat-only agents**: copy the prompts from this repository when direct installation is not available.
-
-### 2. Call it from the chat box
-
-> "harness design" is only an example. Replace it with the subject you actually want to learn — "Python", "nutrition", "photography", "English writing".
+### 2. Ask for your first learning project
 
 ```text
-Use learn-anything to create a learning project for "harness design".
+Use learn-anything to create a learning project for "Python".
 My background: beginner.
-My goal: understand the basics and build a small project in 14 days.
-Daily time: 1 hour.
+My goal: build a small automation in 14 days.
+Daily time: 45 minutes.
 ```
 
-Already have PDFs, slides, notes, or course material? Say:
+Already have PDFs, slides, notes, or course material? Use:
 
 ```text
 Use learn-anything to create a learning project from my materials.
 Prioritize the provided materials and mark anything that still needs verification.
 ```
 
-If your agent cannot call the Skill by name but can read files:
-
-```text
-Read learn-anything-skill/core/prompts/en-US/init-repo.md.
-Create a learning repository for "harness design".
-```
-
-### 3. Continue learning
+### 3. Continue from your saved progress
 
 ```text
 Continue with learn-anything. Read my progress and run today's learning session.
 ```
 
-```text
-Continue with learn-anything. Review what I learned today and update my progress.
-```
-
-```text
-Continue with learn-anything. Give me a stage test. Ask questions first, then grade after I answer.
-```
-
-### Optional: use the command line
+The command-line scaffold is also available:
 
 ```bash
 ./scripts/new-domain.sh "Your Subject" en-US
 ```
 
-See [docs/quick-start.md](./docs/quick-start.md) for the full guide.
+See the [quick-start guide](./docs/quick-start.md) for more installation paths and fallback instructions.
 
-## Why not just ask ChatGPT directly?
+## Why the learning keeps moving
 
-| Asking ChatGPT directly | Using Learn Anything Skill Pack |
-|------------------------|-------------------------------|
-| One-off conversations, knowledge doesn't stick | Everything is file-based, stored in a structured repository |
-| AI tends to output explanatory prose | Built-in exercise + quiz + project systems ensure hands-on practice |
-| No idea what you've learned or where you are | `progress.md` continuously tracks progress and weak points |
-| Reinvent the method for every new domain | One Skill Pack, reusable forever |
-| Wrong answer → "here's the right one" | Four-type error diagnosis → targeted remedial exercises |
-| AI may sound confident without sources | Knowledge Reliability Layer tracks sources, unverified claims, and freshness risk |
+<p align="center">
+  <img src="./assets/readme/workflow.svg" width="100%" alt="The agent teaches one idea, gives a small task, checks the learner's answer, updates progress and weak points, then adapts the next session">
+</p>
 
-## What's in the pack
+New learners get a guided **I do → We do → You do** lesson instead of a long lecture. Every session has a concrete task and a visible completion standard. Stage tests revisit weak points, while `progress.md` and `progress-log.md` keep the learning state outside a disposable chat.
 
-### Guided Learning Mode
+| A one-off AI chat | Learn Anything |
+| --- | --- |
+| Explains a topic once | Builds a learning path you can resume |
+| Gives information before practice | Teaches, demonstrates, then asks you to try |
+| Forgets weak points between chats | Tracks progress, errors, and next steps in files |
+| Can sound certain without evidence | Records sources, freshness, and claims to verify |
 
-After creating the repository, the agent does not stop at a file summary — it starts Day 1 in the chat: today's goal, one beginner-friendly concept, one small task, a copyable answer template, and a way to check your own answer. Beginners get an interactive lesson format (I do → We do → You do). New projects include `START_HERE.md`, `TODAY.md`, and `07_daily_review/day-01.md` so the first step is always obvious.
+The method combines five systems: a **knowledge map**, **glossary**, **exercises**, a **final project**, and **review loops**. The rationale lives in [learning principles](./references/en-US/learning-principles.md).
 
-### Knowledge Reliability Layer
+## Learn from your own materials
 
-- **Source-first policy**: claims should be backed by primary or authoritative sources; the agent must not fabricate URLs, papers, or benchmark results.
-- **No source, no claim**: unsupported claims are marked `[unverified]` or moved to `09_sources/claims_to_verify.md`.
-- **Freshness risk**: each module is tagged 🟢 Stable, 🟡 Evolving, or 🔴 Volatile, with a recommended review interval printed as a freshness notice when the project is created.
-- **No-web fallback**: if the agent cannot browse, generated material is labeled **Unverified Draft** with a verification checklist.
-- **High-stakes domains**: medical, legal, financial, safety-critical, and certification content requires an educational-use-only notice and authoritative sources first.
+The material-grounded path works with PDFs, slides, Markdown, notes, manuals, and webpage exports.
 
-This reduces hallucination risk, but does not guarantee absolute correctness.
+- Your materials remain the primary source for the learning plan.
+- Outside knowledge is labeled `Supplemental` instead of being blended in silently.
+- `material_coverage_map.md` shows what is grounded, partial, or missing.
+- Unreadable charts, screenshots, and tables are recorded in `learning_materials/extraction_issues.md` instead of guessed.
 
-### Material-Grounded Learning Mode
+Keep confidential documents, personal data, paid course materials, and copyrighted books out of public learning repositories unless you have permission to store and transform them.
 
-Build the learning plan from your own PDFs, PPTs, Markdown files, notes, manuals, and exported webpages:
+## Reliability is part of the system
 
-1. Put original files in `learning_materials/raw/`, or tell the agent where they are.
-2. The agent registers and extracts the materials, then builds the map, plan, concepts, quizzes, and reviews from them.
-3. `material_coverage_map.md` shows which modules are grounded, partially grounded, or supplemental; outside knowledge is labeled `Supplemental`, and extraction failures are recorded instead of guessed.
+- **Source first:** no fabricated URLs, papers, dates, or benchmarks.
+- **No source, no claim:** unsupported material is marked `[unverified]` or moved to `09_sources/claims_to_verify.md`.
+- **Freshness visible:** every module records stability risk and a recommended review interval.
+- **Safe fallback:** without web access, the output is labeled **Unverified Draft** and includes a verification checklist.
+- **High-stakes caution:** medical, legal, financial, safety, cybersecurity, and certification topics require an educational-use notice and authoritative sources.
 
-**Privacy note**: keep confidential documents, paid course materials, and copyrighted books out of public learning repositories; remove personal data before extraction.
+This reduces hallucination risk; it does not guarantee absolute correctness.
 
-### Multilingual
+### Freshness Notice
 
-| Locale | Interface | Materials | Status |
-|--------|-----------|-----------|--------|
-| `en-US` | English | English | ✅ Complete |
-| `zh-CN` | 中文 | 中文 | ✅ Complete |
+When a learning repository is created, the chat includes a short **Freshness Notice** before Day 1. It shows the highest freshness risk, the recommended review interval, and where to find `09_sources/freshness_log.md`; fast-changing or high-risk projects also point to `09_sources/claims_to_verify.md`.
 
-`{interface_language}` and `{learning_language}` can be set independently — for example, chat in Chinese while building the learning repo in English. See [SKILL.md § Language and Locale Policy](./SKILL.md#language-and-locale-policy).
+## Multi-Platform Support
 
-### Multi-platform
-
-| Form | Target platforms | How it works |
+| Setup | Examples | What to use |
 | --- | --- | --- |
-| File-based agent / native Skill | Codex, Claude Code, Cursor, Trae | Reads `SKILL.md`, `core/`, `templates/`, `prompts/`, and `references/`; writes the learning repo and starts guided learning directly |
-| Platform package | Coze, WorkBuddy, CodeBuddy, generic low-code agents | Platform-specific prompts, knowledge-base packages, workflows, variables, and memory under `platforms/` |
-| Chat-only package | Ordinary chat agents | Copies the core protocols and outputs path-labeled Markdown blocks |
+| File-based agent / native Skill | Codex, Claude Code, Cursor, Trae | Repository root `SKILL.md` plus the included prompts, templates, and references |
+| Platform or knowledge-base workflow | Coze, WorkBuddy, CodeBuddy | Packages and platform notes under [`platforms/`](./platforms/) |
+| Chat-only agent | ChatGPT or any text-only assistant | Copyable prompts and path-labeled Markdown output |
 
-Low-code platform support is experimental in this beta; validate each adapter in your own workspace before relying on it. See [platforms/README.md](./platforms/README.md) and [platforms/capability-matrix.md](./platforms/capability-matrix.md).
+File access, web access, workflow support, and persistence differ by platform. Low-code adapters are experimental in this beta; review the [capability matrix](./platforms/capability-matrix.md) before relying on one.
 
-### Automation scripts
+English (`en-US`) and Simplified Chinese (`zh-CN`) are complete. Interface language and learning-material language can be set independently.
 
-Python tools in `scripts/`: cross-platform repo scaffolding (`init_learning_repo.py`), TOC generation (`generate_index.py`), Anki flashcard export (`export_flashcards.py`), locale-bleed detection (`validate_locale.py`), and reliability checks for unverified claims, stale modules, and source notes. Scaffolding scripts support `--dry-run` and refuse to overwrite an existing learning directory.
+## Inside the repository
 
-### Maintenance harness
+```text
+learn-anything-skill/
+├── SKILL.md        # Agent entry point and routing rules
+├── core/           # Core prompts and learning protocols
+├── templates/      # Complete learning-repository templates
+├── examples/       # Generated repositories and session transcripts
+├── prompts/        # Material-grounded learning workflows
+├── references/     # Learning and reliability methods
+├── adapters/       # Agent-specific setup guides
+├── platforms/      # Low-code and knowledge-base adapters
+├── scripts/        # Scaffolding and validation tools
+├── evals/          # Behavior checks
+└── harness/        # Read-only maintenance and release checks
+```
 
-A read-only guard layer for maintainers lives in [harness/](./harness/): it catches structure drift, locale mismatch, platform adapter gaps, and reliability-rule gaps before release. Run all checks with:
+### Documentation
+
+- [Quick start](./docs/quick-start.md) · [User guide](./docs/user-guide.md)
+- [Release notes](./RELEASE_NOTES.md) · [Roadmap](./ROADMAP.md) · [Changelog](./CHANGELOG.md)
+- Agent guides: [Codex](./adapters/codex.md) · [Claude Code](./adapters/claude-code.md) · [Cursor](./adapters/cursor.md) · [ChatGPT](./adapters/chatgpt.md) · [Generic](./adapters/generic-agent.md)
+
+## Maintenance Harness and contributing
+
+Run the repository's read-only release checks with:
 
 ```bash
 python3 harness/scripts/run_all_checks.py --root . --report
 ```
 
-## Repository layout
+Contributions are welcome: new adapters, templates, examples, tests, and prompt improvements. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a change.
 
+Inspired by [@GeekCatX](https://x.com/GeekCatX)'s article about using Codex to learn a new field quickly.
+
+## Start a new subject
+
+```text
+Use learn-anything to create a learning project for "the subject I want to learn".
 ```
-learn-anything-skill/
-├── SKILL.md          # Skill entry point (routing file for agents)
-├── core/             # Core prompts and platform-neutral protocols (en-US / zh-CN)
-├── templates/        # Learning repo templates
-├── references/       # Methodology references
-├── examples/         # Complete example repositories and session transcripts
-├── prompts/          # Material-grounded learning prompts
-├── adapters/         # Cross-agent adaptation guides
-├── platforms/        # Platform adapters (Coze / WorkBuddy / Trae / CodeBuddy …)
-├── scripts/          # Automation scripts
-├── harness/          # Maintenance checks for maintainers
-├── evals/            # Test suites
-└── docs/             # User documentation
-```
-
-## Documentation
-
-- [Quick start guide](./docs/quick-start.md) · [User guide](./docs/user-guide.md)
-- [Release notes](./RELEASE_NOTES.md) · [Roadmap](./ROADMAP.md) · [Changelog](./CHANGELOG.md)
-- Agent adapters: [Codex](./adapters/codex.md) · [Claude Code](./adapters/claude-code.md) · [Cursor](./adapters/cursor.md) · [ChatGPT](./adapters/chatgpt.md) · [Generic](./adapters/generic-agent.md)
-
-## Contributing
-
-Contributions welcome — new adapters, templates, examples, or prompt improvements. See [CONTRIBUTING.md](./CONTRIBUTING.md) or [CONTRIBUTING.zh-CN.md](./CONTRIBUTING.zh-CN.md).
-
-## Acknowledgments
-
-Inspired by [@GeekCatX](https://x.com/GeekCatX)'s article on using Codex to rapidly learn any field.
-
-<p align="center">
-  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="./assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
-</p>
 
 ## License
 
