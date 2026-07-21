@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="300" viewBox="0 0 1200 300"
+     role="img" aria-labelledby="title desc">
+  <title id="title">Learn Anything 的工作方式</title>
+  <desc id="desc">四张印刷纸片：说出主题、生成学习仓库、对话里上第 1 天课程、进度持续滚动。</desc>
+
+  <defs>
+    <pattern id="grain" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#1E2421" opacity="0.055"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="300" rx="26" fill="#F6EFE2"/>
+  <rect width="1200" height="300" rx="26" fill="url(#grain)"/>
+  <rect x="1" y="1" width="1198" height="298" rx="25" fill="none" stroke="#DED2BA" stroke-width="2"/>
+
+  <!-- 纸片 1 -->
+  <g transform="rotate(-1.8 179 144)">
+    <rect x="61" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="56" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <text x="76" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#C77F22">01</text>
+    <text x="76" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">说出主题</text>
+    <text x="76" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">一条消息讲清主题、</text>
+    <text x="76" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">背景、目标和时间</text>
+    <text x="76" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">在对话框里</text>
+  </g>
+
+  <text x="316" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#1E2421">→</text>
+
+  <!-- 纸片 2 -->
+  <g transform="rotate(1.5 469 144)">
+    <rect x="351" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="346" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <text x="366" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#C77F22">02</text>
+    <text x="366" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">生成学习仓库</text>
+    <text x="366" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">知识地图、计划、测验</text>
+    <text x="366" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">练习与进度文件</text>
+    <text x="366" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">00_domain_map.md</text>
+  </g>
+
+  <text x="606" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#1E2421">→</text>
+
+  <!-- 纸片 3 · DAY 01 印章 -->
+  <g transform="rotate(-1.5 759 144)">
+    <rect x="641" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="636" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <rect x="656" y="66" width="88" height="28" rx="6" fill="#2E6B4F"/>
+    <text x="700" y="85" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" fill="#F6EFE2" text-anchor="middle">DAY 01</text>
+    <text x="656" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">对话里上第 1 天</text>
+    <text x="656" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">示范 → 对比 → 你来做</text>
+    <text x="656" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">今天只完成一小步</text>
+    <text x="656" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">直接在对话里回复</text>
+  </g>
+
+  <text x="896" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#1E2421">→</text>
+
+  <!-- 纸片 4 -->
+  <g transform="rotate(1.8 1049 144)">
+    <rect x="931" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="926" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <text x="946" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#C77F22">04</text>
+    <text x="946" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">进度持续滚动</text>
+    <text x="946" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">每日复盘、阶段测试</text>
+    <text x="946" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">四类错误诊断</text>
+    <text x="946" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">07_daily_review/</text>
+  </g>
+
+  <text x="600" y="276" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#6E675A" text-anchor="middle">一个 Skill Pack · 任意领域 · 支持学自己的资料</text>
+</svg>
