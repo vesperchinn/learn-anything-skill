@@ -224,6 +224,10 @@ Contributions welcome — new adapters, templates, examples, or prompt improveme
 
 Inspired by [@GeekCatX](https://x.com/GeekCatX)'s article on using Codex to rapidly learn any field.
 
+<p align="center">
+  <a href="https://github.com/oil-oil/beautify-github-readme"><img src="./assets/readme/made-with-beautify.svg" width="300" alt="README made with beautify-github-readme"></a>
+</p>
+
 ## License
 
 MIT © 2026 Learn Anything Skill Pack Contributors

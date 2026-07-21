@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="420" height="64" viewBox="0 0 420 64"
+     role="img" aria-labelledby="title desc">
+  <title id="title">README made with beautify-github-readme</title>
+  <desc id="desc">A small signature badge linking to the beautify-github-readme skill used to design this README.</desc>
+
+  <defs>
+    <pattern id="grain" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#1E2421" opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <rect width="420" height="64" rx="12" fill="#F6EFE2"/>
+  <rect width="420" height="64" rx="12" fill="url(#grain)"/>
+  <rect x="0.75" y="0.75" width="418.5" height="62.5" rx="11" fill="none" stroke="#DED2BA" stroke-width="1.5"/>
+
+  <!-- amber square motif from the hero eyebrow -->
+  <rect x="20" y="26" width="12" height="12" fill="#E8A33D"/>
+
+  <text x="42" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2.5" fill="#6E675A">README MADE WITH</text>
+  <text x="42" y="47" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="700" fill="#1E2421">beautify-github-readme</text>
+
+  <!-- outbound arrow -->
+  <g stroke="#C77F22" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="384" y1="38" x2="398" y2="24"/>
+    <polyline points="386,24 398,24 398,36"/>
+  </g>
+</svg>
