@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="300" viewBox="0 0 1200 300"
+     role="img" aria-labelledby="title desc">
+  <title id="title">How Learn Anything works</title>
+  <desc id="desc">Four printed scraps: say the subject, the repo gets built, Day 1 happens in chat, and the progress loop keeps running.</desc>
+
+  <defs>
+    <pattern id="grain" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#1E2421" opacity="0.055"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="300" rx="26" fill="#F6EFE2"/>
+  <rect width="1200" height="300" rx="26" fill="url(#grain)"/>
+  <rect x="1" y="1" width="1198" height="298" rx="25" fill="none" stroke="#DED2BA" stroke-width="2"/>
+
+  <!-- Scrap 1 -->
+  <g transform="rotate(-1.8 179 144)">
+    <rect x="61" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="56" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <text x="76" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#C77F22">01</text>
+    <text x="76" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">Say the subject</text>
+    <text x="76" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">one message: subject,</text>
+    <text x="76" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">background, goal, time</text>
+    <text x="76" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">in the chat box</text>
+  </g>
+
+  <text x="316" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#1E2421">→</text>
+
+  <!-- Scrap 2 -->
+  <g transform="rotate(1.5 469 144)">
+    <rect x="351" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="346" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <text x="366" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#C77F22">02</text>
+    <text x="366" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">Repo gets built</text>
+    <text x="366" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">domain map, plan,</text>
+    <text x="366" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">quizzes, progress.md</text>
+    <text x="366" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">00_domain_map.md</text>
+  </g>
+
+  <text x="606" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#1E2421">→</text>
+
+  <!-- Scrap 3 with DAY 01 stamp -->
+  <g transform="rotate(-1.5 759 144)">
+    <rect x="641" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="636" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <rect x="656" y="66" width="88" height="28" rx="6" fill="#2E6B4F"/>
+    <text x="700" y="85" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" fill="#F6EFE2" text-anchor="middle">DAY 01</text>
+    <text x="656" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">Day 1 in chat</text>
+    <text x="656" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">I do → We do → You do,</text>
+    <text x="656" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">one tiny task today</text>
+    <text x="656" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">reply in conversation</text>
+  </g>
+
+  <text x="896" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#1E2421">→</text>
+
+  <!-- Scrap 4 -->
+  <g transform="rotate(1.8 1049 144)">
+    <rect x="931" y="57" width="246" height="184" rx="10" fill="#1E2421" opacity="0.07"/>
+    <rect x="926" y="52" width="246" height="184" rx="10" fill="#FFFFFF" stroke="#E3D9C4" stroke-width="1.5"/>
+    <text x="946" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#C77F22">04</text>
+    <text x="946" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#1E2421">Progress loops</text>
+    <text x="946" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">reviews, stage tests,</text>
+    <text x="946" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" fill="#4A5058">error-type diagnosis</text>
+    <text x="946" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#6E675A">07_daily_review/</text>
+  </g>
+
+  <text x="600" y="276" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#6E675A" text-anchor="middle">one skill pack · any subject · your own materials welcome</text>
+</svg>
