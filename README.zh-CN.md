@@ -14,6 +14,10 @@
   <a href="./RELEASE_NOTES.md">v0.2.4-beta</a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/vesperchinn/learn-anything-skill/actions/workflows/ci.yml"><img src="https://github.com/vesperchinn/learn-anything-skill/actions/workflows/ci.yml/badge.svg" alt="CI 状态"></a>
+</p>
+
 **Learn Anything** 是一套开源 Agent Skill Pack，帮助你用 AI Agent 学习任意领域。它会建立一套可持续使用的学习仓库，立刻在对话里开始教学，并让下一节课始终基于你的真实进度。
 
 ## 看看它怎样工作
